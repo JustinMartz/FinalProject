@@ -5,6 +5,14 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     
     <!-- begin entities -->
+    <class>com.skilldistillery.duality.entities.Behavior</class>
+    <class>com.skilldistillery.duality.entities.BehaviorReport</class>
+    <class>com.skilldistillery.duality.entities.BehaviorReportRemark</class>
+    <class>com.skilldistillery.duality.entities.BehaviorType</class>
+    <class>com.skilldistillery.duality.entities.Comment</class>
+    <class>com.skilldistillery.duality.entities.DirectMessage</class>
+    <class>com.skilldistillery.duality.entities.Post</class>
+    <class>com.skilldistillery.duality.entities.Resource</class>
     <class>com.skilldistillery.duality.entities.User</class>
     
     <!-- end entities -->
