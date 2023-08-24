@@ -2,6 +2,7 @@ package com.skilldistillery.duality.entities;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -51,9 +53,11 @@ public class User {
 
 	@Column(name="about_me")
 	private String aboutMe;
-
+	
+	@OneToMany(mappedBy="user")
+	private List<BehaviorReport>behaviorReports;
+	
 	public User() {
-		super();
 	}
 
 	public int getId() {
@@ -158,6 +162,22 @@ public class User {
 
 	public void setAboutMe(String aboutMe) {
 		this.aboutMe = aboutMe;
+	}
+
+	public Boolean getEnabled() {
+		return enabled;
+	}
+
+	public void setEnabled(Boolean enabled) {
+		this.enabled = enabled;
+	}
+
+	public List<BehaviorReport> getBehaviorReports() {
+		return behaviorReports;
+	}
+
+	public void setBehaviorReports(List<BehaviorReport> behaviorReports) {
+		this.behaviorReports = behaviorReports;
 	}
 
 	@Override

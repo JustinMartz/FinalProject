@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -16,8 +18,9 @@ public class Resource {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
-	private String resourceUrl;
+	
+	@Column(name="resource_link")
+	private String resourceLink;
 	
 	private String description;
 	
@@ -26,9 +29,12 @@ public class Resource {
 	private LocalDateTime createDate;
 	
 	private Boolean active;
+	
+	@OneToOne
+	@JoinColumn(name="user_id")
+	private User creator;
 
 	public Resource() {
-		super();
 	}
 
 	public int getId() {
@@ -39,12 +45,12 @@ public class Resource {
 		this.id = id;
 	}
 
-	public String getResourceUrl() {
-		return resourceUrl;
+	public String getResourceLink() {
+		return resourceLink;
 	}
 
-	public void setResourceUrl(String resourceUrl) {
-		this.resourceUrl = resourceUrl;
+	public void setResourceLink(String resourceLink) {
+		this.resourceLink = resourceLink;
 	}
 
 	public String getDescription() {
@@ -63,18 +69,26 @@ public class Resource {
 		this.createDate = createDate;
 	}
 
-	public boolean isActive() {
+	public Boolean getActive() {
 		return active;
 	}
 
-	public void setActive(boolean active) {
+	public void setActive(Boolean active) {
 		this.active = active;
+	}
+
+	public User getCreator() {
+		return creator;
+	}
+
+	public void setCreator(User creator) {
+		this.creator = creator;
 	}
 
 	@Override
 	public String toString() {
-		return "Resource [id=" + id + ", resourceUrl=" + resourceUrl + ", description=" + description + ", createDate="
-				+ createDate + ", active=" + active + "]";
+		return "Resource [id=" + id + ", resourceLink=" + resourceLink + ", description=" + description
+				+ ", createDate=" + createDate + ", active=" + active + ", creator=" + creator + "]";
 	}
 
 	@Override
@@ -94,5 +108,4 @@ public class Resource {
 		return id == other.id;
 	}
 
-	
 }

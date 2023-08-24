@@ -6,8 +6,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="behavior_type")
 public class BehaviorType {
 	
 	@Id
@@ -19,7 +21,6 @@ public class BehaviorType {
 	private String description;
 
 	public BehaviorType() {
-		super();
 	}
 
 	public int getId() {

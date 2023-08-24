@@ -38,7 +38,7 @@ public class Post {
 	private Boolean personal;
 
 	public Post() {
-		super();
+		
 	}
 
 	public int getId() {

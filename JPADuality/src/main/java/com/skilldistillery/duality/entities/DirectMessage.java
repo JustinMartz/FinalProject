@@ -10,10 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
+@Table(name="direct_message")
 public class DirectMessage {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +38,6 @@ public class DirectMessage {
 	private User recipient;
 
 	public DirectMessage() {
-		super();
 	}
 
 	public int getId() {
@@ -62,15 +63,7 @@ public class DirectMessage {
 	public void setCreateDate(LocalDateTime createDate) {
 		this.createDate = createDate;
 	}
-
-	public Boolean getactive() {
-		return active;
-	}
-
-	public void setactive(Boolean active) {
-		this.active = active;
-	}
-
+	
 	public User getSender() {
 		return sender;
 	}
@@ -85,6 +78,14 @@ public class DirectMessage {
 
 	public void setRecipient(User recipient) {
 		this.recipient = recipient;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 
 	@Override

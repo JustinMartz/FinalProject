@@ -2,7 +2,6 @@ package com.skilldistillery.duality.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,10 +13,11 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class UserTest {
+class ResourceTest {
+
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private User user;
+	private Resource resource;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,25 +32,26 @@ class UserTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		user = em.find(User.class, 4);
+		resource = em.find(Resource.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		user = null;
+		resource = null;
 	}
 
 	@Test
-	void test_user_basic() {
-		assertNotNull(user);
-		assertEquals("user1", user.getUsername());
+	void test_resource_basic() {
+		assertNotNull(resource);
+		assertNotNull("National Alliance on metal illness", resource.getDescription());
+		assertEquals("National Alliance on metal illness", resource.getDescription());
+	
 	}
-	@Test
-	void test_user_to_behaviorReports_mapping() {
-		assertNotNull(user);
-		assertNotNull(user.getBehaviorReports());
-		assertTrue(user.getBehaviorReports().size()> 0);
-	}
+//	@Test
+//	void test_resource_to__mapping() {
+//		assertNotNull(resource);
+//		
+//	}
 
 }

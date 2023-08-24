@@ -10,10 +10,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
+@Table(name="behavior_report_remark")
 public class BehaviorReportRemark {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +32,6 @@ public class BehaviorReportRemark {
 	private User user;
 
 	public BehaviorReportRemark() {
-		super();
 	}
 
 	public int getId() {

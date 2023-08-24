@@ -8,10 +8,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
+@Table(name = "behavior_report")
 public class BehaviorReport {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,14 +25,17 @@ public class BehaviorReport {
 	@CreationTimestamp
 	private LocalDateTime createDate;
 	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
 	private User user;
 	
+	@ManyToOne
+	@JoinColumn(name = "behavior_id")
 	private Behavior behavior;
 	
 	private Integer intensity;
-
+	
 	public BehaviorReport() {
-		super();
 	}
 
 	public int getId() {

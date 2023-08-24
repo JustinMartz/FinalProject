@@ -38,7 +38,6 @@ public class Comment {
 	private Post post;
 
 	public Comment() {
-		super();
 	}
 
 	public int getId() {

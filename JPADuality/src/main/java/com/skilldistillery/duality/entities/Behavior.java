@@ -1,48 +1,39 @@
 package com.skilldistillery.duality.entities;
 
-import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-
-import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 public class Behavior {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	private String name;
 	
-	private String description;
-	
-	@Column(name = "create_date")
-	@CreationTimestamp
-	private LocalDateTime createDate;
 	
 	private Integer severity;
 	
 	@OneToOne
 	@JoinColumn(name="behavior_type_id")
 	private BehaviorType behaviorType;
-
-
+	
 	public Behavior() {
-		super();
 	}
-
 
 	public int getId() {
 		return id;
 	}
-
 
 	public void setId(int id) {
 		this.id = id;
@@ -59,26 +50,6 @@ public class Behavior {
 	}
 
 
-	public String getDescription() {
-		return description;
-	}
-
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-
-	public LocalDateTime getCreateDate() {
-		return createDate;
-	}
-
-
-	public void setCreateDate(LocalDateTime createDate) {
-		this.createDate = createDate;
-	}
-
-
 	public Integer getSeverity() {
 		return severity;
 	}
@@ -88,8 +59,6 @@ public class Behavior {
 		this.severity = severity;
 	}
 
-
-	
 
 	public BehaviorType getBehaviorType() {
 		return behaviorType;
@@ -103,8 +72,8 @@ public class Behavior {
 
 	@Override
 	public String toString() {
-		return "Behavior [id=" + id + ", name=" + name + ", description=" + description + ", createDate=" + createDate
-				+ ", severity=" + severity + ", behaviorType=" + behaviorType + "]";
+		return "Behavior [id=" + id + ", name=" + name + ", severity=" + severity + ", behaviorType=" + behaviorType
+				+ "]";
 	}
 
 
@@ -126,6 +95,11 @@ public class Behavior {
 		return id == other.id;
 	}
 
+
+	
+
+
+	
 
 
 }
