@@ -21,7 +21,7 @@ public class BehaviorType {
 	private String description;
 
 	public BehaviorType() {
-	}
+	} 
 
 	public int getId() {
 		return id;

@@ -76,7 +76,7 @@ public class DirectMessage {
 		return recipient;
 	}
 
-	public void setRecipient(User recipient) {
+	public void setRecipient(User recipient) { 
 		this.recipient = recipient;
 	}
 
@@ -110,6 +110,8 @@ public class DirectMessage {
 		DirectMessage other = (DirectMessage) obj;
 		return id == other.id;
 	}
+
+	
 	
 	
 }

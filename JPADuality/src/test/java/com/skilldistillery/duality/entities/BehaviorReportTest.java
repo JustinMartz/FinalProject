@@ -20,7 +20,7 @@ class BehaviorReportTest {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		emf = Persistence.createEntityManagerFactory("JPADuality");
+		emf = Persistence.createEntityManagerFactory("JPADuality"); 
 	}
 
 	@AfterAll
@@ -44,11 +44,12 @@ class BehaviorReportTest {
 	@Test
 	void test_user_basic() {
 		assertNotNull(behaviorReport);
-		assertEquals("2023-08-24 10:15:00", behaviorReport.getCreateDate());
+		assertEquals(2023, behaviorReport.getCreateDate().getYear());
+		assertEquals(8, behaviorReport.getCreateDate().getMonthValue());
 		assertEquals(5, behaviorReport.getIntensity());
 	}
 	@Test
-	void test_user_to_behavior_type_mapping() {
+	void test_user_to_behavior_report_mapping() {
 		assertNotNull(behaviorReport);
 		assertEquals(1, behaviorReport.getBehavior().getId());
 		

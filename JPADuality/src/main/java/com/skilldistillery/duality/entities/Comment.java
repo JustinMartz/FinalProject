@@ -82,7 +82,7 @@ public class Comment {
 
 	public User getCommentor() {
 		return commentor;
-	}
+	} 
 
 	public void setCommentor(User commentor) {
 		this.commentor = commentor;
@@ -118,6 +118,8 @@ public class Comment {
 		Comment other = (Comment) obj;
 		return id == other.id;
 	}
+
+
 	
 	
 }

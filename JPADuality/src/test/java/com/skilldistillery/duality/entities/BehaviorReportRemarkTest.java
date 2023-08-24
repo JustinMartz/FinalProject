@@ -1,7 +1,6 @@
 package com.skilldistillery.duality.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,18 +12,18 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class ResourceTest {
+class BehaviorReportRemarkTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Resource resource;
+	private BehaviorReportRemark behaviorReportRemark;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("JPADuality");
 	}
 
-	@AfterAll 
+	@AfterAll
 	static void tearDownAfterClass() throws Exception {
 		emf.close();
 	}
@@ -32,29 +31,29 @@ class ResourceTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		resource = em.find(Resource.class, 1);
+		behaviorReportRemark = em.find(BehaviorReportRemark.class, 1);
+		
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		resource = null;
+		behaviorReportRemark = null;
 	}
 
 	@Test
-	void test_resource_basic() {
-		assertNotNull(resource);
-		assertNotNull("National Alliance on metal illness", resource.getDescription());
-		assertEquals("National Alliance on metal illness", resource.getDescription());
-		assertEquals(true, resource.getActive());
-		assertEquals(2023, resource.getCreateDate().getYear());
-		assertEquals(8, resource.getCreateDate().getMonthValue());
-	
+	void test_user_basic() {
+		assertNotNull(behaviorReportRemark);
+		assertEquals("dog ran away and girlfriend broke up with me", behaviorReportRemark.getRemarks());
+		assertEquals(2023, behaviorReportRemark.getCreateDate().getYear());
+		assertEquals(8, behaviorReportRemark.getCreateDate().getMonthValue());
+		
 	}
-//	@Test
-//	void test_resource_to__mapping() {
-//		assertNotNull(resource);
-//		
-//	}
+	@Test
+	void test_user_to_behavior_report_remark_mapping() {
+		assertNotNull(behaviorReportRemark);
+
+		
+	}
 
 }

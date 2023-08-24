@@ -1,7 +1,6 @@
 package com.skilldistillery.duality.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,18 +12,18 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class ResourceTest {
+class PostTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Resource resource;
+	private Post post;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("JPADuality");
 	}
 
-	@AfterAll 
+	@AfterAll
 	static void tearDownAfterClass() throws Exception {
 		emf.close();
 	}
@@ -32,29 +31,33 @@ class ResourceTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		resource = em.find(Resource.class, 1);
+		post = em.find(Post.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		resource = null;
+		post = null;
 	}
 
 	@Test
-	void test_resource_basic() {
-		assertNotNull(resource);
-		assertNotNull("National Alliance on metal illness", resource.getDescription());
-		assertEquals("National Alliance on metal illness", resource.getDescription());
-		assertEquals(true, resource.getActive());
-		assertEquals(2023, resource.getCreateDate().getYear());
-		assertEquals(8, resource.getCreateDate().getMonthValue());
-	
+	void test_post_basic() {
+		assertNotNull(post);
+		assertEquals("how are ya'll feeling today", post.getTitle());
+		assertEquals(2023, post.getCreateDate().getYear());
+		assertEquals(8, post.getCreateDate().getMonthValue());
+		assertEquals("feeling good today", post.getMessage());
+		assertTrue(post.getAnonymous());
+		assertTrue(post.getActive());
+		assertTrue(post.getPersonal());
+		
+		
+		
 	}
-//	@Test
-//	void test_resource_to__mapping() {
-//		assertNotNull(resource);
-//		
-//	}
+	@Test
+	void test_post_to_behaviorReports_mapping() {
+		assertNotNull(post);
+		
+	}
 
 }

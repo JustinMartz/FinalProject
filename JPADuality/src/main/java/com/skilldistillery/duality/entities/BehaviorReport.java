@@ -35,7 +35,7 @@ public class BehaviorReport {
 	
 	private Integer intensity;
 	
-	public BehaviorReport() {
+	public BehaviorReport() {  
 	} 
 
 	public int getId() {

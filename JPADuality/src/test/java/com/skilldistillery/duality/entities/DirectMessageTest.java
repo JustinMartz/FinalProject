@@ -1,7 +1,6 @@
 package com.skilldistillery.duality.entities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -13,18 +12,18 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-class ResourceTest {
+class DirectMessageTest {
 
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Resource resource;
+	private DirectMessage directMessage;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 		emf = Persistence.createEntityManagerFactory("JPADuality");
 	}
 
-	@AfterAll 
+	@AfterAll
 	static void tearDownAfterClass() throws Exception {
 		emf.close();
 	}
@@ -32,29 +31,35 @@ class ResourceTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		resource = em.find(Resource.class, 1);
+		directMessage = em.find(DirectMessage.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		resource = null;
+		directMessage = null;
 	}
 
 	@Test
-	void test_resource_basic() {
-		assertNotNull(resource);
-		assertNotNull("National Alliance on metal illness", resource.getDescription());
-		assertEquals("National Alliance on metal illness", resource.getDescription());
-		assertEquals(true, resource.getActive());
-		assertEquals(2023, resource.getCreateDate().getYear());
-		assertEquals(8, resource.getCreateDate().getMonthValue());
-	
+	void test_directMessage_basic() {
+		assertNotNull(directMessage);
+		assertEquals(2023, directMessage.getCreateDate().getYear());
+		assertEquals(8, directMessage.getCreateDate().getMonthValue());
+		assertEquals("Yo what's up!", directMessage.getMessage());
+		
 	}
-//	@Test
-//	void test_resource_to__mapping() {
-//		assertNotNull(resource);
-//		
-//	}
+	@Test
+	void test_direct_message_get_recipient() {
+		assertNotNull(directMessage);
+		assertEquals(1, directMessage.getRecipient().getId());
+		
+		
+	}
+	@Test
+	void test_direct_message_get_sender() {
+		assertNotNull(directMessage);
+		assertEquals(1, directMessage.getSender().getId());
+		
+	}
 
 }

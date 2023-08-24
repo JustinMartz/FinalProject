@@ -25,7 +25,7 @@ public class Resource {
 	private String description;
 	
 	@Column(name = "create_date")
-	@CreationTimestamp
+	@CreationTimestamp 
 	private LocalDateTime createDate;
 	
 	private Boolean active;

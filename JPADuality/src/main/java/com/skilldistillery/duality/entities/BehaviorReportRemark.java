@@ -88,6 +88,12 @@ public class BehaviorReportRemark {
 		BehaviorReportRemark other = (BehaviorReportRemark) obj;
 		return id == other.id;
 	}
+
+	
+
+	
+
+	
 	
 	
 }
