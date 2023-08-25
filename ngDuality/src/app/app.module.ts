@@ -9,6 +9,9 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { UserhomeComponent } from './components/userhome/userhome.component';
+import { LoginComponent } from './components/login/login.component';
+import { LogoutComponent } from './components/logout/logout.component';
+import { DualityhomeComponent } from './components/dualityhome/dualityhome.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { UserhomeComponent } from './components/userhome/userhome.component';
     NavBarComponent,
     RegisterComponent,
     NotFoundComponent,
-    UserhomeComponent
+    UserhomeComponent,
+    LoginComponent,
+    LogoutComponent,
+    DualityhomeComponent
   ],
   imports: [
     BrowserModule,

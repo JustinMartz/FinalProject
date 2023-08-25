@@ -1,3 +1,4 @@
 <p>userhome works!</p>
-<h2>Username:{{loggedInUser.username}} </h2>
-<h2>Date of birthing: {{loggedInUser.dob}} </h2>
+<h2 style="display:inline;">Username: </h2> <span style="background-color: antiquewhite;">{{loggedInUser.username}}</span>
+<br>
+<h2 style="display:inline;">Date of birthing: </h2> <span style="background-color: antiquewhite;">{{loggedInUser.dob | date: 'longDate'}}</span>

@@ -15,14 +15,16 @@ export class UserhomeComponent implements OnInit {
   constructor (private authService: AuthService, private userService: UserService) { }
 
   ngOnInit():void {
-    this.authService.getLoggedInUser().subscribe( {
-      next: (user) => {
-        this.loggedInUser = user;
-      },
-      error: (fail) => {
-        console.error('ngOnInit(): Error getting user');
-        console.error(fail);
-      }
-    });
+    if (this.authService.checkLogin()) {
+      this.authService.getLoggedInUser().subscribe( {
+        next: (user) => {
+          this.loggedInUser = user;
+        },
+        error: (fail) => {
+          console.error('ngOnInit(): Error getting user');
+          console.error(fail);
+        }
+      });
+    }
   }
 }

@@ -1,0 +1,6 @@
+<h1>Log in to Duality</h1>
+<label for="username"><h2>Username: </h2></label>
+<input type="text" name="username" [(ngModel)]="logInUser.username"> <br>
+<label for="password"><h2>Password: </h2></label>
+<input type="password" name="password" [(ngModel)]="logInUser.password"> <br>
+<button (click)="login(logInUser)">Log in</button>
