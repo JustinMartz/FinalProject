@@ -1,0 +1,12 @@
+<form>
+  <h1>Register a new account!</h1>
+  <label for="username">
+    <h2>Username: </h2>
+  </label>
+  <input type="text" name="username" [(ngModel)]="newUser.username"> <br>
+  <label for="password">
+    <h2>Password: </h2>
+  </label>
+  <input type="password" name="password" [(ngModel)]="newUser.password"> <br>
+  <button (click)="register(newUser)">Register Account</button>
+</form>

@@ -1,5 +1,7 @@
 package com.skilldistillery.duality.services;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,11 +21,14 @@ public class AuthServiceImpl implements AuthService {
 
 	@Override
 	public User register(User user) {
-		user.setEnabled(true);
-		user.setRole("standard");
+		User newUser = new User();
 		String encrypted = encoder.encode(user.getPassword());
+		newUser.setUsername(user.getUsername());
+		newUser.setPassword(encrypted);
+		newUser.setEnabled(true);
+		newUser.setRole("user");
 		user.setPassword(encrypted);
-		userRepo.saveAndFlush(user);
+		userRepo.saveAndFlush(newUser);
 		return user;
 	}
 
