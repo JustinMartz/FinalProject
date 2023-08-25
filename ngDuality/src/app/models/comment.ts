@@ -1,3 +1,5 @@
+import { User } from "./user";
+
 export class Comment {
   id: number;
   createDate: string;
@@ -14,8 +16,8 @@ export class Comment {
       body: string = '',
       active: boolean = false,
       flagged: boolean = false,
-      creator: User,
-      post: Post
+      creator: User = new User(),
+      post: Post = new Post()
 
   ) {
       this.id = id;
@@ -23,8 +25,8 @@ export class Comment {
       this.body = body;
       this.active = active;
       this.flagged = flagged;
-      this.creator = User;
-      this.post = Post;
+      this.creator = creator;
+      this.post = post;
 
   }
 }

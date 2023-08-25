@@ -1,3 +1,5 @@
+import { User } from "./user";
+
 export class DirectMessage {
   id: number;
   message: string;
