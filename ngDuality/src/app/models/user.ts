@@ -5,6 +5,7 @@ export class User {
   email: string;
   role: string;
   enabled: boolean;
+  flaggedPosts: any;
 
   constructor(
     id: number = 0,
