@@ -26,8 +26,8 @@ export class Comment {
       this.body = body;
       this.active = active;
       this.flagged = flagged;
-      this.creator = User;
-      this.post = Post;
+      this.creator = creator;
+      this.post = post;
 
   }
 }
