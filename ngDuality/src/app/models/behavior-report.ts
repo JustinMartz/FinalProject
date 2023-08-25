@@ -14,7 +14,7 @@ export class BehaviorReport {
     user: User = new User(),
     behavior: Behavior = new Behavior(),
     intensity: number = 0,
-    createDate:string=''
+    createDate:string= ''
 
   ) {
     this.id = id;

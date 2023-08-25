@@ -23,10 +23,6 @@ export class Resource {
 
 
 
-
-
-
-
   ) {
     this.id = id;
     this.resourceLink = resourceLink;

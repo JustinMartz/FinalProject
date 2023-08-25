@@ -28,51 +28,51 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	private String username;
+	private String username;   
 
-	private String password;
+	private String password;   
 
-	private Boolean enabled;
+	private Boolean enabled;    
 
-	private String role;
+	private String role;     
 
-	private String email;
+	private String email;    
 
-	private String avatar;
+	private String avatar;     
 
-	@Column(name = "first_name")
+	@Column(name = "first_name")       
 	private String firstName;
 
-	@Column(name = "last_name")
+	@Column(name = "last_name")        
 	private String lastName;
 
 	@Column(name = "create_date")
 	@CreationTimestamp
-	private LocalDateTime createDate;
+	private LocalDateTime createDate;         
 
 	@Column(name = "update_date")
 	@UpdateTimestamp
-	private LocalDateTime updateDate;
+	private LocalDateTime updateDate;         
 
-	@Column(name = "date_of_birth")
+	@Column(name = "date_of_birth")         
 	private LocalDate dob;
 
-	@Column(name = "about_me")
+	@Column(name = "about_me")          
 	private String aboutMe;
 
 	@OneToMany(mappedBy = "user")
-	private List<BehaviorReport> behaviorReports;
+	private List<BehaviorReport> behaviorReports;    
 
 	@OneToMany(mappedBy = "user")
-	private List<BehaviorReportRemark> behaviorReportRemarks;
+	private List<BehaviorReportRemark> behaviorReportRemarks;     
 
 	@OneToMany(mappedBy = "creator")
-	private List<Resource> resources;
+	private List<Resource> resources;     
 
 	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "flagged_post", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "post_id"))
-	private List<Post> flaggedPosts;
+	private List<Post> flaggedPosts;           
 
 	@OneToMany(mappedBy = "creator")
 	private List<Post> posts;

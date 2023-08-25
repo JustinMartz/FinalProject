@@ -1,7 +1,7 @@
-import { first } from "rxjs";
 import { BehaviorReport } from "./behavior-report";
 import { BehaviorReportRemark } from "./behavior-report-remark";
 import { Resource } from "./resource";
+import { Post } from "./post";
 
 export class User {
   id: number;
@@ -41,10 +41,8 @@ export class User {
     behaviorReports: BehaviorReport [] = [],
     behaviorReportRemarks: BehaviorReportRemark [] = [],
     resources: Resource [] = [],
-    flaggedPosts: Post[] | undefined,
-    posts: Post[] | undefined
-
-
+    flaggedPosts: Post[] = [],
+    posts: Post[] = []
 
 
   ) {
