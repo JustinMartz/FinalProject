@@ -22,12 +22,12 @@ public class BehaviorController {
 	private BehaviorService behaviorService;
 
 	@GetMapping("behavior")
-	List<Behavior> listPms() {
+	List<Behavior> listBehavior() {
 		return behaviorService.listAllBehaviors();
 	}
 
 	@GetMapping("behavior/{id}")
-	Behavior getPmById(@PathVariable("id") Integer behaviorId, HttpServletResponse res) {
+	Behavior getBehaviorById(@PathVariable("id") Integer behaviorId, HttpServletResponse res) {
 		Behavior behavior = behaviorService.getById(behaviorId);
 		if (behavior == null) {
 			res.setStatus(404);
