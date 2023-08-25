@@ -48,6 +48,7 @@ class DirectMessageTest {
 		assertEquals("Yo what's up!", directMessage.getMessage());
 		
 	}
+	
 	@Test
 	void test_direct_message_get_recipient() {
 		assertNotNull(directMessage);
@@ -55,6 +56,7 @@ class DirectMessageTest {
 		
 		
 	}
+	
 	@Test
 	void test_direct_message_get_sender() {
 		assertNotNull(directMessage);

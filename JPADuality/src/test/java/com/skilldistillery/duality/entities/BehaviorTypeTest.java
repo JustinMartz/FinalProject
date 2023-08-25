@@ -50,7 +50,7 @@ class BehaviorTypeTest {
 	}
 
 	@Test
-	void test_behaviorType_to_behaviorReports_mapping() {
+	void test_behaviorType_to_behavior_type_mapping() {
 		assertNotNull(behaviorType);
 
 	}

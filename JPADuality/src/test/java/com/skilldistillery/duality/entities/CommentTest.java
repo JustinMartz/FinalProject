@@ -52,8 +52,10 @@ class CommentTest {
 		
 	}
 	@Test
-	void test_comment_to_behaviorReports_mapping() {
+	void test_comment_to_other_class_relationship() {
 		assertNotNull(comment);
+		assertNotNull(comment.getCommentor().getId());
+		assertNotNull(comment.getPost().getId());
 		
 	}
 

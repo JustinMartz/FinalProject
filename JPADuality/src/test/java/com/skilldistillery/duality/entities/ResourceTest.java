@@ -51,10 +51,11 @@ class ResourceTest {
 		assertEquals(8, resource.getCreateDate().getMonthValue());
 	
 	}
-//	@Test
-//	void test_resource_to__mapping() {
-//		assertNotNull(resource);
-//		
-//	}
+	@Test
+	void test_resource_to_user_mapping() {
+		assertNotNull(resource);
+		assertNotNull(resource.getCreator());
+		
+	}
 
 }

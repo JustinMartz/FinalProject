@@ -19,12 +19,6 @@ public class Behavior {
 
 	private String name;
 	
-	private String description;
-	
-	@Column(name = "create_date")
-	@CreationTimestamp
-	private LocalDateTime createDate;
-	
 	private Integer severity;
 	
 	@OneToOne
@@ -55,27 +49,7 @@ public class Behavior {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-
-	public String getDescription() {
-		return description;
-	}
-
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-
-	public LocalDateTime getCreateDate() {
-		return createDate;
-	}
-
-
-	public void setCreateDate(LocalDateTime createDate) {
-		this.createDate = createDate;
-	}
-
+	
 
 	public Integer getSeverity() {
 		return severity;
@@ -101,8 +75,8 @@ public class Behavior {
 
 	@Override
 	public String toString() {
-		return "Behavior [id=" + id + ", name=" + name + ", description=" + description + ", createDate=" + createDate
-				+ ", severity=" + severity + ", behaviorType=" + behaviorType + "]";
+		return "Behavior [id=" + id + ", name=" + name + ", severity=" + severity + ", behaviorType=" + behaviorType
+				+ "]";
 	}
 
 

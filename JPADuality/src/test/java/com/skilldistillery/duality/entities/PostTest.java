@@ -55,9 +55,19 @@ class PostTest {
 		
 	}
 	@Test
-	void test_post_to_behaviorReports_mapping() {
-		assertNotNull(post);
+	void test_post_to_comment() {
+		assertNotNull(post.getComments());
+		assertNotNull(post.getCreator());
+		assertTrue(post.getComments().size()>0);
+		assertEquals("how are ya'll feeling today", post.getTitle());
 		
+	}
+	
+	@Test
+	void test_post_to_user() {
+		post = em.find(Post.class, 2);
+		assertNotNull(post);
+		assertTrue(post.getUsersWhoFlagged().size()>0);
 	}
 
 }

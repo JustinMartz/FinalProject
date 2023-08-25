@@ -52,6 +52,8 @@ class BehaviorReportTest {
 	void test_user_to_behavior_report_mapping() {
 		assertNotNull(behaviorReport);
 		assertEquals(1, behaviorReport.getBehavior().getId());
+		assertEquals(4, behaviorReport.getUser().getId());
+		
 		
 		
 	}
