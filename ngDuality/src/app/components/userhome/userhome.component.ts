@@ -1,10 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-userhome',
   templateUrl: './userhome.component.html',
   styleUrls: ['./userhome.component.css']
 })
-export class UserhomeComponent {
+export class UserhomeComponent implements OnInit {
 
+  loggedInUser: User = new User();
+
+  constructor (private authService: AuthService, private userService: UserService) { }
+
+  ngOnInit():void {
+    this.authService.getLoggedInUser().subscribe( {
+      next: (user) => {
+        this.loggedInUser = user;
+      },
+      error: (fail) => {
+        console.error('ngOnInit(): Error getting user');
+        console.error(fail);
+      }
+    });
+  }
 }
