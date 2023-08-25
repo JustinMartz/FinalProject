@@ -20,23 +20,23 @@ public class BehaviorReport {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-	
+
 	@Column(name = "create_date")
 	@CreationTimestamp
 	private LocalDateTime createDate;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "behavior_id")
 	private Behavior behavior;
-	
+
 	private Integer intensity;
-	
-	public BehaviorReport() {  
-	} 
+
+	public BehaviorReport() {
+	}
 
 	public int getId() {
 		return id;
@@ -100,7 +100,5 @@ public class BehaviorReport {
 		BehaviorReport other = (BehaviorReport) obj;
 		return id == other.id;
 	}
-	
-	
-	
-} 
+
+}

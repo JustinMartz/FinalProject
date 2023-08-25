@@ -14,31 +14,36 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.duality.entities.Behavior;
 import com.skilldistillery.duality.services.BehaviorService;
 @RestController
 @CrossOrigin({"*", "http://localhost/"})
+@RequestMapping("api")
 public class BehaviorController {
 
 	@Autowired
 	private BehaviorService behaviorService;
 
-	@GetMapping("behavior")
-	List<Behavior> listBehavior(Principal principal,HttpServletResponse res) {
+	@GetMapping("behaviors")
+	List<Behavior> listBehavior(Principal principal, HttpServletResponse res) {
 		List<Behavior> behaviors= null;
 		behaviors=behaviorService.listAllBehaviors();
 		
 		if (behaviors == null) {
 			res.setStatus(404);
 		}
+		else {
+			res.setStatus(200);
+		}
 		
 		return behaviors;
 	}
 
 	@GetMapping("behavior/{id}")
-	Behavior getBehaviorById(@PathVariable("id") int behaviorId,Principal principal, HttpServletResponse res) {
+	Behavior getBehaviorById(@PathVariable("id") int behaviorId, Principal principal, HttpServletResponse res) {
 		Behavior behavior = behaviorService.getById(behaviorId);
 		if (principal.getName()!=null) {
 			if (behavior == null) {

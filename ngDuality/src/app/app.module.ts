@@ -12,6 +12,7 @@ import { UserhomeComponent } from './components/userhome/userhome.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { DualityhomeComponent } from './components/dualityhome/dualityhome.component';
+import { CheckInComponent } from './components/check-in/check-in.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { DualityhomeComponent } from './components/dualityhome/dualityhome.compo
     UserhomeComponent,
     LoginComponent,
     LogoutComponent,
-    DualityhomeComponent
+    DualityhomeComponent,
+    CheckInComponent
   ],
   imports: [
     BrowserModule,
