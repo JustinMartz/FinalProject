@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `last_name` VARCHAR(45) NULL,
   `create_date` DATETIME NOT NULL,
   `update_date` DATETIME NOT NULL,
-  `date_of_birth` DATE NOT NULL,
+  `date_of_birth` DATE NULL,
   `about_me` TEXT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `username_UNIQUE` (`username` ASC))
