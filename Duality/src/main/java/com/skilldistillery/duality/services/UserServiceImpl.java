@@ -15,13 +15,10 @@ public class UserServiceImpl implements UserService {
 	private UserRepository userRepo;
 	
 	@Override
-	public User getUser(String username, int id) {
-		User user = null;
-		if (userRepo.findByUsername(username) != null) {
-			Optional<User> userOpt = userRepo.findById(id);
-			if (userOpt.isPresent()) {
-				user = userOpt.get();
-			}
+	public User getLoggedInUser(String username) {
+		User user = userRepo.findByUsername(username);
+		if (user == null) {
+			user=null;
 		}
 		return user;
 	}

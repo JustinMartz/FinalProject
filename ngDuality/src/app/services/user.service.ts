@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class UserService {
 
-  private url = environment.baseUrl + 'api/todos';
+  private url = environment.baseUrl + 'api/users';
 
   constructor(private http: HttpClient, private auth: AuthService) { }
 

@@ -1,5 +1,6 @@
 package com.skilldistillery.duality.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,21 +26,30 @@ public class BehaviorController {
 	private BehaviorService behaviorService;
 
 	@GetMapping("behavior")
-	List<Behavior> listBehavior() {
-		return behaviorService.listAllBehaviors();
+	List<Behavior> listBehavior(Principal principal,HttpServletResponse res) {
+		List<Behavior> behaviors= null;
+		behaviors=behaviorService.listAllBehaviors();
+		
+		if (behaviors == null) {
+			res.setStatus(404);
+		}
+		
+		return behaviors;
 	}
 
 	@GetMapping("behavior/{id}")
-	Behavior getBehaviorById(@PathVariable("id") Integer behaviorId, HttpServletResponse res) {
+	Behavior getBehaviorById(@PathVariable("id") int behaviorId,Principal principal, HttpServletResponse res) {
 		Behavior behavior = behaviorService.getById(behaviorId);
-		if (behavior == null) {
-			res.setStatus(404);
+		if (principal.getName()!=null) {
+			if (behavior == null) {
+				res.setStatus(404);
+			}
 		}
 		return behavior;
 	}
 
 	@PostMapping("behavior")
-	public Behavior createBehavior(@RequestBody Behavior behavior, HttpServletResponse res, HttpServletRequest req) {
+	public Behavior createBehavior(@RequestBody Behavior behavior,Principal principal, HttpServletResponse res, HttpServletRequest req) {
 		System.out.println(behavior);
 		try {
 			behavior = behaviorService.create(behavior);
@@ -56,7 +66,7 @@ public class BehaviorController {
 	}
 
 	@PutMapping("behavior/{behaviorId}")
-	public Behavior updateBehavior(@PathVariable int behaviorId, @RequestBody Behavior behavior,
+	public Behavior updateBehavior(@PathVariable int behaviorId,Principal principal, @RequestBody Behavior behavior,
 			HttpServletResponse res) {
 		try {
 			behavior = behaviorService.update(behaviorId, behavior);
@@ -71,7 +81,7 @@ public class BehaviorController {
 	}
 
 	@DeleteMapping("behavior/{behaviorId}")
-	public void deleteBehavior(@PathVariable("behaviorId") Integer behaviorId, HttpServletResponse res) {
+	public void deleteBehavior(@PathVariable("behaviorId") Integer behaviorId,Principal principal, HttpServletResponse res) {
 		try {
 			if (behaviorService.delete(behaviorId)) {
 				res.setStatus(200);

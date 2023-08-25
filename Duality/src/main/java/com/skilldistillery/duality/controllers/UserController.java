@@ -20,9 +20,9 @@ public class UserController {
 	@Autowired
 	private UserService userServ;
 
-	@GetMapping("user/{userId}")
-	public User getUser(Principal principal, HttpServletResponse response, @PathVariable int userId) {
-		User user = userServ.getUser(principal.getName(), userId);
+	@GetMapping("users")
+	public User getUser(Principal principal, HttpServletResponse response) {
+		User user = userServ.getLoggedInUser(principal.getName());
 		if (user != null) {
 			response.setStatus(200);
 		} else {
