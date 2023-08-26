@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Behavior } from 'src/app/models/behavior';
 import { BehaviorReport } from 'src/app/models/behavior-report';
 import { AuthService } from 'src/app/services/auth.service';
+import { BehaviorReportService } from 'src/app/services/behavior-report.service';
 
 
 @Component({
@@ -13,7 +14,9 @@ import { AuthService } from 'src/app/services/auth.service';
 export class CheckInComponent implements OnInit{
 
 
-  constructor(private behaviorService: BehaviorService, private authService: AuthService){
+
+  constructor(private behaviorService: BehaviorService, private authService: AuthService, private behaviorReportService: BehaviorReportService){
+
 
   }
 
@@ -41,7 +44,7 @@ export class CheckInComponent implements OnInit{
     );
 }
 
-  updateBR(intensity: number, behavior: Behavior) {
+  createBR(intensity: number, behavior: Behavior) {
     console.log('*** intensity: ' + intensity);
     console.log('behavior: ' + behavior);
     console.log('behaviorType: ' + behavior.behaviorType);
@@ -59,7 +62,16 @@ export class CheckInComponent implements OnInit{
       }
     });
     console.log(updatedBR);
+    this.behaviorReportService.create(updatedBR).subscribe({
+      next: (createdBehaviorReport) => {
+        this.newBR = new BehaviorReport();
+      },
+      error: (somethingBad) => {
+        console.error('TodoListComponent.reload: error loading todos');
+        console.error(somethingBad);
+      }
+
+  });
+
   }
-
-
 }

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.skilldistillery.duality.entities.BehaviorReport;
@@ -21,17 +22,18 @@ import com.skilldistillery.duality.services.BehaviorReportService;
 
 @RestController
 @CrossOrigin({"*", "http://localhost/"})
+@RequestMapping("api")
 public class BehaviorReportController {
 	
 	@Autowired
 	private BehaviorReportService behaviorReportService;
 
-	@GetMapping("behaviorReport")
+	@GetMapping("behaviorReports")
 	List<BehaviorReport> listBehaviorReport() {
 		return behaviorReportService.listAllBehaviorReports();
 	}
 
-	@GetMapping("behaviorReport/{id}")
+	@GetMapping("behaviorReports/{id}")
 	BehaviorReport getBehaviorReportById(@PathVariable("id") Integer behaviorReportId, HttpServletResponse res) {
 		BehaviorReport behaviorReport = behaviorReportService.getById(behaviorReportId);
 		if (behaviorReport == null) {
@@ -40,24 +42,20 @@ public class BehaviorReportController {
 		return behaviorReport;
 	}
 
-	@PostMapping("behaviorReport")
+	@PostMapping("behaviorReports")
 	public BehaviorReport createBehaviorReport(Principal principal, @RequestBody BehaviorReport behaviorReport, HttpServletResponse res, HttpServletRequest req) {
-		System.out.println(behaviorReport);
-		try {
-			behaviorReport = behaviorReportService.create(behaviorReport);
+		BehaviorReport newBR = behaviorReportService.create(behaviorReport, principal.getName());
+		if (newBR != null) {
 			res.setStatus(201);
-			StringBuffer url = req.getRequestURL();
-			url.append("/").append(behaviorReport.getId());
+			StringBuffer url = req.getRequestURL().append("/" + newBR.getId());
 			res.setHeader("Location", url.toString());
-		} catch (Exception e) {
-			e.printStackTrace();
+		} else {
 			res.setStatus(400);
-			behaviorReport = null;
 		}
-		return behaviorReport;
+		return newBR;
 	}
 
-	@PutMapping("behaviorReport/{behaviorReportId}")
+	@PutMapping("behaviorReports/{behaviorReportId}")
 	public BehaviorReport updateBehaviorReport(@PathVariable int behaviorReportId, @RequestBody BehaviorReport behaviorReport,
 			HttpServletResponse res) {
 		try {
@@ -72,7 +70,7 @@ public class BehaviorReportController {
 		return behaviorReport;
 	}
 
-	@DeleteMapping("behaviorReport/{behaviorReportId}")
+	@DeleteMapping("behaviorReports/{behaviorReportId}")
 	public void deleteBehaviorReport(@PathVariable("behaviorReportId") Integer behaviorReportId, HttpServletResponse res) {
 		try {
 			if (behaviorReportService.delete(behaviorReportId)) {

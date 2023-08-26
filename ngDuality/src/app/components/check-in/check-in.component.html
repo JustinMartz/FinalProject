@@ -6,8 +6,9 @@
       <label class="form-check-label" for="behavior{{b.id}}">{{b.name}}</label>
 
     <span *ngIf="b.checked">
-      <input type="range" name="intensity{{b.id}}" min="1" max="10" [(ngModel)]="newBR.intensity" (change)="updateBR(newBR.intensity, b)"/>
-      <label for="intensity{{b.id}}"> Intensity</label>
+
+      <input type="range" name="intensity{{b.id}}" min="1" max="10" [(ngModel)]="newBR.intensity" (change)="createBR(newBR.intensity, b)"/>
+      <label for="intensity{{b.id}}">Intensity</label>
     </span>
     <br>
   </div>
