@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.duality.entities.BehaviorReport;
+import com.skilldistillery.duality.entities.User;
 import com.skilldistillery.duality.repositories.BehaviorReportRepository;
+import com.skilldistillery.duality.repositories.UserRepository;
 
 @Service
 public class BehaviorReportServiceImpl implements BehaviorReportService {
@@ -15,6 +17,9 @@ public class BehaviorReportServiceImpl implements BehaviorReportService {
 	
 	@Autowired
 	private BehaviorReportRepository behaviorReportRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
 
 	
 	
@@ -33,9 +38,20 @@ public class BehaviorReportServiceImpl implements BehaviorReportService {
 	}
 
 	@Override
-	public BehaviorReport create(BehaviorReport newBehaviorReport) {
-
-		return behaviorReportRepo.saveAndFlush(newBehaviorReport);
+	public BehaviorReport create(BehaviorReport newBehaviorReport, String username) {
+		User user = userRepo.findByUsername(username);
+		if (user != null) {
+		    newBehaviorReport.setUser(user);
+		    if ( newBehaviorReport.getId() > 0) {
+				return null;
+			}
+			if (newBehaviorReport.getBehavior() == null) {
+				return null;
+			}
+		    return behaviorReportRepo.saveAndFlush(newBehaviorReport);
+		  }
+		
+		return null;
 	}
 
 	@Override

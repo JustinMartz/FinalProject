@@ -10,7 +10,7 @@ public interface BehaviorReportService {
 
 	BehaviorReport getById(int behaviorReportId);
 
-	BehaviorReport create(BehaviorReport newBehaviorReport);
+	BehaviorReport create(BehaviorReport newBehaviorReport, String username);
 
 	BehaviorReport update(int behaviorReportId, BehaviorReport newBehaviorReport);
 
