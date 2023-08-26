@@ -1,0 +1,7 @@
+.container {
+  height: 50vh;
+  width: 50vw;
+  background-color: antiquewhite;
+  border-radius: 16px;
+  overflow: scroll;
+}

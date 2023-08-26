@@ -12,11 +12,13 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class CheckInComponent implements OnInit{
 
+
   constructor(private behaviorService: BehaviorService, private authService: AuthService){
 
   }
+
   behaviors: Behavior[] =[];
-  newBehaviorReports: BehaviorReport[] = [];
+
   newBR: BehaviorReport = new BehaviorReport();
 
   // 1. if checkbox is checked, intensity slider appears
@@ -41,8 +43,11 @@ export class CheckInComponent implements OnInit{
 
   updateBR(intensity: number, behavior: Behavior) {
     console.log('*** intensity: ' + intensity);
+    console.log('behavior: ' + behavior);
+    console.log('behaviorType: ' + behavior.behaviorType);
     let updatedBR: BehaviorReport = new BehaviorReport();
     updatedBR.behavior = behavior;
+    updatedBR.behavior.behaviorType = behavior.behaviorType;
     updatedBR.intensity = intensity;
     this.authService.getLoggedInUser().subscribe({
       next: (user) => {
