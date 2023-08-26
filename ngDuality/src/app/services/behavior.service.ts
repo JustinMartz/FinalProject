@@ -9,7 +9,7 @@ import { BehaviorType } from '../models/behavior-type';
   providedIn: 'root',
 })
 export class BehaviorService {
-  private url = environment.baseUrl + 'api/behavior';
+  private url = environment.baseUrl + 'api/behaviors';
   constructor(private http: HttpClient, private auth: AuthService) {}
 
   getHttpOptions() {

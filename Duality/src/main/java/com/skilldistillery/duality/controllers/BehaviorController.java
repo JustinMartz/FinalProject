@@ -28,7 +28,7 @@ public class BehaviorController {
 	private BehaviorService behaviorService;
 
 	@GetMapping("behaviors")
-	List<Behavior> listBehavior(Principal principal, HttpServletResponse res) {
+	List<Behavior> listBehavior(HttpServletResponse res) {
 		List<Behavior> behaviors= null;
 		behaviors=behaviorService.listAllBehaviors();
 		

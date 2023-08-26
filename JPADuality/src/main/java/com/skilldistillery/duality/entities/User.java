@@ -59,13 +59,16 @@ public class User {
 
 	@Column(name = "about_me")          
 	private String aboutMe;
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<BehaviorReport> behaviorReports;    
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "user")
 	private List<BehaviorReportRemark> behaviorReportRemarks;     
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "creator")
 	private List<Resource> resources;     
 
@@ -73,7 +76,7 @@ public class User {
 	@ManyToMany
 	@JoinTable(name = "flagged_post", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "post_id"))
 	private List<Post> flaggedPosts;           
-
+	@JsonIgnore
 	@OneToMany(mappedBy = "creator")
 	private List<Post> posts;
 

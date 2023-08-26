@@ -2,6 +2,7 @@ import { BehaviorService } from './../../services/behavior.service';
 import { Component, OnInit } from '@angular/core';
 import { Behavior } from 'src/app/models/behavior';
 
+
 @Component({
   selector: 'app-check-in',
   templateUrl: './check-in.component.html',
