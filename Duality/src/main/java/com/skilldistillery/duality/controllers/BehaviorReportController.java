@@ -1,5 +1,6 @@
 package com.skilldistillery.duality.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -40,7 +41,7 @@ public class BehaviorReportController {
 	}
 
 	@PostMapping("behaviorReport")
-	public BehaviorReport createBehaviorReport(@RequestBody BehaviorReport behaviorReport, HttpServletResponse res, HttpServletRequest req) {
+	public BehaviorReport createBehaviorReport(Principal principal, @RequestBody BehaviorReport behaviorReport, HttpServletResponse res, HttpServletRequest req) {
 		System.out.println(behaviorReport);
 		try {
 			behaviorReport = behaviorReportService.create(behaviorReport);
