@@ -50,11 +50,11 @@ export class CheckInComponent implements OnInit{
     console.log('behaviorType: ' + behavior.behaviorType);
     let updatedBR: BehaviorReport = new BehaviorReport();
     updatedBR.behavior = behavior;
-    updatedBR.behavior.behaviorType = behavior.behaviorType;
     updatedBR.intensity = intensity;
     this.authService.getLoggedInUser().subscribe({
       next: (user) => {
         updatedBR.user = user;
+
       },
       error: (fail) => {
         console.error('CheckInComponent.updateBR(): Error getting user');
@@ -62,9 +62,11 @@ export class CheckInComponent implements OnInit{
       }
     });
     console.log(updatedBR);
+
     this.behaviorReportService.create(updatedBR).subscribe({
       next: (createdBehaviorReport) => {
         this.newBR = new BehaviorReport();
+
       },
       error: (somethingBad) => {
         console.error('TodoListComponent.reload: error loading todos');
