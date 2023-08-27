@@ -56,11 +56,11 @@ export class CheckInComponent implements OnInit{
     this.intensityByBehaviorId[behavior.id] = intensity;        //
     let updatedBR: BehaviorReport = new BehaviorReport();
     updatedBR.behavior = behavior;
-    updatedBR.behavior.behaviorType = behavior.behaviorType;
     updatedBR.intensity = intensity;
     this.authService.getLoggedInUser().subscribe({
       next: (user) => {
         updatedBR.user = user;
+
       },
       error: (fail) => {
         console.error('CheckInComponent.updateBR(): Error getting user');
@@ -68,16 +68,7 @@ export class CheckInComponent implements OnInit{
       }
     });
     console.log(updatedBR);
-  //   for(let x of this.behaviorReports) {
-  //     for(let b of this.behaviors) {
-  //       if(x.behavior.id === b.id) {
-  //       return;
-  //     }
-  //     else if (b.checked) {
-  //       this.behaviorReports.push(updatedBR);
-  //     }
-  //   }
-  // }
+
   for (let br of this.behaviorReports) {
     if (br.behavior.id === behavior.id) {
         return;

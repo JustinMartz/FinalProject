@@ -13,6 +13,8 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { DualityhomeComponent } from './components/dualityhome/dualityhome.component';
 import { CheckInComponent } from './components/check-in/check-in.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -24,15 +26,19 @@ import { CheckInComponent } from './components/check-in/check-in.component';
     LoginComponent,
     LogoutComponent,
     DualityhomeComponent,
-    CheckInComponent
+    CheckInComponent,
+    CalendarComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [DatePipe],
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }

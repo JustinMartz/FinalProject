@@ -3,6 +3,7 @@
     <div *ngFor="let b of behaviors">
       <input type="checkbox" name="behavior{{b.id}}" [(ngModel)]="b.checked"> {{b.name}}
       <label class="form-check-label" for="behavior{{b.id}}">{{b.name}}</label>
+
       <span *ngIf="b.checked">
         <input type="range" name="intensity{{b.id}}" min="1" max="10" [(ngModel)]="intensityByBehaviorId[b.id]" (change)="createBR(intensityByBehaviorId[b.id], b)"/>
         <label for="intensity{{b.id}}">Intensity</label>
@@ -11,5 +12,6 @@
     </div>
     <button (click)="submitDailyBR()">Create Behavior Report</button>
   </form>
+
 </div>
 
