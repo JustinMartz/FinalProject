@@ -24,6 +24,10 @@ export class CheckInComponent implements OnInit{
 
   newBR: BehaviorReport = new BehaviorReport();
 
+  intensityByBehaviorId: { [id: number]: number } = {};      //
+
+  behaviorReports: BehaviorReport [] = [];
+
   // 1. if checkbox is checked, intensity slider appears
   // 2. new BehaviorReport object is made
   // 3. object gets intensity and name of behavior added to it
@@ -44,10 +48,12 @@ export class CheckInComponent implements OnInit{
     );
 }
 
+
   createBR(intensity: number, behavior: Behavior) {
     console.log('*** intensity: ' + intensity);
     console.log('behavior: ' + behavior);
     console.log('behaviorType: ' + behavior.behaviorType);
+    this.intensityByBehaviorId[behavior.id] = intensity;        //
     let updatedBR: BehaviorReport = new BehaviorReport();
     updatedBR.behavior = behavior;
     updatedBR.behavior.behaviorType = behavior.behaviorType;
@@ -62,16 +68,45 @@ export class CheckInComponent implements OnInit{
       }
     });
     console.log(updatedBR);
-    this.behaviorReportService.create(updatedBR).subscribe({
-      next: (createdBehaviorReport) => {
-        this.newBR = new BehaviorReport();
-      },
-      error: (somethingBad) => {
-        console.error('TodoListComponent.reload: error loading todos');
-        console.error(somethingBad);
-      }
+  //   for(let x of this.behaviorReports) {
+  //     for(let b of this.behaviors) {
+  //       if(x.behavior.id === b.id) {
+  //       return;
+  //     }
+  //     else if (b.checked) {
+  //       this.behaviorReports.push(updatedBR);
+  //     }
+  //   }
+  // }
+  for (let br of this.behaviorReports) {
+    if (br.behavior.id === behavior.id) {
+        return;
+    }
+}
+this.behaviorReports.push(updatedBR);
 
-  });
+}
 
+
+  submitDailyBR() {
+    console.log(this.behaviorReports);
+    for(let br of this.behaviorReports) {
+      this.behaviorReportService.create(br).subscribe({
+        next: (createdBehaviorReport) => {
+          this.newBR = new BehaviorReport();
+        },
+        error: (somethingBad) => {
+          console.error('submitDailtBRComponent.reload: error loading submitDailyBR');
+          console.error(somethingBad);
+        }
+
+    });
+    }
+
+    console.log(this.behaviorReports.length);
+    this.behaviorReports.length = 0;
+    console.log(this.behaviorReports.length);
+    this.behaviorReports = [];
+    console.log(this.behaviorReports.length);
   }
 }
