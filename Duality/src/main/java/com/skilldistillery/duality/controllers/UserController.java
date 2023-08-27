@@ -16,7 +16,7 @@ import com.skilldistillery.duality.services.UserService;
 @RestController
 @RequestMapping("api")
 public class UserController {
-	
+
 	@Autowired
 	private UserService userServ;
 
@@ -29,9 +29,8 @@ public class UserController {
 			response.setStatus(404);
 		}
 		return user;
-		
+
 	}
-	
 
 //	@PostMapping("user")
 //	public User createUser(@RequestBody User user, HttpServletResponse res, HttpServletRequest req) {
