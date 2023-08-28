@@ -15,6 +15,7 @@ import { DualityhomeComponent } from './components/dualityhome/dualityhome.compo
 import { CheckInComponent } from './components/check-in/check-in.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { DatePipe } from '@angular/common';
+import { CalendarBComponent } from './components/calendar-b/calendar-b.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { DatePipe } from '@angular/common';
     DualityhomeComponent,
     CheckInComponent,
     CalendarComponent,
+    CalendarBComponent,
 
   ],
   imports: [
