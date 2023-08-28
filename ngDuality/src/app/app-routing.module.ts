@@ -8,6 +8,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { DualityhomeComponent } from './components/dualityhome/dualityhome.component';
 import { PostComponent } from './components/post/post.component';
 import { SinglePostComponent } from './components/single-post/single-post.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 const routes: Routes =  [
   { path: '', pathMatch: 'full', redirectTo: 'dualityhome' },
@@ -15,6 +16,7 @@ const routes: Routes =  [
   { path: 'dualityhome', component: DualityhomeComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'userhome', component: UserhomeComponent},
+  { path: 'users/:userId', component: UserProfileComponent},
   { path: 'login', component: LoginComponent},
   { path: 'logout', component: LogoutComponent},
   { path: 'posts', component: PostComponent},

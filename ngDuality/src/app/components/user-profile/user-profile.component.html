@@ -1,0 +1,28 @@
+<h2 style="display: inline">Username:</h2>
+<span style="background-color: antiquewhite">{{ user.username }}</span>
+<br />
+<h2 style="display: inline">Date of birthing:</h2>
+<span style="background-color: antiquewhite">{{
+  user.dob | date : "longDate"
+}}</span>
+<br />
+<h4>{{ user.aboutMe }}</h4>
+<div *ngFor="let r of userResources">
+  <table>
+    <thead>
+      <th>Link:</th>
+
+      <th>Description:</th>
+    </thead>
+
+    <tbody>
+      <td>
+        {{ r.resourceLink }}
+      </td>
+
+      <td>
+        {{ r.description }}
+      </td>
+    </tbody>
+  </table>
+</div>

@@ -8,28 +8,29 @@ import { PostService } from 'src/app/services/post.service';
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
-  styleUrls: ['./post.component.css']
+  styleUrls: ['./post.component.css'],
 })
-export class PostComponent implements OnInit{
+export class PostComponent implements OnInit {
+  constructor(
+    private postService: PostService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
-  constructor(private postService: PostService, private authService: AuthService, private router: Router) {}
-
-  posts: Post [] = [];
-
-
+  posts: Post[] = [];
 
   loggedInUser: User = new User();
 
   ngOnInit(): void {
     if (this.authService.checkLogin()) {
-      this.authService.getLoggedInUser().subscribe( {
+      this.authService.getLoggedInUser().subscribe({
         next: (user) => {
           this.loggedInUser = user;
         },
         error: (fail) => {
           console.error('ngOnInit(): Error getting user');
           console.error(fail);
-        }
+        },
       });
       this.postService.index().subscribe({
         next: (postList) => {
@@ -43,7 +44,10 @@ export class PostComponent implements OnInit{
     }
   }
 
-  goToPost(postId:number){
+  goToPost(postId: number) {
     this.router.navigateByUrl('posts/' + postId);
+  }
+  goToUserProfile(userId: number) {
+    this.router.navigateByUrl('users/' + userId);
   }
 }

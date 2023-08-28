@@ -1,4 +1,10 @@
-import { Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { Calendar } from 'src/app/models/calendar';
 import { CalendarService } from 'src/app/services/calendar.service';
 import { CheckInComponent } from '../check-in/check-in.component';
@@ -6,11 +12,11 @@ import { CheckInComponent } from '../check-in/check-in.component';
 @Component({
   selector: 'app-calendar-b',
   templateUrl: './calendar-b.component.html',
-  styleUrls: ['./calendar-b.component.css']
+  styleUrls: ['./calendar-b.component.css'],
 })
 export class CalendarBComponent implements OnInit {
   // @Output() submitClicked: EventEmitter<void> = new EventEmitter();
-  @ViewChild(CheckInComponent, {static: true}) checkIn!: CheckInComponent;
+  @ViewChild(CheckInComponent, { static: true }) checkIn!: CheckInComponent;
 
   currentDate: Date | undefined;
   displayDate: Date | undefined;
@@ -21,12 +27,12 @@ export class CalendarBComponent implements OnInit {
 
   currentDay: string = '';
 
-  constructor (private calendarService: CalendarService) {}
+  constructor(private calendarService: CalendarService) {}
 
   ngOnInit(): void {
     this.currentDate = new Date();
     this.displayMonth = this.calendarService.getMonth();
-    this.currentDay = ("0" + this.currentDate.getDate()).slice(-2);
+    this.currentDay = ('0' + this.currentDate.getDate()).slice(-2);
 
     console.log('*** ngOnInit()');
     console.log('today: ' + this.currentDay);
@@ -54,7 +60,7 @@ export class CalendarBComponent implements OnInit {
 
   showForm() {
     if (this.formView) {
-      return 'backface-visibility: visible;'
+      return 'backface-visibility: visible;';
     }
 
     return '';
@@ -62,7 +68,7 @@ export class CalendarBComponent implements OnInit {
 
   showFront() {
     if (this.formView) {
-      return 'display: none;'
+      return 'display: none;';
     }
 
     return '';
@@ -84,5 +90,4 @@ export class CalendarBComponent implements OnInit {
     console.log('parent button clicked');
     this.checkIn.submitDailyBR();
   }
-
 }

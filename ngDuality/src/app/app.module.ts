@@ -19,6 +19,7 @@ import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { PostComponent } from './components/post/post.component';
 import { SinglePostComponent } from './components/single-post/single-post.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { SinglePostComponent } from './components/single-post/single-post.compon
     CheckInComponent,
     CalendarBComponent,
     PostComponent,
-    SinglePostComponent
+    SinglePostComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
