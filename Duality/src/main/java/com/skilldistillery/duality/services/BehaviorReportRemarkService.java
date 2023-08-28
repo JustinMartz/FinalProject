@@ -9,5 +9,7 @@ public interface BehaviorReportRemarkService {
 	List<BehaviorReportRemark> listAllBehaviorReportRemarks();
 
 	BehaviorReportRemark getById(int behaviorReportRemarkId);
+	
+	BehaviorReportRemark create(String username, BehaviorReportRemark newBRR);
 
 }

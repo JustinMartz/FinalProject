@@ -125,6 +125,8 @@ body {
 .back {
   height: 100%;
   transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
 }
 
 .back input {
@@ -211,4 +213,9 @@ body {
 
 .front, .back {
   backface-visibility: hidden;
+}
+
+.form {
+  overflow: scroll;
+  height: 49vh;
 }
