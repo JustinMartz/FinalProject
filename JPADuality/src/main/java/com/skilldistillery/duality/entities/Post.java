@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Post {
 	@Id
@@ -40,10 +42,11 @@ public class Post {
 	private Boolean anonymous;
 
 	private Boolean personal;
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "post")
 	private List<Comment> comments;
-
+	
 	@ManyToMany(mappedBy = "flaggedPosts")
 	private List<User> usersWhoFlagged;
 
