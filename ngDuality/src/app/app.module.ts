@@ -13,8 +13,9 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { DualityhomeComponent } from './components/dualityhome/dualityhome.component';
 import { CheckInComponent } from './components/check-in/check-in.component';
-import { CalendarComponent } from './components/calendar/calendar.component';
 import { DatePipe } from '@angular/common';
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { DatePipe } from '@angular/common';
     LogoutComponent,
     DualityhomeComponent,
     CheckInComponent,
-    CalendarComponent,
+
 
   ],
   imports: [
@@ -35,6 +36,9 @@ import { DatePipe } from '@angular/common';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+
+
 
   ],
   providers: [DatePipe],
