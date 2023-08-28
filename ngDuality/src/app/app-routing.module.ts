@@ -6,6 +6,7 @@ import { UserhomeComponent } from './components/userhome/userhome.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { DualityhomeComponent } from './components/dualityhome/dualityhome.component';
+import { PostComponent } from './components/post/post.component';
 
 const routes: Routes =  [
   { path: '', pathMatch: 'full', redirectTo: 'dualityhome' },
@@ -14,6 +15,7 @@ const routes: Routes =  [
   { path: 'userhome', component: UserhomeComponent},
   { path: 'login', component: LoginComponent},
   { path: 'logout', component: LogoutComponent},
+  { path: 'posts', component: PostComponent},
   { path: '**', component: NotFoundComponent}
 ];
 

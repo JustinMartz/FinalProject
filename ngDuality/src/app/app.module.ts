@@ -16,6 +16,8 @@ import { CheckInComponent } from './components/check-in/check-in.component';
 import { DatePipe } from '@angular/common';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { PostComponent } from './components/post/post.component';
+
 
 @NgModule({
   declarations: [
@@ -28,6 +30,9 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     LogoutComponent,
     DualityhomeComponent,
     CheckInComponent,
+    PostComponent,
+
+
 
 
   ],
