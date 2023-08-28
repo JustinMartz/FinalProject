@@ -33,6 +33,7 @@ public class Comment {
 	@JoinColumn(name="user_id")
 	private User commentor;
 	
+	
 	@OneToOne
 	@JoinColumn(name="post_id")
 	private Post post;

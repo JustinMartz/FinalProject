@@ -1,0 +1,15 @@
+<div class="container">
+  <thead>
+    <tr>
+        <th>Name</th>
+        <th>Author of Post</th>
+
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let p of posts">
+        <td>{{p.title}}</td>
+        <td>{{p.creator.username}}</td>
+    </tr>
+</tbody>
+</div>
