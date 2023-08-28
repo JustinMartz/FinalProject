@@ -14,6 +14,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { DualityhomeComponent } from './components/dualityhome/dualityhome.component';
 import { CheckInComponent } from './components/check-in/check-in.component';
 import { DatePipe } from '@angular/common';
+import { CalendarBComponent } from './components/calendar-b/calendar-b.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { PostComponent } from './components/post/post.component';
@@ -30,11 +31,8 @@ import { PostComponent } from './components/post/post.component';
     LogoutComponent,
     DualityhomeComponent,
     CheckInComponent,
-    PostComponent,
-
-
-
-
+    CalendarBComponent,
+    PostComponent
   ],
   imports: [
     BrowserModule,
