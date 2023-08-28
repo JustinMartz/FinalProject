@@ -7,9 +7,11 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { DualityhomeComponent } from './components/dualityhome/dualityhome.component';
 import { PostComponent } from './components/post/post.component';
+import { SinglePostComponent } from './components/single-post/single-post.component';
 
 const routes: Routes =  [
   { path: '', pathMatch: 'full', redirectTo: 'dualityhome' },
+  { path: 'posts/:postId',component: SinglePostComponent },
   { path: 'dualityhome', component: DualityhomeComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'userhome', component: UserhomeComponent},

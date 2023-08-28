@@ -66,7 +66,17 @@ private url = environment.baseUrl + 'api/posts';
 
 
   }
-
+  getPost(id: number): Observable<Post> {
+    return this.http.get<Post>(this.url + '/' + id, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        return throwError(
+          () => new Error(
+              'PostService.getPost(): error retrieving Post: ' + err
+          )
+        );
+      })
+    );
+  }
   generateId() {
     // return this.posts[this.posts.length - 1].id + 1;
   }

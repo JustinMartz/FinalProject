@@ -18,6 +18,7 @@ import { CalendarBComponent } from './components/calendar-b/calendar-b.component
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { PostComponent } from './components/post/post.component';
+import { SinglePostComponent } from './components/single-post/single-post.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { PostComponent } from './components/post/post.component';
     DualityhomeComponent,
     CheckInComponent,
     CalendarBComponent,
-    PostComponent
+    PostComponent,
+    SinglePostComponent
   ],
   imports: [
     BrowserModule,

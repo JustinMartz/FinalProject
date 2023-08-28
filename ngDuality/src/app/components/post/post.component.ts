@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { Post } from 'src/app/models/post';
 import { User } from 'src/app/models/user';
@@ -11,7 +12,7 @@ import { PostService } from 'src/app/services/post.service';
 })
 export class PostComponent implements OnInit{
 
-  constructor(private postService: PostService, private authService: AuthService) {}
+  constructor(private postService: PostService, private authService: AuthService, private router: Router) {}
 
   posts: Post [] = [];
 
@@ -42,5 +43,7 @@ export class PostComponent implements OnInit{
     }
   }
 
-
+  goToPost(postId:number){
+    this.router.navigateByUrl('posts/' + postId);
+  }
 }
