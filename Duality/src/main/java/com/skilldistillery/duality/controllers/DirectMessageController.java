@@ -27,12 +27,12 @@ public class DirectMessageController {
     @Autowired
     private DirectMessageService directMessageService;
 
-    @GetMapping("directmessage")
+    @GetMapping("directMessage")
     public List<DirectMessage> listDirectMessages() {
         return directMessageService.listAllDirectMessages();
     }
 
-    @GetMapping("directmessages/{id}")
+    @GetMapping("directMessages/{id}")
     public DirectMessage getDirectMessageById(@PathVariable("id") Integer dmId, HttpServletResponse res) {
         DirectMessage dm = directMessageService.findById(dmId);
         if (dm == null) {
@@ -41,7 +41,7 @@ public class DirectMessageController {
         return dm;
     }
 
-    @PostMapping("directmessages")
+    @PostMapping("directMessages")
     public DirectMessage createDirectMessage(@RequestBody DirectMessage directMessage, HttpServletResponse res, HttpServletRequest req) {
         try {
             directMessage = directMessageService.createDirectMessage(directMessage);
@@ -57,7 +57,7 @@ public class DirectMessageController {
         return directMessage;
     }
 
-    @PutMapping("directmessages/{dmId}")
+    @PutMapping("directMessages/{dmId}")
     public DirectMessage updateDirectMessage(@PathVariable int dmId, @RequestBody DirectMessage directMessage, HttpServletResponse res) {
         try {
             directMessage = directMessageService.updateDirectMessage(dmId, directMessage);
@@ -71,7 +71,7 @@ public class DirectMessageController {
         return directMessage;
     }
 
-    @DeleteMapping("directmessages/{dmId}")
+    @DeleteMapping("directMessages/{dmId}")
     public void deleteDirectMessage(@PathVariable("dmId") Integer dmId, HttpServletResponse res) {
         try {
             if (directMessageService.deleteDirectMessage(dmId)) {
