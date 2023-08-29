@@ -27,12 +27,23 @@ export class UserProfileComponent {
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe({
       next: (params: ParamMap) => {
+
         let userIdParam = params.get('userId');
         if (userIdParam) {
           let userId = parseInt(userIdParam); // param values are always strings
           if (isNaN(userId)) {
             this.router.navigateByUrl('invalidUserId'); // Undefined path will match wildcard
           } else {
+            this.userService.getUser(userId).subscribe({
+              next: (returnedUser) => {
+                this.user = returnedUser;
+              },
+              error: (failure) => {
+                console.error('ngOnInit(): Failed getting user');
+                console.error(failure);
+              }
+
+            });
             this.resourceService.getUserResources(userId).subscribe({
               next: (resources) => {
                 this.userResources = resources;
@@ -46,8 +57,9 @@ export class UserProfileComponent {
         }
       },
     });
-    console.log('*** userResources: ')
-    console.log(this.userResources);
+
+
+
   }
 
 
