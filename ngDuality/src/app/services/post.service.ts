@@ -11,12 +11,20 @@ import { AuthService } from './auth.service';
 })
 export class PostService {
 
+  currentPostId: number = 0;
+
   private baseUrl = 'http://localhost:8083/';
 private url = environment.baseUrl + 'api/posts';
 
   constructor(private http: HttpClient, private datePipe: DatePipe, private auth: AuthService) {}
 
+  setVisiblePost(id: number) {
+    this.currentPostId = id;
+  }
 
+  getVisiblePost() {
+    return this.currentPostId;
+  }
 
   getHttpOptions() {
     let options = {

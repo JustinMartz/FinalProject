@@ -2,6 +2,8 @@ import { PostService } from 'src/app/services/post.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Post } from 'src/app/models/post';
+import { Comment } from '../../models/comment'
+import { CommentService } from 'src/app/services/comment.service';
 
 @Component({
   selector: 'app-single-post',
@@ -14,7 +16,8 @@ export class SinglePostComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private postService: PostService
+    private postService: PostService,
+    private commentService: CommentService
   ) {}
 
   ngOnInit(): void {
@@ -26,6 +29,8 @@ export class SinglePostComponent implements OnInit {
           if (isNaN(postId)) {
             this.router.navigateByUrl('invalidPostId'); // Undefined path will match wildcard
           } else {
+
+            this.postService.setVisiblePost(postId);
             this.postService.getPost(postId).subscribe({
               next: (post) => {
                 this.post = post;
@@ -39,5 +44,7 @@ export class SinglePostComponent implements OnInit {
         }
       },
     });
+
+
   }
 }
