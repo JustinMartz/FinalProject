@@ -1,0 +1,58 @@
+<div [ngClass]="flip()">
+  <div class="calendar">
+    <div class="front" [style]="showFront()">
+      <div class="current-date">
+        <h1>{{currentDate | date: 'longDate'}}</h1>
+      </div>
+
+      <div class="current-month">
+        <ul class="week-days">
+          <li>MON</li>
+          <li>TUE</li>
+          <li>WED</li>
+          <li>THU</li>
+          <li>FRI</li>
+          <li>SAT</li>
+          <li>SUN</li>
+        </ul>
+
+        <div class="weeks">
+          <div class="first">
+            <span class="last-month" *ngFor="let fwLM of displayMonth.firstWeek.lastMonth">{{fwLM}}</span>
+            <span *ngFor="let fwTM of displayMonth.firstWeek.thisMonth" (click)="dayClick(fwTM)">{{fwTM | number: '2.0'}}</span>
+          </div>
+
+          <div class="second">
+            <span *ngFor="let sw of displayMonth.secondWeek" (click)="dayClick(sw)">{{sw | number: '2.0'}}</span>
+          </div>
+
+          <div class="third">
+            <span *ngFor="let tw of displayMonth.thirdWeek" (click)="dayClick(tw)">{{tw | number: '2.0'}}</span>
+          </div>
+
+          <div class="fourth">
+            <span *ngFor="let fw of displayMonth.fourthWeek" (click)="dayClick(fw)">{{fw}}</span>
+          </div>
+
+          <div class="fifth">
+            <span [ngClass]="isToday(fifthW)" *ngFor="let fifthW of displayMonth.fifthWeek" (click)="dayClick(fifthW)">{{fifthW}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="back" [style]="showForm()">
+      <div class="date-heading"><h1>Check-in for {{displayDate | date: 'longDate'}}</h1></div>
+      <div class="form"><app-check-in></app-check-in></div>
+      <div class="actions">
+        <button class="save" (click)="checkinButton()">
+          Submit <i class="ion-checkmark"></i>
+        </button>
+        <button class="dismiss" (click)="closeForm()">
+          Dismiss <i class="ion-android-close"></i>
+        </button>
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -14,8 +14,14 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { DualityhomeComponent } from './components/dualityhome/dualityhome.component';
 import { CheckInComponent } from './components/check-in/check-in.component';
 import { DatePipe } from '@angular/common';
+import { CalendarBComponent } from './components/calendar-b/calendar-b.component';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { PostComponent } from './components/post/post.component';
+import { SinglePostComponent } from './components/single-post/single-post.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 @NgModule({
   declarations: [
@@ -28,8 +34,10 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     LogoutComponent,
     DualityhomeComponent,
     CheckInComponent,
-
-
+    CalendarBComponent,
+    PostComponent,
+    SinglePostComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +45,9 @@ import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
     FormsModule,
     HttpClientModule,
     CalendarModule.forRoot({ provide: DateAdapter, useFactory: adapterFactory }),
+    NgbModule
+
+
 
 
 

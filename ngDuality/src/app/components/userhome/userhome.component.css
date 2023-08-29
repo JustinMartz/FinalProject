@@ -1,0 +1,15 @@
+.userhome-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+
+.profile {
+  border-radius: 4px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
+width: 50%;
+}
+
+.cal-container {
+  width: 50%;
+}

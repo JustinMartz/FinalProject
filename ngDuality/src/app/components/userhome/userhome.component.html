@@ -1,6 +1,20 @@
-<p>userhome works!</p>
+<div class="userhome-container">
+  <div class="profile">
 <h2 style="display:inline;">Username: </h2> <span style="background-color: antiquewhite;">{{loggedInUser.username}}</span>
 <br>
 <h2 style="display:inline;">Date of birthing: </h2> <span style="background-color: antiquewhite;">{{loggedInUser.dob | date: 'longDate'}}</span>
-<app-check-in></app-check-in>
+<br>
+<hr>
+<h3>Resources</h3>
 
+<ul>
+  <li *ngFor="let r of userResources">
+    <a target="_blank" href="{{r.resourceLink}}">{{r.description}}</a>
+  </li>
+</ul>
+  </div>
+
+  <div class="cal-container">
+<app-calendar-b></app-calendar-b>
+  </div>
+</div>

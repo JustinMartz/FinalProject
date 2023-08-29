@@ -41,6 +41,7 @@ public class BehaviorReportController {
 		}
 		return behaviorReport;
 	}
+	
 
 	@PostMapping("behaviorReports")
 	public BehaviorReport createBehaviorReport(Principal principal, @RequestBody BehaviorReport behaviorReport, HttpServletResponse res, HttpServletRequest req) {

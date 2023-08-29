@@ -1,0 +1,15 @@
+<h2 style="display: inline">Username:</h2>
+<span style="background-color: antiquewhite">{{ user.username }}</span>
+<br />
+<h2 style="display: inline">Date of birthing:</h2>
+<span style="background-color: antiquewhite">{{
+  user.dob | date : "longDate"
+}}</span>
+<br />
+<h4>{{ user.aboutMe }}</h4>
+
+<ul>
+  <li *ngFor="let r of userResources">
+    <a target="_blank" href="{{r.resourceLink}}">{{r.description}}</a>
+  </li>
+</ul>

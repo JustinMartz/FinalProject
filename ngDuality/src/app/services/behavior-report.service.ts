@@ -6,14 +6,13 @@ import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BehaviorReportService {
-private baseUrl = 'http://localhost:8088/';
-private url = environment.baseUrl + 'api/behaviorReports'
+  private baseUrl = 'http://localhost:8088/';
+  private url = environment.baseUrl + 'api/behaviorReports';
 
-  constructor(private http: HttpClient, private auth: AuthService) { }
-
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
   getHttpOptions() {
     let options = {
@@ -26,30 +25,33 @@ private url = environment.baseUrl + 'api/behaviorReports'
   }
 
   index(): Observable<BehaviorReport[]> {
-
-    return this.http.get<BehaviorReport[]>(this.url, this.getHttpOptions()).pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError(
-          () => new Error('TodoService.create(): error creating todos: ' + err)
-        );
-      })
-    );
-
+    return this.http
+      .get<BehaviorReport[]>(this.url, this.getHttpOptions())
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () =>
+              new Error('TodoService.create(): error creating todos: ' + err)
+          );
+        })
+      );
   }
 
-
-create(behaviorReport: BehaviorReport): Observable<BehaviorReport> {
-     return this.http.post<BehaviorReport>(this.url, behaviorReport, this.getHttpOptions()).pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError(
-          () => new Error('BehaviorReportService.create(): error creating behaviorReports: ' + err)
-        );
-      })
-    );
-
-
+  create(behaviorReport: BehaviorReport): Observable<BehaviorReport> {
+    return this.http
+      .post<BehaviorReport>(this.url, behaviorReport, this.getHttpOptions())
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () =>
+              new Error(
+                'BehaviorReportService.create(): error creating behaviorReports: ' +
+                  err
+              )
+          );
+        })
+      );
   }
-
 }
