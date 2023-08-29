@@ -1,5 +1,5 @@
 import { Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Post } from 'src/app/models/post';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
@@ -11,6 +11,7 @@ import { PostService } from 'src/app/services/post.service';
   styleUrls: ['./post.component.css'],
 })
 export class PostComponent implements OnInit {
+
   constructor(
     private postService: PostService,
     private authService: AuthService,
@@ -46,6 +47,7 @@ export class PostComponent implements OnInit {
 
   goToPost(postId: number) {
     this.router.navigateByUrl('posts/' + postId);
+    this.postService.setVisiblePost(postId);
   }
   goToUserProfile(userId: number) {
     this.router.navigateByUrl('users/' + userId);
