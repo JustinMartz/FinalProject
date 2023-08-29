@@ -14,8 +14,7 @@ export class CommentService {
   private url = environment.baseUrl + 'api/comments';
   constructor(
     private http: HttpClient,
-    private auth: AuthService,
-    private postServ: PostService
+    private auth: AuthService
   ) {}
 
   getHttpOptions() {
@@ -25,7 +24,10 @@ export class CommentService {
         'X-Requested-With': 'XMLHttpRequest',
       },
     };
+
+    return options;
   }
+
   index(): Observable<Comment[]> {
     return this.http.get<Comment[]>(this.url).pipe(
       catchError((err: any) => {
@@ -41,13 +43,14 @@ export class CommentService {
   }
 
   getPostComments(postId: number): Observable<Comment[]> {
-    return this.http.get<Comment[]>(this.url + '/posts/' + postId).pipe(
+    console.log('*** postId: ' + postId);
+    return this.http.get<Comment[]>(this.url + '/posts/' + postId, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
           () =>
             new Error(
-              'CommentService.index(): error retrieving comments: ' + err
+              'CommentService.getPostComments(): error retrieving comments: ' + err
             )
         );
       })

@@ -21,6 +21,7 @@ import { PostComponent } from './components/post/post.component';
 import { SinglePostComponent } from './components/single-post/single-post.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommentComponent } from './components/comment/comment.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     CalendarBComponent,
     PostComponent,
     SinglePostComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
