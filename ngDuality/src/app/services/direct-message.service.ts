@@ -38,6 +38,22 @@ export class DirectMessageService {
     );
   }
 
+  getAllDirectMessages(): Observable<DirectMessage[]> {
+    return this.http.get<DirectMessage[]>(this.url).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error(
+              'DirectMessages.getDirectMessages(): error retrieving DirectMessages: ' + err
+            )
+        );
+      })
+    );
+  }
+
+
+
 
 
 }
