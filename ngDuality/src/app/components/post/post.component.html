@@ -10,7 +10,7 @@
     <tr *ngFor="let p of posts">
         <td><a (click)="goToPost(p.id)">{{p.title}}</a></td>
 
-        <td (click)="goToUserProfile(p.creator.id)">{{p.creator.username}}</td>
+        <td> <a (click)="goToUserProfile(p.creator.id)">{{p.creator.username}}</a></td>
     </tr>
 </tbody>
 </div>
