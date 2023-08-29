@@ -19,7 +19,7 @@ import com.skilldistillery.duality.entities.Comment;
 import com.skilldistillery.duality.services.CommentService;
 
 @RestController
-@RequestMapping("api/comments")
+@RequestMapping("api/comments/")
 public class CommentController {
 
 	@Autowired
@@ -83,4 +83,25 @@ public class CommentController {
 			res.setStatus(400);
 		}
 	}
+
+	@GetMapping("posts/{postId}")
+	public List<Comment> findCommentsByPostId(@PathVariable int postId, HttpServletResponse res) {
+		List<Comment> comments = commentService.findCommentsByPostId(postId);
+		if (comments == null) {
+			res.setStatus(404);
+			return null;
+		} else {
+			return comments;
+		}
+	}
 }
+
+
+
+
+
+
+
+
+
+

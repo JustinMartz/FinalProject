@@ -12,7 +12,17 @@ public interface CommentService {
     
     Comment createComment(Comment comment);
     
-    Comment updateComment(int id, Comment comment);
+    Comment updateComment(int id, Comment newComment);
     
     boolean deleteComment(int id);
+    
+    List<Comment> findCommentsByPostId(int postId);
 }
+
+
+
+
+
+
+
+
