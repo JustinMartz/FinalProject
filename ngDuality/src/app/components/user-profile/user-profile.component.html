@@ -7,22 +7,9 @@
 }}</span>
 <br />
 <h4>{{ user.aboutMe }}</h4>
-<div *ngFor="let r of userResources">
-  <table>
-    <thead>
-      <th>Link:</th>
 
-      <th>Description:</th>
-    </thead>
-
-    <tbody>
-      <td>
-        {{ r.resourceLink }}
-      </td>
-
-      <td>
-        {{ r.description }}
-      </td>
-    </tbody>
-  </table>
-</div>
+<ul>
+  <li *ngFor="let r of userResources">
+    <a target="_blank" href="{{r.resourceLink}}">{{r.description}}</a>
+  </li>
+</ul>

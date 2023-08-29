@@ -1,5 +1,6 @@
 package com.skilldistillery.duality.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -36,8 +37,7 @@ public class ResourceController {
 	}
 
 	@GetMapping("resources/{userId}")
-	List<Resource> listAllUserResources(@PathVariable int userId, HttpServletResponse response,
-			HttpServletRequest req) {
+	List<Resource> listAllUserResources(@PathVariable int userId, HttpServletResponse response, HttpServletRequest req) {
 
 		List<Resource> resources = resourceServe.listUserResources(userId);
 

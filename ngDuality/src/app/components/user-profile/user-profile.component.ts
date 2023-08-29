@@ -3,6 +3,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Resource } from 'src/app/models/resource';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
+import { ResourceService } from 'src/app/services/resource.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -19,7 +20,8 @@ export class UserProfileComponent {
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-    private authService: AuthService
+    private authService: AuthService,
+    private resourceService: ResourceService
   ) {}
 
   ngOnInit(): void {
@@ -29,22 +31,23 @@ export class UserProfileComponent {
         if (userIdParam) {
           let userId = parseInt(userIdParam); // param values are always strings
           if (isNaN(userId)) {
-            this.router.navigateByUrl('invalidPostId'); // Undefined path will match wildcard
+            this.router.navigateByUrl('invalidUserId'); // Undefined path will match wildcard
           } else {
-            this.userService.getUser(userId).subscribe({
-              next: (user) => {
-                this.user = user;
-                this.userResources = user.resources;
+            this.resourceService.getUserResources(userId).subscribe({
+              next: (resources) => {
+                this.userResources = resources;
               },
               error: (fail) => {
-                console.error('ngOnInit(): Error getting user');
+                console.error('ngOnInit(): Error getting resources');
                 console.error(fail);
-              },
+              }
             });
           }
         }
       },
     });
+    console.log('*** userResources: ')
+    console.log(this.userResources);
   }
 
 

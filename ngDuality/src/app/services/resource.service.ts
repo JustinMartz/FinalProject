@@ -14,6 +14,16 @@ export class ResourceService {
 
   constructor(private http: HttpClient, private auth: AuthService) {}
 
+  getHttpOptions() {
+    let options = {
+      headers: {
+        Authorization: 'Basic ' + this.auth.getCredentials(),
+        'X-Requested-With': 'XMLHttpRequest',
+      },
+    };
+    return options;
+  }
+
   getAllResources(): Observable<Resource[]> {
     return this.http.get<Resource[]>(this.url).pipe(
       catchError((err: any) => {
@@ -29,7 +39,7 @@ export class ResourceService {
   }
 
   getUserResources(userId: number): Observable<Resource[]> {
-    return this.http.get<Resource[]>(this.url + '/' + userId).pipe(
+    return this.http.get<Resource[]>(this.url + '/' + userId, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(

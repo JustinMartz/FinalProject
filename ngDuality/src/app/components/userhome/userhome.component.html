@@ -4,6 +4,14 @@
 <br>
 <h2 style="display:inline;">Date of birthing: </h2> <span style="background-color: antiquewhite;">{{loggedInUser.dob | date: 'longDate'}}</span>
 <br>
+<hr>
+<h3>Resources</h3>
+
+<ul>
+  <li *ngFor="let r of userResources">
+    <a target="_blank" href="{{r.resourceLink}}">{{r.description}}</a>
+  </li>
+</ul>
   </div>
 
   <div class="cal-container">
