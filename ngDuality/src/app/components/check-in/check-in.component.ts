@@ -40,6 +40,8 @@ export class CheckInComponent implements OnInit {
     this.behaviorService.index().subscribe({
       next: (behaviorList) => {
         this.behaviors = behaviorList;
+        console.log('*** behaviors.length: ' + this.behaviors.length);
+        console.log('*** behaviors: ' + this.behaviors);
       },
       error: (somethingBad) => {
         console.error('BehaviorListComponent.reload: error loading behaviors');
