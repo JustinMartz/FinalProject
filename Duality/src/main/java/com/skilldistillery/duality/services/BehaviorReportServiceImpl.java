@@ -1,5 +1,6 @@
 package com.skilldistillery.duality.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,6 +37,7 @@ public class BehaviorReportServiceImpl implements BehaviorReportService {
 		}
 		return null;
 	}
+
 
 	@Override
 	public BehaviorReport create(BehaviorReport newBehaviorReport, String username) {
@@ -78,6 +80,17 @@ public class BehaviorReportServiceImpl implements BehaviorReportService {
 		}
 
 		return deleted;
+	}
+
+	@Override
+	public List<BehaviorReport> getAllReportsByDate(LocalDateTime time) {
+		System.out.println("*** getAllReportsByDate() ***");
+		System.out.println("time: " + time);
+		List<BehaviorReport> reports = behaviorReportRepo.findByCreateDate(time);
+		for (BehaviorReport r : reports) {
+			System.out.println(r);
+		}
+		return null;
 	}
 
 

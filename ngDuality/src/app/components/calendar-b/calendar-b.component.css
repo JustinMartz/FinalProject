@@ -31,7 +31,7 @@ body {
 }
 
 .calendar {
-  background: #2b4450;
+  background: lightseagreen;
   border-radius: 4px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
   height: 501px;
@@ -171,11 +171,11 @@ body {
 }
 
 .actions {
-  bottom: 0;
+  /* bottom: 0; */
   border-top: 1px solid rgba(73, 114, 133, .6);
   display: flex;
   justify-content: space-between;
-  position: absolute;
+  /* position: absolute; */
   width: 100%;
 }
 

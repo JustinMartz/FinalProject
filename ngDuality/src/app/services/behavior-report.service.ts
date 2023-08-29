@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class BehaviorReportService {
   private baseUrl = 'http://localhost:8088/';
-  public url = environment.baseUrl + 'api/behaviorReports';
+  private url = environment.baseUrl + 'api/behaviorReports';
 
   constructor(private http: HttpClient, private auth: AuthService) {}
 

@@ -36,10 +36,6 @@ export class CheckInComponent implements OnInit {
 
   loggedInUser: User = new User();
 
-  // 1. if checkbox is checked, intensity slider appears
-  // 2. new BehaviorReport object is made
-  // 3. object gets intensity and name of behavior added to it
-
   ngOnInit(): void {
     this.behaviorService.index().subscribe({
       next: (behaviorList) => {
@@ -63,15 +59,11 @@ export class CheckInComponent implements OnInit {
   }
 
   createBR(intensity: number, behavior: Behavior) {
-    console.log('*** intensity: ' + intensity);
-    console.log('behavior: ' + behavior);
-    console.log('behaviorType: ' + behavior.behaviorType);
     this.intensityByBehaviorId[behavior.id] = intensity; //
     let updatedBR: BehaviorReport = new BehaviorReport();
     updatedBR.behavior = behavior;
     updatedBR.intensity = intensity;
     updatedBR.user = this.loggedInUser;
-    console.log(updatedBR);
 
     for (let br of this.behaviorReports) {
       if (br.behavior.id === behavior.id) {

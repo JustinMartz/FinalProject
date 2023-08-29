@@ -1,5 +1,6 @@
 package com.skilldistillery.duality.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.skilldistillery.duality.entities.BehaviorReport;
@@ -18,6 +19,6 @@ public interface BehaviorReportService {
 
 	List<BehaviorReport> listAllBehaviorReports();
 
-
+	List<BehaviorReport> getAllReportsByDate(LocalDateTime time);
 
 }
