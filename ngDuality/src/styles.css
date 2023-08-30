@@ -1,6 +1,7 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 body{
   background-image:  url(assets/justinmartz_duality_mental_health_8fafbd3e-b2b6-4ed2-843d-e831d87b2317.jpg);
-  background-size: auto;
+
+  width: 100%;
  background-repeat: no-repeat;
 }
