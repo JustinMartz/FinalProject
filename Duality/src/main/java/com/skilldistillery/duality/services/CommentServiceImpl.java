@@ -61,10 +61,17 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public boolean deleteComment(int id) {
+		System.out.println("==4==");
 		boolean deleted = false;
 		Optional<Comment> toDeleteOpt = commentRepo.findById(id);
+		
 		if (toDeleteOpt.isPresent()) {
-			commentRepo.delete(toDeleteOpt.get());
+			
+			Comment deletedComment = toDeleteOpt.get();
+//			
+//			deletedComment.setActive(false);
+			
+			commentRepo.deleteById(deletedComment.getId());
 			deleted = true;
 		}
 		return deleted;
@@ -75,23 +82,18 @@ public class CommentServiceImpl implements CommentService {
 		return commentRepo.findByPost_Id(postId);
 
 	}
-	@Override
-    public Comment addCommentToPost(int postId, Comment comment, String username) {
-        Optional<Post> postOpt = postRepo.findById(postId);
-        User user = userRepo.findByUsername(username);
-        if(postOpt.isPresent() && user != null) {
-            Post post = postOpt.get();
-            comment.setPost(post);
-            comment.setCommentor(user);
-            return commentRepo.saveAndFlush(comment);
-        }
-        return null;
-    }
 
-	
-	
-	
-	
-	
-	
+	@Override
+	public Comment addCommentToPost(int postId, Comment comment, String username) {
+		Optional<Post> postOpt = postRepo.findById(postId);
+		User user = userRepo.findByUsername(username);
+		if (postOpt.isPresent() && user != null) {
+			Post post = postOpt.get();
+			comment.setPost(post);
+			comment.setCommentor(user);
+			return commentRepo.saveAndFlush(comment);
+		}
+		return null;
+	}
+
 }
