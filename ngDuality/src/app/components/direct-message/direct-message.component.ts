@@ -9,60 +9,53 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-direct-message',
   templateUrl: './direct-message.component.html',
-  styleUrls: ['./direct-message.component.css']
+  styleUrls: ['./direct-message.component.css'],
 })
 export class DirectMessageComponent {
-
-
   constructor(
     private authService: AuthService,
     private dmService: DirectMessageService,
     private router: Router,
     private userService: UserService
+  ) {}
+  sender: User = new User();
+  senderId: number = 0;
+  loggedInUser: User = new User();
+  dm: DirectMessage = new DirectMessage();
+  dmId: number = 0;
+  userMessages: DirectMessage[] = [];
 
-    ) {}
-    sender: User = new User();
-    senderId:number = 0;
-    recipient: User = new User();
-    dm: DirectMessage=new DirectMessage();
-    dmId: number =0;
-    userMessages: DirectMessage[]=[]
-
-    ngOnInit():void{
-      if (this.authService.checkLogin()) {
-
-        this.authService.getLoggedInUser().subscribe({
-          next: (user) => {
-            this.recipient= user;
-          },
-          error: (fail) => {
-            console.error('ngOnInit(): Error getting user');
-            console.error(fail);
-          },
-        });
-
-      }
-
-
-      this.dmService.getAllDirectMessages(this.recipient.id).subscribe({
-        next: (directMessages) => {
-          this.userMessages=directMessages;
-
+  ngOnInit(): void {
+    if (this.authService.checkLogin()) {
+      this.authService.getLoggedInUser().subscribe({
+        next: (user) => {
+          this.loggedInUser = user;
         },
         error: (fail) => {
           console.error('ngOnInit(): Error getting user');
           console.error(fail);
         },
       });
-
-        this.userService.getUser(this.dm.sender.id).subscribe({
-          next: (user) => {
-            this.sender = user;
-          },
-          error: (somethingBad) => {
-            console.error('PostListComponent.reload: error loading posts');
-            console.error(somethingBad);
-          },
-        });
     }
+
+    this.dmService.getAllDirectMessages(this.loggedInUser.id).subscribe({
+      next: (directMessages) => {
+        this.userMessages = directMessages;
+      },
+      error: (fail) => {
+        console.error('ngOnInit(): Error getting user');
+        console.error(fail);
+      },
+    });
+
+    this.userService.getUser(this.dm.sender.id).subscribe({
+      next: (user) => {
+        this.sender = user;
+      },
+      error: (somethingBad) => {
+        console.error('PostListComponent.reload: error loading posts');
+        console.error(somethingBad);
+      },
+    });
   }
+}

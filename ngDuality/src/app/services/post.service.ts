@@ -10,13 +10,16 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class PostService {
-
   currentPostId: number = 0;
 
   private baseUrl = 'http://localhost:8083/';
-private url = environment.baseUrl + 'api/posts';
+  private url = environment.baseUrl + 'api/posts';
 
-  constructor(private http: HttpClient, private datePipe: DatePipe, private auth: AuthService) {}
+  constructor(
+    private http: HttpClient,
+    private datePipe: DatePipe,
+    private auth: AuthService
+  ) {}
 
   setVisiblePost(id: number) {
     this.currentPostId = id;
@@ -37,7 +40,6 @@ private url = environment.baseUrl + 'api/posts';
   }
 
   index(): Observable<Post[]> {
-
     return this.http.get<Post[]>(this.url, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
@@ -46,22 +48,18 @@ private url = environment.baseUrl + 'api/posts';
         );
       })
     );
-
   }
 
   create(post: Post): Observable<Post> {
-  this.auth.getLoggedInUser().subscribe(
-    {
+    this.auth.getLoggedInUser().subscribe({
       next: (user) => {
         post.creator = user;
       },
       error: (fail) => {
         console.error('ngOnInit(): Error getting user');
         console.error(fail);
-      }
-    }
-  );
-
+      },
+    });
 
     return this.http.post<Post>(this.url, post, this.getHttpOptions()).pipe(
       catchError((err: any) => {
@@ -71,16 +69,13 @@ private url = environment.baseUrl + 'api/posts';
         );
       })
     );
-
-
   }
   getPost(id: number): Observable<Post> {
     return this.http.get<Post>(this.url + '/' + id, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         return throwError(
-          () => new Error(
-              'PostService.getPost(): error retrieving Post: ' + err
-          )
+          () =>
+            new Error('PostService.getPost(): error retrieving Post: ' + err)
         );
       })
     );
@@ -88,7 +83,6 @@ private url = environment.baseUrl + 'api/posts';
   generateId() {
     // return this.posts[this.posts.length - 1].id + 1;
   }
-
 
   // update(updatePost: Post): Observable<Post> {
   //   if(updatePost.completed) {
@@ -106,18 +100,19 @@ private url = environment.baseUrl + 'api/posts';
   //     })
   //   );
 
-
   // }
 
   destroy(postId: number) {
-    return this.http.delete<Post>(this.url + "/" + postId, this.getHttpOptions()).pipe(
-
-      catchError((err: any) => {
-        console.log(err);
-        return throwError(
-          () => new Error('PostService.delete(): error deleting posts: ' + err)
-        );
-      })
-    );
+    return this.http
+      .delete<Post>(this.url + '/' + postId, this.getHttpOptions())
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () =>
+              new Error('PostService.delete(): error deleting posts: ' + err)
+          );
+        })
+      );
   }
 }

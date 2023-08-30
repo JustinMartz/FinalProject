@@ -18,7 +18,7 @@ public class DirectMessageServiceImpl implements DirectMessageService {
     @Override
     public List<DirectMessage> listAllDirectMessagesByUser(int userId) {
     	
-        return dmRepo.findByUser_Id(userId);
+        return dmRepo.findByRecipient_Id(userId);
     }
 
     @Override
