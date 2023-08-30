@@ -38,8 +38,8 @@ export class DirectMessageService {
     );
   }
 
-  getAllDirectMessages(): Observable<DirectMessage[]> {
-    return this.http.get<DirectMessage[]>(this.url).pipe(
+  getAllDirectMessages(id: number): Observable<DirectMessage[]> {
+    return this.http.get<DirectMessage[]>(this.url + '/' + '/users/' + id, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
