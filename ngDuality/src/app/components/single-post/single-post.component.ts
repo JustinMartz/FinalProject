@@ -3,7 +3,7 @@ import { PostService } from 'src/app/services/post.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Post } from 'src/app/models/post';
-import { Comment } from '../../models/comment'
+import { Comment } from '../../models/comment';
 import { CommentService } from 'src/app/services/comment.service';
 import { User } from 'src/app/models/user';
 
@@ -14,7 +14,7 @@ import { User } from 'src/app/models/user';
 })
 export class SinglePostComponent implements OnInit {
   post: Post = new Post();
-  loggedInUser: User = new User()
+  loggedInUser: User = new User();
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -22,22 +22,18 @@ export class SinglePostComponent implements OnInit {
     private postService: PostService,
     private commentService: CommentService,
     private authService: AuthService
-
   ) {}
 
   ngOnInit(): void {
     this.authService.getLoggedInUser().subscribe({
       next: (user) => {
-        this.loggedInUser= user;
+        this.loggedInUser = user;
       },
       error: (fail) => {
         console.error('ngOnInit(): Error getting user');
         console.error(fail);
       },
     });
-
-
-
 
     this.activatedRoute.paramMap.subscribe({
       next: (params: ParamMap) => {
@@ -47,7 +43,6 @@ export class SinglePostComponent implements OnInit {
           if (isNaN(postId)) {
             this.router.navigateByUrl('invalidPostId'); // Undefined path will match wildcard
           } else {
-
             this.postService.setVisiblePost(postId);
             this.postService.getPost(postId).subscribe({
               next: (post) => {
@@ -62,11 +57,9 @@ export class SinglePostComponent implements OnInit {
         }
       },
     });
-
-
   }
 
-  deletePost(postId: number){
+  deletePost(postId: number) {
     this.postService.destroy(postId);
   }
 }
