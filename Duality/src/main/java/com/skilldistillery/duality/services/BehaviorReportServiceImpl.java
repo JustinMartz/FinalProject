@@ -15,15 +15,12 @@ import com.skilldistillery.duality.repositories.UserRepository;
 @Service
 public class BehaviorReportServiceImpl implements BehaviorReportService {
 
-	
 	@Autowired
 	private BehaviorReportRepository behaviorReportRepo;
-	
+
 	@Autowired
 	private UserRepository userRepo;
 
-	
-	
 	@Override
 	public List<BehaviorReport> listAllBehaviorReports() {
 		return behaviorReportRepo.findAll();
@@ -38,21 +35,20 @@ public class BehaviorReportServiceImpl implements BehaviorReportService {
 		return null;
 	}
 
-
 	@Override
 	public BehaviorReport create(BehaviorReport newBehaviorReport, String username) {
 		User user = userRepo.findByUsername(username);
 		if (user != null) {
-		    newBehaviorReport.setUser(user);
-		    if ( newBehaviorReport.getId() > 0) {
+			newBehaviorReport.setUser(user);
+			if (newBehaviorReport.getId() > 0) {
 				return null;
 			}
 			if (newBehaviorReport.getBehavior() == null) {
 				return null;
 			}
-		    return behaviorReportRepo.saveAndFlush(newBehaviorReport);
-		  }
-		
+			return behaviorReportRepo.saveAndFlush(newBehaviorReport);
+		}
+
 		return null;
 	}
 
@@ -92,6 +88,5 @@ public class BehaviorReportServiceImpl implements BehaviorReportService {
 		}
 		return null;
 	}
-
 
 }

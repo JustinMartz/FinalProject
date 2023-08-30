@@ -71,5 +71,21 @@ public class CommentServiceImpl implements CommentService {
 		return commentRepo.findByPost_Id(postId);
 
 	}
+	@Override
+    public Comment addCommentToPost(int postId, Comment comment) {
+        Optional<Post> postOpt = postRepo.findById(postId);
+        if(postOpt.isPresent()) {
+            Post post = postOpt.get();
+            comment.setPost(post);
+            return commentRepo.saveAndFlush(comment);
+        }
+        return null;
+    }
 
+	
+	
+	
+	
+	
+	
 }
