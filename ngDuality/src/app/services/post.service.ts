@@ -109,15 +109,15 @@ private url = environment.baseUrl + 'api/posts';
 
   // }
 
-  // destroy(postId: number) {
-  //   return this.http.delete<Post>(this.url + "/" + postId, this.getHttpOptions()).pipe(
+  destroy(postId: number) {
+    return this.http.delete<Post>(this.url + "/" + postId, this.getHttpOptions()).pipe(
 
-  //     catchError((err: any) => {
-  //       console.log(err);
-  //       return throwError(
-  //         () => new Error('PostService.delete(): error deleting posts: ' + err)
-  //       );
-  //     })
-  //   );
-  // }
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('PostService.delete(): error deleting posts: ' + err)
+        );
+      })
+    );
+  }
 }

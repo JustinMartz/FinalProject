@@ -27,9 +27,9 @@ public class DirectMessageController {
 	@Autowired
 	private DirectMessageService directMessageService;
 
-	@GetMapping("directMessages")
-	public List<DirectMessage> listDirectMessages() {
-		return directMessageService.listAllDirectMessages();
+	@GetMapping("directMessages/users/{id}")
+	public List<DirectMessage> listDirectMessagesByUser(@PathVariable("id") Integer userId) {
+		return directMessageService.listAllDirectMessagesByUser(userId);
 	}
 
 	@GetMapping("directMessages/{id}")

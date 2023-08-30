@@ -44,7 +44,9 @@ export class PostComponent implements OnInit {
       });
     }
   }
-
+deletePost(postId: number){
+  this.postService.destroy(postId);
+}
   goToPost(postId: number) {
     this.router.navigateByUrl('posts/' + postId);
     this.postService.setVisiblePost(postId);
