@@ -51,4 +51,28 @@ export class ResourceService {
       })
     );
   }
+
+
+
+  create(resource: Resource): Observable<Resource> {
+    this.auth.getLoggedInUser().subscribe({
+      next: (user) => {
+        resource.creator = user;
+      },
+      error: (fail) => {
+        console.error('ngOnInit(): Error getting user');
+        console.error(fail);
+      },
+    });
+
+    return this.http.post<Resource>(this.url, resource, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () => new Error('ResourceService.create(): error creating resources: ' + err)
+        );
+      })
+    );
+  }
+
 }
