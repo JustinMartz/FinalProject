@@ -58,4 +58,8 @@ export class CommentComponent implements OnInit {
 
   }
 
+  deleteCommentFromPost(commentId: number){
+    this.commentService.destroy(commentId);
+  }
+
 }
