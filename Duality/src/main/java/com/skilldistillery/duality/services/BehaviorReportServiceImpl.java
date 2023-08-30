@@ -90,6 +90,7 @@ public class BehaviorReportServiceImpl implements BehaviorReportService {
 		return null;
 	}
 
+
 	@Override
 	public List<BehaviorReport> getReportsForDay(String username, String isodate) {
 		String[] isoparts = isodate.split("Z");
@@ -299,5 +300,6 @@ public class BehaviorReportServiceImpl implements BehaviorReportService {
 //		List<BehaviorReport> reports = behaviorReportRepo.findByByCreateDateBetween(null, null);
 		return boolList;
 	}
+
 
 }

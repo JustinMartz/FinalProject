@@ -10,6 +10,8 @@ import { PostComponent } from './components/post/post.component';
 import { SinglePostComponent } from './components/single-post/single-post.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { DirectMessageComponent } from './components/direct-message/direct-message.component';
+import { ResourceComponent } from './components/resource/resource.component';
+import { CommentComponent } from './components/comment/comment.component';
 
 const routes: Routes =  [
   { path: '', pathMatch: 'full', redirectTo: 'dualityhome' },
@@ -22,7 +24,11 @@ const routes: Routes =  [
   { path: 'logout', component: LogoutComponent},
   { path: 'posts', component: PostComponent},
   { path: 'directMessages', component: DirectMessageComponent},
+  { path: 'resources', component: ResourceComponent},
+  { path: 'posts/:postId/comments', component: CommentComponent},
   { path: '**', component: NotFoundComponent}
+
+
 ];
 
 @NgModule({

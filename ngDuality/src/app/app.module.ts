@@ -24,6 +24,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommentComponent } from './components/comment/comment.component';
 import { DirectMessageComponent } from './components/direct-message/direct-message.component';
 import { AccordianComponent } from './components/accordian/accordian.component';
+import { ResourceComponent } from './components/resource/resource.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { AccordianComponent } from './components/accordian/accordian.component';
     UserProfileComponent,
     CommentComponent,
     DirectMessageComponent,
-    AccordianComponent
+    AccordianComponent,
+    ResourceComponent
   ],
   imports: [
     BrowserModule,

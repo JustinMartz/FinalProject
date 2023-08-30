@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,7 +20,8 @@ import com.skilldistillery.duality.entities.Comment;
 import com.skilldistillery.duality.services.CommentService;
 
 @RestController
-@RequestMapping("api/comments/")
+@RequestMapping("api")
+@CrossOrigin({ "*", "http://localhost/"})
 public class CommentController {
 
 	@Autowired
@@ -30,7 +32,7 @@ public class CommentController {
 		return commentService.listAllComments();
 	}
 
-	@GetMapping("{id}")
+	@GetMapping("comments/{id}")
 	public Comment getCommentById(@PathVariable int id, HttpServletResponse res) {
 		Comment comment = commentService.findById(id);
 		if (comment == null) {
@@ -55,7 +57,7 @@ public class CommentController {
 		return comment;
 	}
 
-	@PutMapping("{id}")
+	@PutMapping("comments/{id}")
 	public Comment updateComment(@PathVariable int id, @RequestBody Comment comment, HttpServletResponse res) {
 		try {
 			comment = commentService.updateComment(id, comment);
@@ -70,8 +72,9 @@ public class CommentController {
 		return comment;
 	}
 
-	@DeleteMapping("{id}")
+	@DeleteMapping("comments/{id}")
 	public void deleteComment(@PathVariable int id, HttpServletResponse res) {
+		System.out.println("==3==");
 		try {
 			if (commentService.deleteComment(id)) {
 				res.setStatus(200);
@@ -84,7 +87,7 @@ public class CommentController {
 		}
 	}
 
-	@GetMapping("posts/{postId}")
+	@GetMapping("comments/posts/{postId}")
 	public List<Comment> findCommentsByPostId(@PathVariable int postId, HttpServletResponse res) {
 		List<Comment> comments = commentService.findCommentsByPostId(postId);
 		if (comments == null) {

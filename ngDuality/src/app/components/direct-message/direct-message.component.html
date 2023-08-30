@@ -1,1 +1,9 @@
-<p>direct-message works!</p>
+<div *ngFor="let dm of userMessages">
+<ul>
+  <li  >
+    {{dm.sender.username}}
+  </li>
+</ul>
+
+</div>
+
