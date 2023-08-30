@@ -1,16 +1,36 @@
 <div class="container">
   <thead>
     <tr>
-        <th>Name</th>
-        <th>Author of Post</th>
-
+      <th>Title</th>
+      <th>Author of Post</th>
     </tr>
-</thead>
-<tbody>
-    <tr *ngFor="let p of posts">
-        <td><a (click)="goToPost(p.id)">{{p.title}}</a></td>
+  </thead>
+  <tbody>
+    <tr *ngFor="let p of nonPersonalPosts">
+      <td>
+        <a (click)="goToPost(p.id)">{{ p.title }}</a>
+      </td>
 
-        <td> <a (click)="goToUserProfile(p.creator.id)">{{p.creator.username}}</a></td>
+      <td>
+        <a (click)="goToUserProfile(p.creator.id)">{{ p.creator.username }}</a>
+      </td>
     </tr>
-</tbody>
+  </tbody>
 </div>
+
+<form  (ngSubmit)="createPost(newPost)">
+  <h2>Title:</h2>
+  <br />
+
+  <input type="text" name="title" [(ngModel)]="newPost.title" />
+  <br />
+
+  <h2>Message:</h2>
+  <br />
+
+  <textarea name="message" [(ngModel)]="newPost.message" ></textarea>
+  <br />
+
+  <br />
+  <button submit="createPost(newPost)"  >Create Post</button>
+</form>

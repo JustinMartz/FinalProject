@@ -5,7 +5,8 @@ import com.skilldistillery.duality.entities.DirectMessage;
 
 public interface DirectMessageService {
 
-    List<DirectMessage> listAllDirectMessages();
+   
+	List<DirectMessage> listAllDirectMessagesByUser(int userId);
 
     DirectMessage findById(int dmId);
 
@@ -14,4 +15,5 @@ public interface DirectMessageService {
     DirectMessage updateDirectMessage(int dmId, DirectMessage directMessage);
 
     boolean deleteDirectMessage(int dmId);
+
 }

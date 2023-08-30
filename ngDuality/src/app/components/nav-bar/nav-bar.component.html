@@ -1,26 +1,34 @@
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
 <nav class="navbar navbar-expand-lg navbar-expand-md navbar-light bg-light">
   <a class="navbar-brand" href="#">Duality</a>
-  <button  (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-
+  <button (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
-  <div class="collapse navbar-collapse" [ngbCollapse]='isCollapsed'id="navbarNav"  >
+  <div class="collapse navbar-collapse" [ngbCollapse]="isCollapsed" id="navbarNav">
     <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link" *ngIf="checkLogin()" [routerLink]="['/userhome']">Profile</a>
+      <li class="nav-item active" *ngIf="checkLogin()">
+        <a class="nav-link" [routerLink]="['/userhome']">Profile</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" *ngIf="!checkLogin()" [routerLink]="['/register']">Register</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" *ngIf="!checkLogin()" [routerLink]="['/login']">Login</a>
+      <li class="nav-item" *ngIf="!checkLogin()">
+        <a class="nav-link" [routerLink]="['/register']">Register</a>
       </li>
       <li class="nav-item" *ngIf="checkLogin()">
         <a class="nav-link" [routerLink]="['/posts']">Forums</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" [routerLink]="['/resources']">Resources</a>
+      </li>
       <li class="nav-item" *ngIf="checkLogin()">
         <a class="nav-link" [routerLink]="['/logout']">Log out</a>
+      </li>
+      <li class="nav-item" *ngIf="!checkLogin()">
+        <a class="nav-link" [routerLink]="['/login']">Login</a>
+      </li>
+      <li class="nav-item" *ngIf="checkLogin()">
+        <a class="nav-link" [routerLink]="['/directMessages']">
+          <img src="../../../assets/216331_messages_messages.svg" />
+        </a>
       </li>
     </ul>
   </div>

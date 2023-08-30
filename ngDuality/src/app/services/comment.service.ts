@@ -4,14 +4,15 @@ import { Observable, catchError, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Comment } from '../models/comment';
 import { AuthService } from './auth.service';
-import { PostService } from './post.service';
-import { post } from 'jquery';
+// import { PostService } from './post.service';
+// import { post } from 'jquery';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CommentService {
   private url = environment.baseUrl + 'api/comments';
+
   constructor(
     private http: HttpClient,
     private auth: AuthService
@@ -81,7 +82,7 @@ export class CommentService {
 
   update(updatedComment: Comment): Observable<Comment> {
     return this.http
-      .put<Comment>(this.url + '/' + updatedComment.id, updatedComment)
+      .put<Comment>(this.url + '/' + updatedComment.id, updatedComment,this.getHttpOptions())
       .pipe(
         catchError((err: any) => {
           console.log(err);
@@ -95,9 +96,10 @@ export class CommentService {
       );
   }
 
-  destroy(commentId: number): Observable<void> {
-    // return this.http.delete<void>(this.url + "/" + commentId).pipe(
-    return this.http.delete<void>(`${this.url}/${commentId}`).pipe(
+  destroy(commentId: number) {
+    console.log('==2=='+commentId)
+    return this.http.delete(this.url + "/" + commentId, this.getHttpOptions()).pipe(
+    // return this.http.delete<void>(`${this.url}/${commentId}`).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
@@ -107,4 +109,24 @@ export class CommentService {
       })
     );
   }
+
+
+
+  addCommentToPost(postId: number, comment: Comment): Observable<Comment> {
+    return this.http.post<Comment>(environment.baseUrl + 'api/posts' + '/' + postId + '/comments', comment, this.getHttpOptions()).pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () =>
+              new Error(
+                'AddCommentToPostService.AddCommentToPost(): error retrieving comments for posts: ' + postId + err
+              )
+          );
+        })
+      );
+
+
+}
+
+
 }

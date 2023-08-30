@@ -11,18 +11,28 @@ import { PostService } from 'src/app/services/post.service';
   styleUrls: ['./post.component.css'],
 })
 export class PostComponent implements OnInit {
-
   constructor(
     private postService: PostService,
     private authService: AuthService,
     private router: Router
   ) {}
 
-  posts: Post[] = [];
+  personalPosts: Post[] = [];
+  nonPersonalPosts: Post[] = [];
+  newPost: Post = new Post();
 
   loggedInUser: User = new User();
 
   ngOnInit(): void {
+    this.authService.getLoggedInUser().subscribe({
+      next: (user) => {
+        this.loggedInUser = user;
+      },
+      error: (fail) => {
+        console.error('ngOnInit(): Error getting user');
+        console.error(fail);
+      },
+    });
     if (this.authService.checkLogin()) {
       this.authService.getLoggedInUser().subscribe({
         next: (user) => {
@@ -35,7 +45,13 @@ export class PostComponent implements OnInit {
       });
       this.postService.index().subscribe({
         next: (postList) => {
-          this.posts = postList;
+          for (let p of postList) {
+            if (!p.personal) {
+              this.nonPersonalPosts.push(p);
+            } else {
+              this.personalPosts.push(p);
+            }
+          }
         },
         error: (somethingBad) => {
           console.error('PostListComponent.reload: error loading posts');
@@ -51,5 +67,40 @@ export class PostComponent implements OnInit {
   }
   goToUserProfile(userId: number) {
     this.router.navigateByUrl('users/' + userId);
+  }
+  createPost(post: Post) {
+    post.active = true;
+    post.anonymous = false;
+
+    this.postService.create(post).subscribe({
+      next: (createdPost) => {
+        this.newPost = new Post();
+        this.reload();
+      },
+      error: (fail) => {
+        console.error('createComponent.addPost: error creating post');
+        console.error(fail);
+      },
+    });
+  }
+
+  reload() {
+    this.postService.index().subscribe({
+      next: (postList) => {
+        this.nonPersonalPosts=[];
+        this.personalPosts=[];
+        for (let p of postList) {
+          if (!p.personal) {
+            this.nonPersonalPosts.push(p);
+          } else {
+            this.personalPosts.push(p);
+          }
+        }
+      },
+      error: (somethingBad) => {
+        console.error('PostComponent.reload: error loading posts');
+        console.error(somethingBad);
+      },
+    });
   }
 }

@@ -1,6 +1,12 @@
-
 <h2>{{post.title}}</h2>
 <h4>{{post.creator.username}}</h4>
+
+<div *ngIf="post.creator.id === loggedInUser.id">
+
+  <td (click)="deletePost(post.id)">Delete Post</td>
+  <td >Update Post</td>
+</div>
+
 <br>
 <h4>{{post.message}}</h4>
 

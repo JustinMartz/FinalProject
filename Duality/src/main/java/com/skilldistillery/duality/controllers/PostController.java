@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.duality.entities.Comment;
 import com.skilldistillery.duality.entities.Post;
+import com.skilldistillery.duality.services.CommentService;
 import com.skilldistillery.duality.services.PostService;
 import com.skilldistillery.duality.services.UserService;
 
@@ -32,7 +34,8 @@ public class PostController {
 	@Autowired
 	private UserService userServ;
 	
-	
+	@Autowired
+	private CommentService commentServ;
 	
 	@GetMapping("posts")
 	List<Post> listAllPosts(HttpServletResponse response,HttpServletRequest req) {
@@ -89,6 +92,22 @@ public class PostController {
 			res.setStatus(404);
 		}
 	}
+	
+	
+
+
+	@PostMapping("posts/{postId}/comments")
+	public Comment addCommentToPost(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable("postId") int postId, @RequestBody Comment comment) {
+	    comment = commentServ.addCommentToPost(postId, comment, principal.getName());
+	    System.out.println(comment);
+	    if(comment != null) {
+	        res.setStatus(201);
+	    } else {
+	        res.setStatus(400);
+	    }
+	    return comment;
+	}
+
 
 
 }

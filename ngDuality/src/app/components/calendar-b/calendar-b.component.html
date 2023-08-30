@@ -43,7 +43,7 @@
 
     <div class="back" [style]="showForm()">
       <div class="date-heading"><h1>Check-in for {{displayDate | date: 'longDate'}}</h1></div>
-      <div class="form"><app-check-in></app-check-in></div>
+      <div class="form"><app-check-in *ngIf=""></app-check-in></div>
       <div class="actions">
         <button class="save" (click)="checkinButton()">
           Submit <i class="ion-checkmark"></i>
