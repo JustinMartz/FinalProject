@@ -61,10 +61,17 @@ public class CommentServiceImpl implements CommentService {
 
 	@Override
 	public boolean deleteComment(int id) {
+		System.out.println("==4==");
 		boolean deleted = false;
 		Optional<Comment> toDeleteOpt = commentRepo.findById(id);
+		
 		if (toDeleteOpt.isPresent()) {
-			commentRepo.delete(toDeleteOpt.get());
+			
+			Comment deletedComment = toDeleteOpt.get();
+//			
+//			deletedComment.setActive(false);
+			
+			commentRepo.deleteById(deletedComment.getId());
 			deleted = true;
 		}
 		return deleted;

@@ -82,7 +82,7 @@ export class CommentService {
 
   update(updatedComment: Comment): Observable<Comment> {
     return this.http
-      .put<Comment>(this.url + '/' + updatedComment.id, updatedComment)
+      .put<Comment>(this.url + '/' + updatedComment.id, updatedComment,this.getHttpOptions())
       .pipe(
         catchError((err: any) => {
           console.log(err);
@@ -96,9 +96,10 @@ export class CommentService {
       );
   }
 
-  destroy(commentId: number): Observable<void> {
-    // return this.http.delete<void>(this.url + "/" + commentId).pipe(
-    return this.http.delete<void>(`${this.url}/${commentId}`).pipe(
+  destroy(commentId: number) {
+    console.log('==2=='+commentId)
+    return this.http.delete(this.url + "/" + commentId, this.getHttpOptions()).pipe(
+    // return this.http.delete<void>(`${this.url}/${commentId}`).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
