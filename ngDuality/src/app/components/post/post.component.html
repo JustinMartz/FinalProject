@@ -8,11 +8,10 @@
 </thead>
 <tbody>
     <tr *ngFor="let p of posts">
-     <td (click)="deletePost(p.id)">Delete Post</td>
-     <td >Update Post</td>
-        <td><a (click)="goToPost(p.id)">{{p.title}}</a></td>
+      <td><a (click)="goToPost(p.id)">{{p.title}}</a></td>
 
-        <td> <a (click)="goToUserProfile(p.creator.id)">{{p.creator.username}}</a></td>
+      <td> <a (click)="goToUserProfile(p.creator.id)">{{p.creator.username}}</a></td>
+
     </tr>
 </tbody>
 </div>

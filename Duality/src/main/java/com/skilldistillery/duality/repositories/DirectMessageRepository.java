@@ -8,7 +8,7 @@ import com.skilldistillery.duality.entities.DirectMessage;
 
 public interface DirectMessageRepository extends JpaRepository<DirectMessage, Integer> {
 
-	List<DirectMessage> findByUser_Id(int userId);
+	List<DirectMessage> findByRecipient_Id(int userId);
 
 
 
