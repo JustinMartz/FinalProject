@@ -13,10 +13,7 @@ import { AuthService } from './auth.service';
 export class CommentService {
   private url = environment.baseUrl + 'api/comments';
 
-  constructor(
-    private http: HttpClient,
-    private auth: AuthService
-  ) {}
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
   getHttpOptions() {
     let options = {
@@ -45,17 +42,20 @@ export class CommentService {
 
   getPostComments(postId: number): Observable<Comment[]> {
     console.log('*** postId: ' + postId);
-    return this.http.get<Comment[]>(this.url + '/posts/' + postId, this.getHttpOptions()).pipe(
-      catchError((err: any) => {
-        console.log(err);
-        return throwError(
-          () =>
-            new Error(
-              'CommentService.getPostComments(): error retrieving comments: ' + err
-            )
-        );
-      })
-    );
+    return this.http
+      .get<Comment[]>(this.url + '/posts/' + postId, this.getHttpOptions())
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () =>
+              new Error(
+                'CommentService.getPostComments(): error retrieving comments: ' +
+                  err
+              )
+          );
+        })
+      );
   }
 
   create(comment: Comment): Observable<Comment> {
@@ -109,23 +109,25 @@ export class CommentService {
     );
   }
 
-
-
   addCommentToPost(postId: number, comment: Comment): Observable<Comment> {
-    return this.http.post<Comment>(environment.baseUrl + 'api/posts' + '/' + postId + '/comments', comment, this.getHttpOptions()).pipe(
+    return this.http
+      .post<Comment>(
+        environment.baseUrl + 'api/posts' + '/' + postId + '/comments',
+        comment,
+        this.getHttpOptions()
+      )
+      .pipe(
         catchError((err: any) => {
           console.log(err);
           return throwError(
             () =>
               new Error(
-                'AddCommentToPostService.AddCommentToPost(): error retrieving comments for posts: ' + postId + err
+                'AddCommentToPostService.AddCommentToPost(): error retrieving comments for posts: ' +
+                  postId +
+                  err
               )
           );
         })
       );
-
-
-}
-
-
+  }
 }

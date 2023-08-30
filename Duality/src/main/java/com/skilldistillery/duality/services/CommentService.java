@@ -17,6 +17,6 @@ public interface CommentService {
 	boolean deleteComment(int id);
 
 	List<Comment> findCommentsByPostId(int postId);
-	
+
 	Comment addCommentToPost(int postId, Comment comment, String username);
 }

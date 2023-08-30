@@ -25,23 +25,23 @@ import com.skilldistillery.duality.services.UserService;
 
 @RestController
 @RequestMapping("api")
-@CrossOrigin({"*", "http://localhost/"})
+@CrossOrigin({ "*", "http://localhost/" })
 public class PostController {
-	
+
 	@Autowired
 	private PostService postServ;
-	
+
 	@Autowired
 	private UserService userServ;
-	
+
 	@Autowired
 	private CommentService commentServ;
-	
+
 	@GetMapping("posts")
-	List<Post> listAllPosts(HttpServletResponse response,HttpServletRequest req) {
+	List<Post> listAllPosts(HttpServletResponse response, HttpServletRequest req) {
 		return postServ.listAllPosts();
 	}
-	
+
 	@GetMapping("posts/{postId}")
 	public Post getPost(Principal principal, HttpServletResponse response, @PathVariable("postId") int postId) {
 		Post post = postServ.getPost(postId);
@@ -51,14 +51,15 @@ public class PostController {
 			response.setStatus(404);
 		}
 		return post;
-		
+
 	}
+
 	@PostMapping("posts")
-	public Post create(Principal principal,HttpServletRequest req, HttpServletResponse res, @RequestBody Post post) {
+	public Post create(Principal principal, HttpServletRequest req, HttpServletResponse res, @RequestBody Post post) {
 		post.setCreator(userServ.getLoggedInUser(principal.getName()));
-		
+
 		post = postServ.create(post);
-		
+
 		if (post == null) {
 			res.setStatus(401);
 		} else {
@@ -68,6 +69,7 @@ public class PostController {
 		}
 		return post;
 	}
+
 	@PutMapping("posts/{tid}")
 	public Post update(HttpServletRequest req, HttpServletResponse res, @PathVariable int tid, @RequestBody Post post) {
 		try {
@@ -84,6 +86,7 @@ public class PostController {
 		return post;
 
 	}
+
 	@DeleteMapping("posts/{tid}")
 	public void destroy(HttpServletRequest req, HttpServletResponse res, @PathVariable int tid) {
 		if (postServ.delete(tid)) {
@@ -92,22 +95,18 @@ public class PostController {
 			res.setStatus(404);
 		}
 	}
-	
-	
-
 
 	@PostMapping("posts/{postId}/comments")
-	public Comment addCommentToPost(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable("postId") int postId, @RequestBody Comment comment) {
-	    comment = commentServ.addCommentToPost(postId, comment, principal.getName());
-	    System.out.println(comment);
-	    if(comment != null) {
-	        res.setStatus(201);
-	    } else {
-	        res.setStatus(400);
-	    }
-	    return comment;
+	public Comment addCommentToPost(Principal principal, HttpServletRequest req, HttpServletResponse res,
+			@PathVariable("postId") int postId, @RequestBody Comment comment) {
+		comment = commentServ.addCommentToPost(postId, comment, principal.getName());
+		System.out.println(comment);
+		if (comment != null) {
+			res.setStatus(201);
+		} else {
+			res.setStatus(400);
+		}
+		return comment;
 	}
-
-
 
 }
