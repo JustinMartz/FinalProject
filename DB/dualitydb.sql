@@ -301,9 +301,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `dualitydb`;
-INSERT INTO `post` (`id`, `title`, `user_id`, `active`, `create_date`, `message`, `anonymous`, `personal`) VALUES (1, 'how are ya\'ll feeling today', 4, 0, '2023-08-25 11:40:00', 'feeling good today', 0, 1);
-INSERT INTO `post` (`id`, `title`, `user_id`, `active`, `create_date`, `message`, `anonymous`, `personal`) VALUES (2, 'ya\'ll suck', 5, 0, '2023-08-25 11:25:00', 'booo', 0, 1);
-INSERT INTO `post` (`id`, `title`, `user_id`, `active`, `create_date`, `message`, `anonymous`, `personal`) VALUES (3, 'day out with family', 6, 0, '2023-08-25 12:20:00', 'went to the park today', 1, 0);
+INSERT INTO `post` (`id`, `title`, `user_id`, `active`, `create_date`, `message`, `anonymous`, `personal`) VALUES (1, 'how are ya\'ll feeling today', 4, 0, '2023-08-25 11:40:00', 'feeling good today', 0, 0);
+INSERT INTO `post` (`id`, `title`, `user_id`, `active`, `create_date`, `message`, `anonymous`, `personal`) VALUES (2, 'ya\'ll suck', 5, 0, '2023-08-25 11:25:00', 'booo', 0, 0);
+INSERT INTO `post` (`id`, `title`, `user_id`, `active`, `create_date`, `message`, `anonymous`, `personal`) VALUES (3, 'day out with family', 6, 0, '2023-08-25 12:20:00', 'went to the park today', 1, 1);
 
 COMMIT;
 
@@ -314,7 +314,7 @@ COMMIT;
 START TRANSACTION;
 USE `dualitydb`;
 INSERT INTO `comment` (`id`, `create_date`, `body`, `active`, `flagged`, `user_id`, `post_id`) VALUES (1, '2023-08-25 11:15:00', 'you suck', 0, 0, 5, 1);
-INSERT INTO `comment` (`id`, `create_date`, `body`, `active`, `flagged`, `user_id`, `post_id`) VALUES (2, '2023-08-25 11:20:00', 'you rock', 1, 1, 4, 1);
+INSERT INTO `comment` (`id`, `create_date`, `body`, `active`, `flagged`, `user_id`, `post_id`) VALUES (2, '2023-08-25 11:20:00', 'you rock', 0, 1, 4, 1);
 
 COMMIT;
 
