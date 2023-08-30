@@ -98,7 +98,7 @@ public class PostController {
 
 	@PostMapping("posts/{postId}/comments")
 	public Comment addCommentToPost(Principal principal, HttpServletRequest req, HttpServletResponse res, @PathVariable("postId") int postId, @RequestBody Comment comment) {
-	    comment = commentServ.addCommentToPost(postId, comment);
+	    comment = commentServ.addCommentToPost(postId, comment, principal.getName());
 	    System.out.println(comment);
 	    if(comment != null) {
 	        res.setStatus(201);

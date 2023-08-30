@@ -18,5 +18,5 @@ public interface CommentService {
 
 	List<Comment> findCommentsByPostId(int postId);
 	
-	Comment addCommentToPost(int postId, Comment comment);
+	Comment addCommentToPost(int postId, Comment comment, String username);
 }

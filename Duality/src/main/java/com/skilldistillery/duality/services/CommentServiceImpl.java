@@ -8,8 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.duality.entities.Comment;
 import com.skilldistillery.duality.entities.Post;
+import com.skilldistillery.duality.entities.User;
 import com.skilldistillery.duality.repositories.CommentRepository;
 import com.skilldistillery.duality.repositories.PostRepository;
+import com.skilldistillery.duality.repositories.UserRepository;
 
 @Service
 public class CommentServiceImpl implements CommentService {
@@ -19,6 +21,8 @@ public class CommentServiceImpl implements CommentService {
 
 	@Autowired
 	private PostRepository postRepo;
+	@Autowired
+	private UserRepository userRepo;
 
 	@Override
 	public List<Comment> listAllComments() {
@@ -72,11 +76,13 @@ public class CommentServiceImpl implements CommentService {
 
 	}
 	@Override
-    public Comment addCommentToPost(int postId, Comment comment) {
+    public Comment addCommentToPost(int postId, Comment comment, String username) {
         Optional<Post> postOpt = postRepo.findById(postId);
-        if(postOpt.isPresent()) {
+        User user = userRepo.findByUsername(username);
+        if(postOpt.isPresent() && user != null) {
             Post post = postOpt.get();
             comment.setPost(post);
+            comment.setCommentor(user);
             return commentRepo.saveAndFlush(comment);
         }
         return null;

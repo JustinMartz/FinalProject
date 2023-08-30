@@ -57,6 +57,7 @@ export class SinglePostComponent implements OnInit {
         }
       },
     });
+
   }
 
   deletePost(postId: number) {

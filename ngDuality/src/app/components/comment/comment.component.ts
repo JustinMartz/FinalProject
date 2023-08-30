@@ -14,12 +14,22 @@ export class CommentComponent implements OnInit {
 
   post: Post = new Post();
   comments: Comment[] = [];
+  comment: Comment = new Comment();
 
   constructor(private commentService: CommentService, private postService: PostService) { }
 
   ngOnInit(): void {
     let postId = this.postService.getVisiblePost();
-
+    this.postService.getPost(postId).subscribe({
+      next: (returnedPost) => {
+        this.post = returnedPost;
+      },
+      error: (massiveFailure) => {
+        console.error('Failed in CommentComponent.ngOnInit()');
+        console.error(massiveFailure);
+      }
+    })
+      console.log(this.post);
     this.commentService.getPostComments(postId).subscribe({
       next: (returnedComments) => {
         this.comments = returnedComments;
@@ -31,6 +41,21 @@ export class CommentComponent implements OnInit {
     });
 
     console.log(this.comments);
+  }
+
+  addCommentToPost(comment: Comment, id: number) {
+    console.log(id);
+    comment.post.id = this.post.id;
+    this.commentService.addCommentToPost(id, comment).subscribe({
+      next: (returnedComment) => {
+        this.comments.push(returnedComment);
+      },
+      error: (massiveFailure) => {
+        console.error('Failed in commentComponent.addCommentToPost()');
+        console.error(massiveFailure);
+      }
+    });
+
   }
 
 }
