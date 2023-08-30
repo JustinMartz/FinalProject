@@ -26,7 +26,7 @@ export class SinglePostComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loggedInUser=this.authService.getLoggedInUser().subscribe({
+    this.authService.getLoggedInUser().subscribe({
       next: (user) => {
         this.loggedInUser= user;
       },
@@ -34,7 +34,7 @@ export class SinglePostComponent implements OnInit {
         console.error('ngOnInit(): Error getting user');
         console.error(fail);
       },
-    })
+    });
 
 
 
