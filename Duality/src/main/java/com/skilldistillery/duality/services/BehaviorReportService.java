@@ -21,4 +21,10 @@ public interface BehaviorReportService {
 
 	List<BehaviorReport> getAllReportsByDate(LocalDateTime time);
 
+	List<Boolean> getReportBooleansForMonth(String username, String isodate);
+
+	List<BehaviorReport> getReportsForDay(String username, String isodate);
+
+	List<BehaviorReport> getReportsForMonth(String username, String isodate);
+
 }

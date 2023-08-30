@@ -1,5 +1,5 @@
 <div class="container">
-  <form>
+  <form *ngIf="isToday">
     <div *ngFor="let b of behaviors">
       <input type="checkbox" name="behavior{{b.id}}" [(ngModel)]="b.checked"> {{b.name}}
       <label class="form-check-label" for="behavior{{b.id}}">{{b.name}}</label>
@@ -12,6 +12,14 @@
     </div>
     <textarea name="remark" [(ngModel)]="behaviorReportRemark.remarks" rows="5" cols="40"></textarea><br>
   </form>
-
+  <div *ngIf="!isToday">
+    <div *ngIf="prevBehaviorReports.length === 0">
+      <h1>No reports for this day.</h1>
+    </div>
+    <div *ngFor="let b of prevBehaviorReports">
+      {{b.behavior.name}}
+      <span style="background-color: pink;">{{b.intensity}}</span>
+    </div>
+  </div>
 </div>
 

@@ -31,7 +31,7 @@ body {
 }
 
 .calendar {
-  background: lightseagreen;
+  background: #BDB5D5;
   border-radius: 4px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
   height: 501px;
@@ -114,6 +114,45 @@ body {
 .event:after {
   content: '•';
   color: #f78536;
+  font-size: 1.4em;
+  position: absolute;
+  right: -4px;
+  top: -4px;
+}
+
+.event-good {
+  position: relative;
+}
+
+.event-good:after {
+  content: '•';
+  color: green;
+  font-size: 1.4em;
+  position: absolute;
+  right: -4px;
+  top: -4px;
+}
+
+.event-okay {
+  position: relative;
+}
+
+.event-okay:after {
+  content: '•';
+  color: yellow;
+  font-size: 1.4em;
+  position: absolute;
+  right: -4px;
+  top: -4px;
+}
+
+.event-bad {
+  position: relative;
+}
+
+.event-bad:after {
+  content: '•';
+  color: red;
   font-size: 1.4em;
   position: absolute;
   right: -4px;

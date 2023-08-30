@@ -15,7 +15,8 @@ import { BehaviorReportService } from 'src/app/services/behavior-report.service'
 })
 export class CheckInComponent implements OnInit {
   @Input() submitClicked: EventEmitter<void> = new EventEmitter();
-
+  @Input() checkInDate: Date | undefined;
+  @Input() prevBehaviorReports: BehaviorReport[] = [];
 
   constructor(
     private behaviorService: BehaviorService,
@@ -36,7 +37,25 @@ export class CheckInComponent implements OnInit {
 
   loggedInUser: User = new User();
 
+  currentDate = new Date();
+
+  isToday: boolean = false;
+
   ngOnInit(): void {
+    console.log('checkInDate: ' + this.checkInDate?.toISOString());
+    console.log('currentDate: ' + this.currentDate.toISOString());
+    if (this.checkInDate != null && this.checkInDate.getUTCFullYear() == this.currentDate.getUTCFullYear()) {
+      console.log('*** years match');
+      if (this.checkInDate.getUTCMonth() == this.currentDate.getUTCMonth()) {
+        console.log('*** months match');
+        if (this.checkInDate.getUTCDate() == this.currentDate.getUTCDate()) {
+          console.log('*** days match');
+          this.isToday = true;
+        }
+
+      }
+    }
+
     this.behaviorService.index().subscribe({
       next: (behaviorList) => {
         this.behaviors = behaviorList;

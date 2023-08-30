@@ -19,19 +19,19 @@
         <div class="weeks">
           <div class="first">
             <span class="last-month" *ngFor="let fwLM of displayMonth.firstWeek.lastMonth">{{fwLM}}</span>
-            <span *ngFor="let fwTM of displayMonth.firstWeek.thisMonth" (click)="dayClick(fwTM)">{{fwTM | number: '2.0'}}</span>
+            <span [ngClass]="isToday(fwTM)" *ngFor="let fwTM of displayMonth.firstWeek.thisMonth" (click)="dayClick(fwTM)">{{fwTM | number: '2.0'}}</span>
           </div>
 
           <div class="second">
-            <span *ngFor="let sw of displayMonth.secondWeek" (click)="dayClick(sw)">{{sw | number: '2.0'}}</span>
+            <span [ngClass]="isToday(sw)" *ngFor="let sw of displayMonth.secondWeek" (click)="dayClick(sw)">{{sw | number: '2.0'}}</span>
           </div>
 
           <div class="third">
-            <span *ngFor="let tw of displayMonth.thirdWeek" (click)="dayClick(tw)">{{tw | number: '2.0'}}</span>
+            <span [ngClass]="isToday(tw)" *ngFor="let tw of displayMonth.thirdWeek" (click)="dayClick(tw)">{{tw | number: '2.0'}}</span>
           </div>
 
           <div class="fourth">
-            <span *ngFor="let fw of displayMonth.fourthWeek" (click)="dayClick(fw)">{{fw}}</span>
+            <span [ngClass]="isToday(fw)" *ngFor="let fw of displayMonth.fourthWeek" (click)="dayClick(fw)">{{fw}}</span>
           </div>
 
           <div class="fifth">
@@ -42,8 +42,8 @@
     </div>
 
     <div class="back" [style]="showForm()">
-      <div class="date-heading"><h1>Check-in for {{displayDate | date: 'longDate'}}</h1></div>
-      <div class="form"><app-check-in *ngIf=""></app-check-in></div>
+      <div class="date-heading"><h1>Check-in for {{displayDate | date: 'longDate':'UTC'}}</h1></div>
+      <div class="form"><app-check-in [prevBehaviorReports]="displayDateBRs"*ngIf="dayClicked" [checkInDate]="displayDate"></app-check-in></div>
       <div class="actions">
         <button class="save" (click)="checkinButton()">
           Submit <i class="ion-checkmark"></i>
