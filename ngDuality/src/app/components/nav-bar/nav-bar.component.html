@@ -30,18 +30,25 @@
           >Register</a
         >
       </li>
-      <li class="nav-item">
-        <a class="nav-link" *ngIf="!checkLogin()" [routerLink]="['/login']"
-          >Login</a
-        >
-      </li>
+
+
       <li class="nav-item" *ngIf="checkLogin()">
         <a class="nav-link" [routerLink]="['/posts']">Forums</a>
       </li>
 
+
+    <li class="nav-item" >
+      <a class="nav-link" [routerLink]="['/resources']">Resources</a>
+    </li>
+
       <li class="nav-item" *ngIf="checkLogin()">
         <a class="nav-link" [routerLink]="['/logout']">Log out</a>
       </li>
+
+      <li class="nav-item">
+        <a class="nav-link" *ngIf="!checkLogin()" [routerLink]="['/login']"
+          >Login</a
+        >
 
       <li class="nav-item" *ngIf="checkLogin()">
 

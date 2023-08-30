@@ -39,7 +39,7 @@ export class ResourceService {
   }
 
   getUserResources(userId: number): Observable<Resource[]> {
-    return this.http.get<Resource[]>(this.url + '/' + userId, this.getHttpOptions()).pipe(
+    return this.http.get<Resource[]>(this.url + '/' + userId).pipe(
       catchError((err: any) => {
         console.log(err);
         return throwError(
