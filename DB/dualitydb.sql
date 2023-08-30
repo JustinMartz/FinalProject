@@ -301,8 +301,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `dualitydb`;
-INSERT INTO `post` (`id`, `title`, `user_id`, `active`, `create_date`, `message`, `anonymous`, `personal`) VALUES (1, 'how are ya\'ll feeling today', 4, 0, '2023-08-25 11:40:00', 'feeling good today', 0, 0);
-INSERT INTO `post` (`id`, `title`, `user_id`, `active`, `create_date`, `message`, `anonymous`, `personal`) VALUES (2, 'ya\'ll suck', 5, 0, '2023-08-25 11:25:00', 'booo', 0, 0);
+INSERT INTO `post` (`id`, `title`, `user_id`, `active`, `create_date`, `message`, `anonymous`, `personal`) VALUES (1, 'how are ya\'ll feeling today', 4, 1, '2023-08-25 11:40:00', 'feeling good today', 0, 0);
+INSERT INTO `post` (`id`, `title`, `user_id`, `active`, `create_date`, `message`, `anonymous`, `personal`) VALUES (2, 'ya\'ll suck', 5, 1, '2023-08-25 11:25:00', 'booo', 0, 0);
 INSERT INTO `post` (`id`, `title`, `user_id`, `active`, `create_date`, `message`, `anonymous`, `personal`) VALUES (3, 'day out with family', 6, 0, '2023-08-25 12:20:00', 'went to the park today', 1, 1);
 
 COMMIT;
