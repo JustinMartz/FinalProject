@@ -1,9 +1,8 @@
 import {
   Component,
-  EventEmitter,
   OnInit,
-  Output,
-  ViewChild,
+  QueryList,
+  ViewChildren,
 } from '@angular/core';
 import { Calendar } from 'src/app/models/calendar';
 import { CalendarService } from 'src/app/services/calendar.service';
@@ -18,7 +17,9 @@ import { BehaviorReport } from 'src/app/models/behavior-report';
 })
 export class CalendarBComponent implements OnInit {
   // @Output() submitClicked: EventEmitter<void> = new EventEmitter();
-  @ViewChild(CheckInComponent, { static: true }) checkIn!: CheckInComponent;
+  // @ViewChild(CheckInComponent, { static: true }) checkIn: CheckInComponent = {} as CheckInComponent;
+  // @ViewChild('fred', { static: true }) checkIn: CheckInComponent = {} as CheckInComponent;
+  @ViewChildren(CheckInComponent) children!: QueryList<CheckInComponent>;
 
   currentDate: Date | undefined;
   displayDate: Date | undefined;
@@ -55,6 +56,13 @@ export class CalendarBComponent implements OnInit {
         console.error(msg);
       }
     });
+    console.log('in ngOnInit()');
+    console.log(this.children);
+  }
+
+  ngAfterViewInit() {
+    console.log('in ngAfterViewInit()');
+    console.log(this.children);
   }
 
   dayClick(day: number) {
@@ -121,7 +129,11 @@ export class CalendarBComponent implements OnInit {
   }
 
   checkinButton() {
-    this.checkIn.submitDailyBR();
+    console.log('checkinButton()');
+    let checkIn = this.children.get(0);
+    console.log(checkIn);
+    console.log(this.dayClicked);
+    checkIn?.submitDailyBR();
   }
 
   getBRsForMonth(isodate: string) {
