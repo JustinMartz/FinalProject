@@ -1,12 +1,27 @@
-<form>
-  <h1>Register a new account!</h1>
-  <label for="username">
-    <h2>Username: </h2>
-  </label>
-  <input type="text" name="username" [(ngModel)]="newUser.username"> <br>
-  <label for="password">
-    <h2>Password: </h2>
-  </label>
-  <input type="password" name="password" [(ngModel)]="newUser.password"> <br>
-  <button (click)="register(newUser)">Register Account</button>
-</form>
+<div class="registration-container">
+  <form>
+    <h1>Register New Account!</h1>
+
+    <label for="username"></label>
+    <input type="text" name="username" [(ngModel)]="newUser.username" placeholder="Username" required>
+    <br>
+
+    <label for="firstName"></label>
+    <input type="text" name="firstName" [(ngModel)]="newUser.firstName" placeholder="First Name">
+    <br>
+
+    <label for="lastName"></label>
+    <input type="text" name="lastName" [(ngModel)]="newUser.lastName" placeholder="Last Name">
+    <br>
+
+    <label for="birthday"></label>
+    <input type="date" name="birthday" [(ngModel)]="newUser.dob" required>
+    <br>
+
+    <label for="password"></label>
+    <input type="password" name="password" [(ngModel)]="newUser.password" placeholder="Password" required>
+    <br>
+
+    <button (click)="register(newUser)">Register Account</button>
+  </form>
+</div>

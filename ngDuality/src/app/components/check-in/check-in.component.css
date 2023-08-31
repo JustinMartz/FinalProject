@@ -1,6 +1,57 @@
 .container {
-  height: 100%;
+  width: 80%;
+  margin: 2em auto;
+  background-color: #f3f4f6;
+  padding: 2em;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+form {
+  margin-top: 1em;
+}
+
+form label,
+form .form-check-label {
+  color: #7b818c;
+  margin-left: 0.5em;
+}
+
+input[type="checkbox"] {
+  margin-right: 0.5em;
+}
+
+input[type="range"] {
   width: 100%;
-  background-color: white;
-  overflow: scroll;
+  margin-top: 0.5em;
+  margin-bottom: 1em;
+}
+
+textarea {
+  width: 100%;
+  padding: 1em;
+  border: 1px solid #c4c9d4;
+  border-radius: 4px;
+  color: #7b818c;
+  background-color: #eaecef;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 1.5em;
+}
+
+
+h1 {
+  color: #7b818c;
+  margin-top: 1em;
+}
+
+div *ngFor {
+  margin-bottom: 1em;
+}
+
+span[style="background-color: pink;"] {
+  background-color: #eaecef;
+  padding: 0.3em;
+  border-radius: 4px;
+  color: #7b818c;
 }

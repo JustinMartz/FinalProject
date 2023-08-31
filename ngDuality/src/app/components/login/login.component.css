@@ -1,15 +1,34 @@
-
-
-
+/* Common Styles */
+.registration-container,
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  flex-direction: column;
+  background-color: rgba(3, 42, 71, 0.8);
+  padding: 20px;
+  border-radius: 10px;
 }
 
+.register-container,
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #03294700;
+  padding: 15px;
+  border-radius: 10px;
+  width: 500px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
+}
 
+.login-container {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Other Styles */
 h1 {
   font-size: 2.5rem;
   margin-bottom: 20px;
@@ -24,7 +43,8 @@ label {
   color: #d1dbe5;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"],
+input[type="password"] {
   width: 250px;
   padding: 10px;
   margin: 10px 0;
@@ -34,12 +54,13 @@ input[type="text"], input[type="password"] {
   outline: none;
 }
 
-input[type="text"]::placeholder, input[type="password"]::placeholder {
+input[type="text"]::placeholder,
+input[type="password"]::placeholder {
   color: #7a7a7a; /* grayish placeholder text */
 }
 
 button {
-  background-color: #495057;
+  background-color: #5399df;
   color: #fff;
   padding: 10px 15px;
   border: none;
@@ -50,5 +71,21 @@ button {
 }
 
 button:hover {
-  background-color: #333;
+  background-color: #e74e49;
+}
+
+p {
+  color: white;
+}
+
+a {
+  color: wheat;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #70b28c;
+  text-decoration: underline;
 }

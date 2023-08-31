@@ -1,8 +1,10 @@
-<h1>Resources</h1>
-
-<ul>
-  <li *ngFor="let r of userResources">
-    <a target="_blank" href="{{r.resourceLink}}">{{r.description}}</a>
-  </li>
-</ul>
-
+<div class="resources-container">
+  <div class="resources-content">
+    <h1>Resources</h1>
+    <ul>
+      <li *ngFor="let r of userResources">
+        <a target="_blank" href="{{r.resourceLink}}">{{r.description}}</a>
+      </li>
+    </ul>
+  </div>
+</div>

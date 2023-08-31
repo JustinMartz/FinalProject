@@ -18,19 +18,19 @@
   </tbody>
 </div>
 
-<form  (ngSubmit)="createPost(newPost)">
-  <h2>Title:</h2>
+<form (ngSubmit)="createPost(newPost)">
+  <h2>New Post Title</h2>
   <br />
 
-  <input type="text" name="title" [(ngModel)]="newPost.title" />
+  <input type="text" name="title" [(ngModel)]="newPost.title" placeholder="Enter your forum post title here..." />
   <br />
 
-  <h2>Message:</h2>
+  <h2>Post</h2>
   <br />
 
-  <textarea name="message" [(ngModel)]="newPost.message" ></textarea>
+  <textarea name="message" [(ngModel)]="newPost.message" placeholder="Write your feelings here, this is a safe space!"></textarea>
   <br />
 
   <br />
-  <button submit="createPost(newPost)"  >Create Post</button>
+  <button submit="createPost(newPost)">Create Post</button>
 </form>

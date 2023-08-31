@@ -1,35 +1,27 @@
 <div class="userhome-container">
   <div class="profile">
-<h2 style="display:inline;">Username: </h2> <span style="background-color: antiquewhite;">{{loggedInUser.username}}</span>
-<br>
-<h2 style="display:inline;">Date of birthing: </h2> <span style="background-color: antiquewhite;">{{loggedInUser.dob | date: 'longDate'}}</span>
-<br>
-<hr>
-<h3>Resources</h3>
-
-
-
+    <h1>Your Account Details</h1>
+    <h2 style="display:inline;">Username: </h2> <span style="background-color: transparent;">{{loggedInUser.username}}</span>
+    <br>
+    <h2 style="display:inline;">Date of birthing: </h2> <span style="background-color: transparent;">{{loggedInUser.dob | date: 'longDate'}}</span>
+    <br>
+    <h2 style="display:inline;">First Name: </h2> <span style="background-color: transparent;">{{loggedInUser.firstName}}</span>
+    <br>
+    <h2 style="display:inline;">Last Name: </h2> <span style="background-color: transparent;">{{loggedInUser.lastName}}</span>
+    <hr>
+    <h3>Resources</h3>
     <p>Resource Description</p>
-  <input type="text" name="description" [(ngModel)]="resource.description"> <br>
-<p>Resource Link</p>
-<input type ="text" name ="resourceLink" [(ngModel)]="resource.resourceLink"><br>
-
-
-  <button (click)="addResource()">Add Resource</button>
-
-
-
-
-
-
-<ul>
-  <li *ngFor="let r of userResources">
-    <a target="_blank" href="{{r.resourceLink}}">{{r.description}}</a>
-  </li>
-</ul>
+    <input type="text" name="description" [(ngModel)]="resource.description" placeholder="Resource Description"> <br>
+    <p></p>
+    <input type="text" name="resourceLink" [(ngModel)]="resource.resourceLink" placeholder="Resource Link"><br>
+    <button (click)="addResource()">Add Resource</button>
+    <ul>
+      <li *ngFor="let r of userResources">
+        <a target="_blank" href="{{r.resourceLink}}">{{r.description}}</a>
+      </li>
+    </ul>
   </div>
-
   <div class="cal-container">
-<app-calendar-b></app-calendar-b>
+    <app-calendar-b></app-calendar-b>
   </div>
 </div>
