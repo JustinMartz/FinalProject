@@ -4,6 +4,7 @@
   padding: 0;
   box-sizing: border-box;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  font-family: 'Times New Roman', Times, serif ;
 }
 
 
@@ -42,8 +43,8 @@
 
 .nav-link:hover,
 .nav-link:focus {
-  background-color: #f0776e;
-  color: #1b7fe3;
+  background-color: rgb(18 199 228);
+  color: rgb(229, 67, 13);
   text-decoration: none;
 }
 
