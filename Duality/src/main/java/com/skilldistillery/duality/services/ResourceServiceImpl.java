@@ -40,8 +40,13 @@ public class ResourceServiceImpl implements ResourceService {
 	}
 
 	@Override
-	public Resource create(Resource newResource) {	
-	return resourceRepo.saveAndFlush(newResource);
+	public Resource create(Resource newResource,String username) {	
+		User user = userRepo.findByUsername(username);
+		if(user !=null) {
+			newResource.setCreator(user);
+			return resourceRepo.saveAndFlush(newResource);
+		}
+		return null;
 	}
 
 	

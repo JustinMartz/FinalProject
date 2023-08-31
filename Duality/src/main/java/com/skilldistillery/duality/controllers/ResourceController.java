@@ -54,8 +54,9 @@ public class ResourceController {
 		return resources;
 	}
 	@PostMapping("resources")
-	public Resource addResourceToUser(HttpServletRequest req, HttpServletResponse res, @RequestBody Resource resource) {
-	resource = resourceServe.create(resource);
+	public Resource addResourceToUser(Principal principal,HttpServletRequest req, HttpServletResponse res, @RequestBody Resource resource) {
+	
+		resource = resourceServe.create(resource, principal.getName());
 	if (resource == null) {
 		res.setStatus(404);
 	} else {

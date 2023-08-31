@@ -10,7 +10,7 @@ public interface ResourceService {
 
 	List<Resource> listUserResources(int userId);
 	
-	Resource create(Resource newResource);
+	Resource create(Resource newResource, String username);
 	
 	
 

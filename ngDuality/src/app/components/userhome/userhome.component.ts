@@ -8,58 +8,61 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-userhome',
   templateUrl: './userhome.component.html',
-  styleUrls: ['./userhome.component.css']
+  styleUrls: ['./userhome.component.css'],
 })
 export class UserhomeComponent implements OnInit {
-
   loggedInUser: User = new User();
 
   userResources: Resource[] | undefined;
-  resource:Resource = new Resource;
+  resource: Resource = new Resource();
 
-
-  constructor (
+  constructor(
     private authService: AuthService,
-    private resourceService: ResourceService) { }
+    private resourceService: ResourceService
+  ) {}
 
-  ngOnInit():void {
+  ngOnInit(): void {
+    this.reload();
+  }
+
+  addResource() {
+    this.resource.active = true;
+
+    this.resourceService.create(this.resource).subscribe({
+      next: (createdPost) => {
+        this.resource = new Resource();
+        this.reload();
+      },
+      error: (fail) => {
+        console.error('createComponent.addPost: error creating post');
+        console.error(fail);
+      },
+    });
+  }
+
+  reload() {
     if (this.authService.checkLogin()) {
-      this.authService.getLoggedInUser().subscribe( {
+      this.authService.getLoggedInUser().subscribe({
         next: (user) => {
           this.loggedInUser = user;
 
-          this.resourceService.getUserResources(this.loggedInUser.id).subscribe({
-            next: (resources) => {
-              this.userResources = resources;
-            },
-            error: (fail) => {
-              console.error('ngOnInit(): Error getting resources');
-              console.error(fail);
-            }
-          });
+          this.resourceService
+            .getUserResources(this.loggedInUser.id)
+            .subscribe({
+              next: (resources) => {
+                this.userResources = resources;
+              },
+              error: (fail) => {
+                console.error('ngOnInit(): Error getting resources');
+                console.error(fail);
+              },
+            });
         },
         error: (fail) => {
           console.error('ngOnInit(): Error getting user');
           console.error(fail);
-        }
+        },
       });
-
-
     }
-  }
-
-  addResource(){
-    this.resource.active=true;
-
-  this.resourceService.create(this.resource).subscribe({
-    next: (createdPost) => {
-      this.resource = new Resource();
-
-    },
-    error: (fail) => {
-      console.error('createComponent.addPost: error creating post');
-      console.error(fail);
-    },
-  });
   }
 }
