@@ -14,7 +14,7 @@ import { BehaviorReportService } from 'src/app/services/behavior-report.service'
   styleUrls: ['./check-in.component.css'],
 })
 export class CheckInComponent implements OnInit {
-  @Input() submitClicked: EventEmitter<void> = new EventEmitter();
+  // @Input() submitClicked: EventEmitter<void> = new EventEmitter();
   @Input() checkInDate: Date | undefined;
   @Input() prevBehaviorReports: BehaviorReport[] = [];
 
@@ -110,7 +110,7 @@ export class CheckInComponent implements OnInit {
         },
         error: (somethingBad) => {
           console.error(
-            'submitDailtBRComponent.create(): error creating submitDailyBR'
+            'CheckinComponent.submitDailyBR(): error creating Behavior Report'
           );
           console.error(somethingBad);
         },
