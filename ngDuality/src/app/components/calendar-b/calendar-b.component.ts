@@ -121,8 +121,7 @@ export class CalendarBComponent implements OnInit {
     }
 
     if (this.daysWithBRs[day - 1]) {
-
-      return this.calcStatus();
+      return this.calcStatus(day);
     }
 
     return '';
@@ -150,13 +149,24 @@ export class CalendarBComponent implements OnInit {
     });
   }
 
-  calcStatus() {
+  calcStatus(day: number) {
     let total: number = 0;
     let avg: number = 0;
-    for (let b of this.monthBRs) {
+    let calculableBehaviorReportsForDay: BehaviorReport[] = [];
+    for (let br of this.monthBRs) {
+      let myArray = br.createDate.split("-");
+      let secondArray = myArray[2].split('T');
+      if (secondArray[0] == day.toString()) {
+        console.log(secondArray[0] + ' and ' + day.toString() + ' match');
+        calculableBehaviorReportsForDay.push(br);
+      }
+      console.log(secondArray[0]);
+    }
+    for (let b of calculableBehaviorReportsForDay) {
       total += b.intensity;
     }
-    avg = total / this.monthBRs.length;
+    avg = total / calculableBehaviorReportsForDay.length;
+    console.log('average of all intensity values: ' + avg);
     if (avg > 0 && avg < 4) {
       return 'event-good';
     }
@@ -168,5 +178,11 @@ export class CalendarBComponent implements OnInit {
     }
 
     return 'event';
+  }
+
+  goBackOneMonth() {
+    console.log('*** goBackOneMonth()');
+    console.log('month before: ' + this.displayDate?.getUTCMonth)
+    this.displayDate?.setUTCMonth(this.displayDate.getUTCMonth() - 1);
   }
 }
