@@ -39,6 +39,11 @@ public class ResourceServiceImpl implements ResourceService {
 		return null;
 	}
 
+	@Override
+	public Resource create(Resource newResource) {	
+	return resourceRepo.saveAndFlush(newResource);
+	}
+
 	
 
 }
