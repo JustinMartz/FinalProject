@@ -1,0 +1,98 @@
+.comment-box {
+  background-color: rgba(180, 238, 255, 0.9);
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  position: relative;
+  font-size: 18px;
+  color: #555;
+  transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: left;
+  flex-direction: column;
+}
+
+.comment-box:hover {
+  background-color: rgba(255, 238, 238, 0.9);
+}
+
+.comment-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 13;
+}
+
+.comment-creator {
+  font-style: italic;
+  color: #9000f8;
+  font-size: 22px;  /* Adjust the size as needed */
+  margin-bottom: 5px;
+}
+
+.comment-body {
+  margin-right: 10px;
+}
+
+.comment-box img {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width: 20px;
+  height: auto;
+  margin-left: 10px;
+}
+
+.accordion-header {
+  padding: 1em;
+  background-color: #093d91;
+  color: #c4f8f1;
+  cursor: pointer;
+  margin-top: 1em;
+  border-radius: 4px;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.accordion-header:hover {
+  background-color: #70b28c;
+}
+
+.accordion-content {
+  background-color: rgba(3, 41, 71, 0.773);
+  padding: 1em;
+  margin: 0.5em 0;
+  border-radius: 4px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.accordion-content form input[type="text"] {
+  width: 100%;
+  padding: 1em;
+  border: 1px solid #58e2cb;
+  border-radius: 4px;
+  color: #0b50cf;
+  background-color: rgba(140, 220, 237, 0.9);
+  margin-bottom: 1.5em;
+}
+
+.accordion-content form button {
+  padding: 0.5em 1em;
+  color: #f3f4f6;
+  background-color: #02aecc;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.accordion-content form button:hover {
+  background-color: #70b28c;
+}
+
+.accordion-content form button:active {
+  background-color: #5a9275;
+}

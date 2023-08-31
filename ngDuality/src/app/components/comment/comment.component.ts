@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Post } from 'src/app/models/post';
 
@@ -5,6 +6,7 @@ import { PostService } from 'src/app/services/post.service';
 import { Comment } from '../../models/comment';
 import { CommentService } from 'src/app/services/comment.service';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-comment',
@@ -15,14 +17,27 @@ export class CommentComponent implements OnInit {
   post: Post = new Post();
   comments: Comment[] = [];
   comment: Comment = new Comment();
+  showForm: boolean = false;
+  loggedInUser: User = new User();
+
 
   constructor(
     private commentService: CommentService,
     private postService: PostService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
+    this.authService.getLoggedInUser().subscribe({
+      next: (user) => {
+        this.loggedInUser = user;
+      },
+      error: (fail) => {
+        console.error('ngOnInit(): Error getting user');
+        console.error(fail);
+      },
+    });
     let postId = this.postService.getVisiblePost();
     this.postService.getPost(postId).subscribe({
       next: (returnedPost) => {

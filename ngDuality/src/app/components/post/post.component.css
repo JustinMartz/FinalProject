@@ -2,7 +2,7 @@
 .container {
   width: 80%;
   margin: 2em auto;
-  background-color: rgba(3, 42, 71, 0.8);
+  background-color: rgba(3, 41, 71, 0.773);
   padding: 2em;
   border-radius: 4px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -37,7 +37,7 @@ tbody tr td a:hover {
 
 /* Form Styles */
 form {
-  background-color: rgba(3, 41, 71, 0.906);
+  background-color: rgba(3, 41, 71, 0);
   padding: 2em;
   margin: 2em auto;
   border-radius: 4px;

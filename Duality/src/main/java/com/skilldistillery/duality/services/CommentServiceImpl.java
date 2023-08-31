@@ -39,8 +39,13 @@ public class CommentServiceImpl implements CommentService {
 	}
 
 	@Override
-	public Comment createComment(Comment newComment) {
-		return commentRepo.saveAndFlush(newComment);
+	public Comment createComment(Comment newComment, String userName) {
+		User user = userRepo.findByUsername(userName);
+		if(user!= null) {
+			newComment.setCommentor(user);
+			return commentRepo.saveAndFlush(newComment);
+		}
+		return null;
 	}
 
 	@Override

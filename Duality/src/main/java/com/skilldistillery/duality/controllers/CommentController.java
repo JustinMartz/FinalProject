@@ -1,5 +1,6 @@
 package com.skilldistillery.duality.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,9 +43,9 @@ public class CommentController {
 	}
 
 	@PostMapping
-	public Comment createComment(@RequestBody Comment comment, HttpServletResponse res, HttpServletRequest req) {
+	public Comment createComment(Principal principal, @RequestBody Comment comment, HttpServletResponse res, HttpServletRequest req) {
 		try {
-			comment = commentService.createComment(comment);
+			comment = commentService.createComment(comment,principal.getName());
 			res.setStatus(201);
 			StringBuffer url = req.getRequestURL();
 			url.append("/").append(comment.getId());

@@ -59,17 +59,18 @@ export class CommentService {
   }
 
   create(comment: Comment): Observable<Comment> {
-    this.auth.getLoggedInUser().subscribe({
-      next: (user) => {
-        comment.creator = user;
-      },
-      error: (fail) => {
-        console.error('ngOnInit(): Error getting user');
-        console.error(fail);
-      },
-    });
+    // this.auth.getLoggedInUser().subscribe({
+    //   next: (user) => {
+    //     comment.commentor = user;
+    //   },
+    //   error: (fail) => {
+    //     console.error('ngOnInit(): Error getting user');
+    //     console.error(fail);
+    //   },
+    // });
 
-    return this.http.post<Comment>(this.url, comment).pipe(
+    return this.http.post<Comment>(this.url, comment, this.getHttpOptions()).pipe(
+
       catchError((err: any) => {
         console.log(err);
         return throwError(

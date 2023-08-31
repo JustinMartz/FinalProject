@@ -10,7 +10,7 @@ public interface CommentService {
 
 	Comment findById(int id);
 
-	Comment createComment(Comment comment);
+	Comment createComment(Comment comment, String userName);
 
 	Comment updateComment(int id, Comment newComment);
 

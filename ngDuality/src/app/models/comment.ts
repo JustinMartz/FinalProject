@@ -7,7 +7,7 @@ export class Comment {
   body: string;
   active: boolean;
   flagged: boolean;
-  creator: User;
+  commentor: User;
   post: Post;
 
   constructor(
@@ -16,7 +16,7 @@ export class Comment {
     body: string = '',
     active: boolean = false,
     flagged: boolean = false,
-    creator: User = new User(),
+    commentor: User = new User(),
     post: Post = new Post()
   ) {
     this.id = id;
@@ -24,7 +24,7 @@ export class Comment {
     this.body = body;
     this.active = active;
     this.flagged = flagged;
-    this.creator = creator;
+    this.commentor = commentor;
     this.post = post;
   }
 }
