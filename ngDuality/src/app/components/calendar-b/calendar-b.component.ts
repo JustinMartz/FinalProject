@@ -157,7 +157,6 @@ export class CalendarBComponent implements OnInit {
       let myArray = br.createDate.split("-");
       let secondArray = myArray[2].split('T');
       if (secondArray[0] == day.toString()) {
-        console.log(secondArray[0] + ' and ' + day.toString() + ' match');
         calculableBehaviorReportsForDay.push(br);
       }
       console.log(secondArray[0]);
@@ -166,7 +165,6 @@ export class CalendarBComponent implements OnInit {
       total += b.intensity;
     }
     avg = total / calculableBehaviorReportsForDay.length;
-    console.log('average of all intensity values: ' + avg);
     if (avg > 0 && avg < 4) {
       return 'event-good';
     }
@@ -182,7 +180,10 @@ export class CalendarBComponent implements OnInit {
 
   goBackOneMonth() {
     console.log('*** goBackOneMonth()');
-    console.log('month before: ' + this.displayDate?.getUTCMonth)
+    console.log('date before: ' + this.displayDate?.toISOString());
     this.displayDate?.setUTCMonth(this.displayDate.getUTCMonth() - 1);
+    console.log('date after: ' + this.displayDate?.toISOString());
+    this.displayMonth = this.calendarService.getPreviousMonth(this.displayDate!);
+
   }
 }

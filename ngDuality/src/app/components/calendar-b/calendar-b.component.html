@@ -3,7 +3,7 @@
     <div class="front" [style]="showFront()">
       <div class="current-date">
         <h1>{{currentDate | date: 'longDate'}}</h1>
-        <span (click)="goBackOneMonth()">Back</span>
+        <span class="calendar-back-button" (click)="goBackOneMonth()">Back</span>
         <span>Forward</span>
       </div>
 
