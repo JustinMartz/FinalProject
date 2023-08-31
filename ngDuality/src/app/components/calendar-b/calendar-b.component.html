@@ -41,9 +41,12 @@
       </div>
     </div>
 
-    <div class="back" [style]="showForm()">
+    <div class="back" [style]="showForm()" *ngIf="dayClicked">
       <div class="date-heading"><h1>Check-in for {{displayDate | date: 'longDate':'UTC'}}</h1></div>
-      <div class="form"><app-check-in [prevBehaviorReports]="displayDateBRs"*ngIf="dayClicked" [checkInDate]="displayDate"></app-check-in></div>
+      <div class="form">
+        <app-check-in [prevBehaviorReports]="displayDateBRs"  [checkInDate]="displayDate"></app-check-in>
+
+      </div>
       <div class="actions">
         <button class="save" (click)="checkinButton()">
           Submit <i class="ion-checkmark"></i>
