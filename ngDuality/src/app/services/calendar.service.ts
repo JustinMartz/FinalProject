@@ -9,6 +9,7 @@ export class CalendarService {
   constructor() { }
 
   getMonth() {
+    console.log('*** getMonth()');
     this.currentDate = new Date();
     let cal = new Calendar();
     switch (this.currentDate.toLocaleString('default', { month: 'long' })) {
@@ -20,15 +21,15 @@ export class CalendarService {
       case 'October':
       case 'December':
         cal = {
-         firstWeek: {
-          lastMonth: [28, 29, 30, 31],
-          thisMonth: [1, 2, 3]
-         },
-         secondWeek: [4, 5, 6, 7, 8, 9, 10],
-         thirdWeek: [11, 12, 13, 14, 15, 16, 17],
-         fourthWeek: [18, 19, 20, 21, 22, 23, 24],
-         fifthWeek: [25, 26, 27, 28, 29, 30, 31]
-        };
+          firstWeek: {
+           lastMonth: [30],
+           thisMonth: [1, 2, 3, 4, 5, 6]
+          },
+          secondWeek: [7, 8, 9, 10, 11, 12, 13],
+          thirdWeek: [14, 15, 16, 17, 18, 19, 20],
+          fourthWeek: [21, 22, 23, 24, 25, 26, 27],
+          fifthWeek: [28, 29, 30, 31, 29, 30, 31]
+         };
         break;
       case 'February':
         cal = {
@@ -63,12 +64,27 @@ export class CalendarService {
   }
 
   getPreviousMonth(displayDate: Date) {
+    console.log('getPreviousMonth()');
+    console.log('displayDate coming into getPreviousMonth()');
+    let tempDate = new Date(displayDate);
     let cal = new Calendar();
-    switch (displayDate.toLocaleString('default', { month: 'long' })) {
+    console.log('previous month: ' + tempDate.toLocaleString('default', { month: 'long' }));
+    switch (tempDate.toLocaleString('default', { month: 'long' })) {
       case 'January':
       case 'March':
       case 'May':
       case 'July':
+        cal = {
+          firstWeek: {
+           lastMonth: [30],
+           thisMonth: [1, 2, 3, 4, 5, 6]
+          },
+          secondWeek: [7, 8, 9, 10, 11, 12, 13],
+          thirdWeek: [14, 15, 16, 17, 18, 19, 20],
+          fourthWeek: [21, 22, 23, 24, 25, 26, 27],
+          fifthWeek: [28, 29, 30, 31, 29, 30, 31]
+         };
+         break;
       case 'August':
       case 'October':
       case 'December':
@@ -111,7 +127,7 @@ export class CalendarService {
          };
         break;
     }
-
+    console.log('Returning new month: ' + cal);
     return cal;
   }
 }

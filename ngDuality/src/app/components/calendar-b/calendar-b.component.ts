@@ -1,9 +1,4 @@
-import {
-  Component,
-  OnInit,
-  QueryList,
-  ViewChildren,
-} from '@angular/core';
+import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { Calendar } from 'src/app/models/calendar';
 import { CalendarService } from 'src/app/services/calendar.service';
 import { CheckInComponent } from '../check-in/check-in.component';
@@ -30,6 +25,7 @@ export class CalendarBComponent implements OnInit {
   dayClicked: boolean = false;
 
   currentDay: string = '';
+  displayMonthText: string = '';
 
   daysWithBRs: boolean[] = [];
   displayDateBRs: BehaviorReport[] = [];
@@ -37,25 +33,31 @@ export class CalendarBComponent implements OnInit {
 
   checkInOrPrevReport: boolean = false;
 
-  constructor(private calendarService: CalendarService, private brService: BehaviorReportService) {}
+  constructor(
+    private calendarService: CalendarService,
+    private brService: BehaviorReportService
+  ) {}
 
   ngOnInit(): void {
     this.currentDate = new Date();
     this.displayDate = new Date();
     this.displayMonth = this.calendarService.getMonth();
     this.currentDay = ('0' + this.currentDate.getDate()).slice(-2);
+
     this.getBRsForMonth(this.displayDate.toISOString());
-    this.brService.getReportsForMonth(this.displayDate.toISOString()).subscribe({
-      next: (reports) => {
-        console.log('*** month reports');
-        console.log(reports);
-        this.monthBRs = reports;
-      },
-      error: (msg) => {
-        console.error('Error in CalendarBComponent.ngOnInit()');
-        console.error(msg);
-      }
-    });
+    this.brService
+      .getReportsForMonth(this.displayDate.toISOString())
+      .subscribe({
+        next: (reports) => {
+          console.log('*** month reports');
+          console.log(reports);
+          this.monthBRs = reports;
+        },
+        error: (msg) => {
+          console.error('Error in CalendarBComponent.ngOnInit()');
+          console.error(msg);
+        },
+      });
     console.log('in ngOnInit()');
     console.log(this.children);
   }
@@ -74,14 +76,13 @@ export class CalendarBComponent implements OnInit {
 
     this.brService.getBRsForDay(this.displayDate.toISOString()).subscribe({
       next: (reports) => {
-
         this.displayDateBRs = [];
         this.displayDateBRs = reports;
       },
       error: (fail) => {
         console.error('Error in CalendarBComponent.dayClick()');
         console.error(fail);
-      }
+      },
     });
     this.formView = true;
   }
@@ -145,7 +146,7 @@ export class CalendarBComponent implements OnInit {
       error: (bigError) => {
         console.error('Error in CalendarComponent.getBRsForMonth()');
         console.error(bigError);
-      }
+      },
     });
   }
 
@@ -154,7 +155,7 @@ export class CalendarBComponent implements OnInit {
     let avg: number = 0;
     let calculableBehaviorReportsForDay: BehaviorReport[] = [];
     for (let br of this.monthBRs) {
-      let myArray = br.createDate.split("-");
+      let myArray = br.createDate.split('-');
       let secondArray = myArray[2].split('T');
       if (secondArray[0] == day.toString()) {
         calculableBehaviorReportsForDay.push(br);
@@ -168,10 +169,10 @@ export class CalendarBComponent implements OnInit {
     if (avg > 0 && avg < 4) {
       return 'event-good';
     }
-    if (avg >= 4  && avg < 7) {
+    if (avg >= 4 && avg < 7) {
       return 'event-okay';
     }
-    if (avg >= 7  && avg <= 10) {
+    if (avg >= 7 && avg <= 10) {
       return 'event-bad';
     }
 
@@ -180,10 +181,24 @@ export class CalendarBComponent implements OnInit {
 
   goBackOneMonth() {
     console.log('*** goBackOneMonth()');
-    console.log('date before: ' + this.displayDate?.toISOString());
-    this.displayDate?.setUTCMonth(this.displayDate.getUTCMonth() - 1);
-    console.log('date after: ' + this.displayDate?.toISOString());
-    this.displayMonth = this.calendarService.getPreviousMonth(this.displayDate!);
+    if (this.displayDate) {
+      console.log('date before: ' + this.displayDate?.toISOString());
+      let newDate = new Date(this.displayDate);
+      newDate.setUTCMonth(this.displayDate.getUTCMonth() - 1);
+      this.displayDate = newDate;
+      console.log('displayDate after: ' + this.displayDate?.toISOString());
+      console.log('Current display month: ');
+      console.log(this.displayMonth);
+      // this.displayMonth = new Calendar();
+      console.log('displayDate' + this.displayDate?.toISOString());
+      this.displayMonth = this.calendarService.getPreviousMonth(
+        this.displayDate!
+      );
+      console.log('New display month: ');
+      console.log(this.displayMonth);
 
+      // change displayMonthText
+      // change displayYearText
+    }
   }
 }
