@@ -60,23 +60,13 @@ export class CalendarBComponent implements OnInit {
   dayClick(day: number) {
     this.dayClicked = true;
     this.displayDateBRs = [];
-    console.log('day ' + day + ' gettin clicked');
-
-    // let local = new Date();
-    // let offset = local.getTimezoneOffset();
-    // this.displayDate = new Date(local.getTime() - offset * 60000);
-    // console.log('displayDate after setting it new way: ' + this.displayDate);
 
     this.displayDate = new Date();
     this.displayDate?.setUTCDate(day);
-    console.log('displayDate: ' + this.displayDate);
-    // function to call below and
-    // call BehaviorReport findByCreateDate(day) to fill array of days with either true or false;
-    // set checkInPresent = true for that day
+
     this.brService.getBRsForDay(this.displayDate.toISOString()).subscribe({
       next: (reports) => {
-        console.log('Getting behavior reports for day: ' + day);
-        console.log(reports);
+
         this.displayDateBRs = [];
         this.displayDateBRs = reports;
       },
@@ -131,18 +121,10 @@ export class CalendarBComponent implements OnInit {
   }
 
   checkinButton() {
-    console.log('parent button clicked');
     this.checkIn.submitDailyBR();
   }
 
-  // showDot(day: number) {
-  // }
-
   getBRsForMonth(isodate: string) {
-    // get all BRs for createDate <1st - 31st>
-    console.log('passed ISOdate');
-    console.log(isodate);
-    console.log('displayDate in getBRsForMonth: ' + this.displayDate);
     this.brService.getBRsForMonth(isodate).subscribe({
       next: (list) => {
         console.log(list);
@@ -163,7 +145,6 @@ export class CalendarBComponent implements OnInit {
       total += b.intensity;
     }
     avg = total / this.monthBRs.length;
-    console.log('average of all reported intensity values: ' + avg);
     if (avg > 0 && avg < 4) {
       return 'event-good';
     }
