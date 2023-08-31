@@ -262,3 +262,7 @@ body {
 .date-heading {
   text-align: center;
 }
+
+.calendar-back-button:hover {
+  cursor:pointer;
+}
