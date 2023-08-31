@@ -16,7 +16,7 @@
     <div *ngIf="prevBehaviorReports.length === 0">
       <h1>No reports for this day.</h1>
     </div>
-    <div *ngFor="let b of prevBehaviorReports">
+    <div class="behaviorNameDiv" *ngFor="let b of prevBehaviorReports">
       {{b.behavior.name}}
       <span style="background-color: pink;">{{b.intensity}}</span>
     </div>

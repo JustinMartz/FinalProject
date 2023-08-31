@@ -1,5 +1,7 @@
 <h2>{{post.title}}</h2>
-<h4>{{post.creator.username}}</h4>
+
+<h4 (click)="goToUserProfile(post.creator.id)">{{ post.creator.username }}</h4>
+
 
 <div *ngIf="post.creator.id === loggedInUser.id">
 

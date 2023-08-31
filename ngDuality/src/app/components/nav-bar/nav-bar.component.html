@@ -26,11 +26,7 @@
       <li class="nav-item" *ngIf="!checkLogin()">
         <a class="nav-link" [routerLink]="['/login']">Login</a>
       </li>
-      <li class="nav-item" *ngIf="checkLogin()">
-        <a class="nav-link" [routerLink]="['/directMessages']">
-          <img src="../../../assets/216331_messages_messages.svg" />
-        </a>
-      </li>
+
     </ul>
   </div>
 </nav>
