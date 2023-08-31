@@ -2,10 +2,10 @@
 .container {
   width: 80%;
   margin: 2em auto;
-  background-color: rgba(3, 42, 71, 0.8); /* Translucent soft, neutral background color */
+  background-color: rgba(3, 42, 71, 0.8);
   padding: 2em;
   border-radius: 4px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Lighter shadow */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -23,10 +23,10 @@ tbody tr td {
 }
 
 tbody tr td a {
-  color: #c4f8f1; /* Soothing green color for the links */
+  color: #c4f8f1;
   text-decoration: none;
   transition: color 0.3s ease;
-  font-family: 'Roboto Slab', bold; /* This is your new font */
+  font-family: 'Roboto Slab', bold;
 }
 
 
@@ -37,7 +37,7 @@ tbody tr td a:hover {
 
 /* Form Styles */
 form {
-  background-color: rgba(3, 42, 71, 0.8); /* Translucent soft, neutral background color */
+  background-color: rgba(3, 41, 71, 0.906);
   padding: 2em;
   margin: 2em auto;
   border-radius: 4px;
@@ -46,7 +46,7 @@ form {
 }
 
 form h2 {
-  color: #dcfbfb; /* Neutral text color */
+  color: #2ac7c7; /* Neutral text color */
   margin-bottom: 1em;
   border-bottom: 2px solid #63c6f8;
 }
@@ -54,10 +54,10 @@ form h2 {
 input[type="text"], textarea {
   width: 100%;
   padding: 1em;
-  border: 1px solid #c4c9d4;
+  border: 1px solid #58e2cb;
   border-radius: 4px;
-  color: #7b818c;
-  background-color: rgba(140, 220, 237, 0.9); /* Translucent light neutral shade for input fields */
+  color: #0b50cf;
+  background-color: rgba(140, 220, 237, 0.9);
   font-family: 'Roboto', sans-serif;
   margin-bottom: 1.5em;
 }
@@ -65,7 +65,7 @@ input[type="text"], textarea {
 button {
   padding: 0.5em 1em;
   color: #f3f4f6;
-  background-color: #02aecc; /* Soothing green color */
+  background-color: #02aecc;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -73,10 +73,35 @@ button {
 }
 
 button:hover {
-  background-color: #70b28c; /* Darker shade of soothing green for hover */
+  background-color: #70b28c;
 }
 
 button:active {
   background-color: #5a9275;
   outline: none;
 }
+
+
+.accordion-header {
+  padding: 1em;
+  background-color: #093d91;
+  color: #c4f8f1;
+  cursor: pointer;
+  margin-top: 1em;
+  border-radius: 4px;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.accordion-header:hover {
+  background-color: #70b28c;
+}
+table {
+  width: 100%;
+}
+
+thead tr th, tbody tr td {
+  text-align: center;
+}
+
