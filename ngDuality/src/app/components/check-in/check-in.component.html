@@ -1,12 +1,12 @@
 <div class="container">
   <form *ngIf="isToday">
     <div *ngFor="let b of behaviors">
-      <input type="checkbox" name="behavior{{b.id}}" [(ngModel)]="b.checked"> {{b.name}}
-      <label class="form-check-label" for="behavior{{b.id}}">{{b.name}}</label>
-
+      <label class="form-check-label" for="behavior{{b.id}}"></label>
+      <input type="checkbox" name="behavior{{b.id}}" [(ngModel)]="b.checked">{{b.name}}
+      <br>
       <span *ngIf="b.checked">
+        <label for="intensity{{b.id}}"><h5>Intensity</h5></label>&nbsp;
         <input type="range" name="intensity{{b.id}}" min="1" max="10" [(ngModel)]="intensityByBehaviorId[b.id]" (change)="createBR(intensityByBehaviorId[b.id], b)"/>
-        <label for="intensity{{b.id}}">Intensity</label>
       </span>
       <br>
     </div>
@@ -16,7 +16,7 @@
     <div *ngIf="prevBehaviorReports.length === 0">
       <h1>No reports for this day.</h1>
     </div>
-    <div *ngFor="let b of prevBehaviorReports">
+    <div class="behaviorNameDiv" *ngFor="let b of prevBehaviorReports">
       {{b.behavior.name}}
       <span style="background-color: pink;">{{b.intensity}}</span>
     </div>

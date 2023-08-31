@@ -61,6 +61,21 @@ export class SinglePostComponent implements OnInit {
   }
 
   deletePost(postId: number) {
-    this.postService.destroy(postId);
+    this.postService.destroy(postId).subscribe({
+      next:(fred)=>{
+      },
+      error: (fail) => {
+        console.error('ngOnInit(): Error deleting post');
+        console.error(fail);
+      },
+
+
+    });
+
+  }
+
+
+  goToUserProfile(userId: number) {
+    this.router.navigateByUrl('users/' + userId);
   }
 }

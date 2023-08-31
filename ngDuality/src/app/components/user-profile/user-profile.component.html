@@ -1,15 +1,19 @@
-<h2 style="display: inline">Username:</h2>
-<span style="background-color: antiquewhite">{{ user.username }}</span>
-<br />
-<h2 style="display: inline">Date of birthing:</h2>
-<span style="background-color: antiquewhite">{{
-  user.dob | date : "longDate"
-}}</span>
-<br />
-<h4>{{ user.aboutMe }}</h4>
-
-<ul>
-  <li *ngFor="let r of userResources">
-    <a target="_blank" href="{{r.resourceLink}}">{{r.description}}</a>
-  </li>
-</ul>
+<div class="userhome-container">
+  <div class="profile">
+  <h1>{{ user.username }}'s profile<br /></h1><br>
+  <h2 style="display: inline">Birthday:</h2><br>
+  <span style="background-color: transparent">{{user.dob}}</span><br />
+  <br />
+  <h2 style="display: inline">About Me:</h2>
+  <br />
+  <span style="background-color: transparent">{{ user.aboutMe }}</span>
+  <br />
+  <br />
+  <h3>Resources:</h3>
+  <ul>
+    <li *ngFor="let r of userResources">
+      <a target="_blank" href="{{ r.resourceLink }}">{{ r.description }}</a>
+    </li>
+  </ul>
+</div>
+</div>

@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 <div *ngFor="let c of comments" class="comment-box">
   <div class="comment-creator">
     <a [routerLink]="['/users', c.commentor.id]">{{ c.commentor.username }}</a>
   </div>
   <span class="comment-body">{{c.body}}</span>
   <img *ngIf="c.commentor.id === loggedInUser.id" (click)="deleteCommentFromPost(c.id)" src="../../../assets/216465_times_times.svg" />
+=======
+<div *ngFor="let c of comments" style="border: 1px solid black;">
+  {{c.body}}
+
+    <img (click)="deleteCommentFromPost(c.id)" src="assets/216465_times_times.svg" />
+
+>>>>>>> c452e2bccd4856e578b14415ce225799ba7a7c96
 </div>
 
 

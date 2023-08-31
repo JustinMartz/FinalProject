@@ -15,11 +15,13 @@ export class UserhomeComponent implements OnInit {
 
   userResources: Resource[] | undefined;
   resource: Resource = new Resource();
+  updatedUser: User = new User();
+  openAccordian: Boolean = false;
 
   constructor(
     private authService: AuthService,
-    private resourceService: ResourceService
-  ) {}
+    private resourceService: ResourceService,
+    private userService: UserService  ) {}
 
   ngOnInit(): void {
     this.reload();
@@ -64,5 +66,25 @@ export class UserhomeComponent implements OnInit {
         },
       });
     }
+  }
+
+  toggleAccordian() {
+if(this.openAccordian){
+  this.openAccordian = false;
+}else{
+  this.openAccordian=true;
+}
+  }
+  updateUser() {
+    this.userService.updateUser(this.updatedUser).subscribe({
+      next: (user) => {
+
+      },
+      error: (fail) => {
+        console.error('createComponent.addPost: error creating post');
+        console.error(fail);
+      },
+    })
+
   }
 }

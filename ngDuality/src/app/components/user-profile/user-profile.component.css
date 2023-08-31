@@ -1,0 +1,112 @@
+.userhome-container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+}
+
+.profile {
+  border-radius: 4px;
+  width: 50%;
+  padding: 20px;
+  background-color: rgba(3, 42, 71, 0.8);
+
+}
+.profile h1 {
+  color: #97d0ff;
+  text-decoration: underline;
+  text-decoration-color: #97d0ff; /* You can adjust the color if needed */
+
+  margin-bottom: 10px; /* Add some space between the text and underline */
+}
+
+
+.profile h2 {
+  color: #008cff;
+  display: inline;
+  font-size: 1.2rem;
+  margin-right: 10px;
+}
+
+.profile span {
+  color: #63c6f8;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+
+.profile hr {
+  color: #008cff;
+  margin: 20px 0;
+  border-color: #d1dbe5;
+}
+
+.profile h3 {
+  color: #00aaff;
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.profile p {
+  color: #63c6f8;
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.profile input[type="text"] {
+
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #495057;
+  border-radius: 4px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.profile button {
+  background-color: #5399df;
+  color: #fff;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.profile button:hover {
+  background-color: #e74e49;
+}
+
+.user-resources {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.user-resources li {
+  background-color: rgba(3, 42, 71, 0.8);
+  padding: 10px 15px;
+  margin-bottom: 10px;
+  border: 1px solid #043760;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.user-resources li a {
+  text-decoration: none;
+  color: #043760;
+  font-weight: bold;
+}
+
+.user-resources li a:hover {
+  text-decoration: underline;
+  color: #8c7365;
+}
+
+.cal-container {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(3, 42, 71, 0.8); /* Use rgba for transparency */
+  padding: 20px;
+}
