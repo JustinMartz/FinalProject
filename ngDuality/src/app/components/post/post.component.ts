@@ -11,6 +11,9 @@ import { PostService } from 'src/app/services/post.service';
   styleUrls: ['./post.component.css'],
 })
 export class PostComponent implements OnInit {
+  showPosts = true;
+  showForm = false;
+
   constructor(
     private postService: PostService,
     private authService: AuthService,
@@ -33,6 +36,7 @@ export class PostComponent implements OnInit {
         console.error(fail);
       },
     });
+
     if (this.authService.checkLogin()) {
       this.authService.getLoggedInUser().subscribe({
         next: (user) => {
@@ -43,21 +47,8 @@ export class PostComponent implements OnInit {
           console.error(fail);
         },
       });
-      this.postService.index().subscribe({
-        next: (postList) => {
-          for (let p of postList) {
-            if (!p.personal) {
-              this.nonPersonalPosts.push(p);
-            } else {
-              this.personalPosts.push(p);
-            }
-          }
-        },
-        error: (somethingBad) => {
-          console.error('PostListComponent.reload: error loading posts');
-          console.error(somethingBad);
-        },
-      });
+
+      this.reload();
     }
   }
 
@@ -65,9 +56,11 @@ export class PostComponent implements OnInit {
     this.router.navigateByUrl('posts/' + postId);
     this.postService.setVisiblePost(postId);
   }
+
   goToUserProfile(userId: number) {
     this.router.navigateByUrl('users/' + userId);
   }
+
   createPost(post: Post) {
     post.active = true;
     post.anonymous = false;
@@ -76,6 +69,7 @@ export class PostComponent implements OnInit {
       next: (createdPost) => {
         this.newPost = new Post();
         this.reload();
+        this.showForm = false;  // Close the form accordion after creating a post.
       },
       error: (fail) => {
         console.error('createComponent.addPost: error creating post');
@@ -87,8 +81,8 @@ export class PostComponent implements OnInit {
   reload() {
     this.postService.index().subscribe({
       next: (postList) => {
-        this.nonPersonalPosts=[];
-        this.personalPosts=[];
+        this.nonPersonalPosts = [];
+        this.personalPosts = [];
         for (let p of postList) {
           if (!p.personal) {
             this.nonPersonalPosts.push(p);
