@@ -59,11 +59,12 @@ export class CheckInComponent implements OnInit {
     this.behaviorService.index().subscribe({
       next: (behaviorList) => {
         this.behaviors = behaviorList;
+        console.log('*** list of behaviors coming in: ' + JSON.stringify(this.behaviors));
         console.log('*** behaviors.length: ' + this.behaviors.length);
         console.log('*** behaviors: ' + this.behaviors);
       },
       error: (somethingBad) => {
-        console.error('BehaviorListComponent.reload: error loading behaviors');
+        console.error('CheckinComponent.ngOnInit(): error loading behaviors');
         console.error(somethingBad);
       },
     });
