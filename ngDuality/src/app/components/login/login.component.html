@@ -1,15 +1,19 @@
-<div class="login-container">
-  <div>
-      <h1>Login to Duality</h1>
+<div class="registration-container">
+  <form>
+    <div class="login-container">
+      <div>
+        <h1>Login to Duality</h1>
 
+        <input type="text" name="username" [(ngModel)]="logInUser.username" placeholder="Username">
+        <br>
 
-      <input type="text" name="username" [(ngModel)]="logInUser.username" placeholder="Username">
-      <br>
+        <input type="password" name="password" [(ngModel)]="logInUser.password" placeholder="Password">
+        <br>
 
+        <button (click)="login(logInUser)">Log in</button>
 
-      <input type="password" name="password" [(ngModel)]="logInUser.password" placeholder="Password">
-      <br>
-
-      <button (click)="login(logInUser)">Log in</button>
-  </div>
+        <p>Don't have an account? <a routerLink="/register">Create Account</a></p>
+      </div>
+    </div>
+  </form>
 </div>
