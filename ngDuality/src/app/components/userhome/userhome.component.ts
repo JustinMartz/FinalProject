@@ -15,6 +15,7 @@ export class UserhomeComponent implements OnInit {
   loggedInUser: User = new User();
 
   userResources: Resource[] | undefined;
+  resource:Resource = new Resource;
 
 
   constructor (
@@ -45,5 +46,20 @@ export class UserhomeComponent implements OnInit {
 
 
     }
+  }
+
+  addResource(){
+    this.resource.active=true;
+
+  this.resourceService.create(this.resource).subscribe({
+    next: (createdPost) => {
+      this.resource = new Resource();
+
+    },
+    error: (fail) => {
+      console.error('createComponent.addPost: error creating post');
+      console.error(fail);
+    },
+  });
   }
 }

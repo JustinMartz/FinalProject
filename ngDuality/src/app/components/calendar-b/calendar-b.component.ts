@@ -8,6 +8,8 @@ import {
 import { Calendar } from 'src/app/models/calendar';
 import { CalendarService } from 'src/app/services/calendar.service';
 import { CheckInComponent } from '../check-in/check-in.component';
+import { BehaviorReportService } from 'src/app/services/behavior-report.service';
+import { BehaviorReport } from 'src/app/models/behavior-report';
 
 @Component({
   selector: 'app-calendar-b',
@@ -24,29 +26,65 @@ export class CalendarBComponent implements OnInit {
   displayMonth: Calendar = new Calendar();
 
   formView: boolean = false;
+  dayClicked: boolean = false;
 
   currentDay: string = '';
 
-  constructor(private calendarService: CalendarService) {}
+  daysWithBRs: boolean[] = [];
+  displayDateBRs: BehaviorReport[] = [];
+  monthBRs: BehaviorReport[] = [];
+
+  checkInOrPrevReport: boolean = false;
+
+  constructor(private calendarService: CalendarService, private brService: BehaviorReportService) {}
 
   ngOnInit(): void {
     this.currentDate = new Date();
+    this.displayDate = new Date();
     this.displayMonth = this.calendarService.getMonth();
     this.currentDay = ('0' + this.currentDate.getDate()).slice(-2);
-
-    console.log('*** ngOnInit()');
-    console.log('today: ' + this.currentDay);
-    console.log(this.displayMonth);
-    console.log(this.displayMonth.firstWeek);
-    console.log(this.displayMonth.firstWeek.lastMonth);
+    this.getBRsForMonth(this.displayDate.toISOString());
+    this.brService.getReportsForMonth(this.displayDate.toISOString()).subscribe({
+      next: (reports) => {
+        console.log('*** month reports');
+        console.log(reports);
+        this.monthBRs = reports;
+      },
+      error: (msg) => {
+        console.error('Error in CalendarBComponent.ngOnInit()');
+        console.error(msg);
+      }
+    });
   }
 
   dayClick(day: number) {
+    this.dayClicked = true;
+    this.displayDateBRs = [];
     console.log('day ' + day + ' gettin clicked');
-    this.displayDate = new Date();
-    this.displayDate?.setDate(day);
-    console.log('displayDate: ' + this.displayDate);
 
+    // let local = new Date();
+    // let offset = local.getTimezoneOffset();
+    // this.displayDate = new Date(local.getTime() - offset * 60000);
+    // console.log('displayDate after setting it new way: ' + this.displayDate);
+
+    this.displayDate = new Date();
+    this.displayDate?.setUTCDate(day);
+    console.log('displayDate: ' + this.displayDate);
+    // function to call below and
+    // call BehaviorReport findByCreateDate(day) to fill array of days with either true or false;
+    // set checkInPresent = true for that day
+    this.brService.getBRsForDay(this.displayDate.toISOString()).subscribe({
+      next: (reports) => {
+        console.log('Getting behavior reports for day: ' + day);
+        console.log(reports);
+        this.displayDateBRs = [];
+        this.displayDateBRs = reports;
+      },
+      error: (fail) => {
+        console.error('Error in CalendarBComponent.dayClick()');
+        console.error(fail);
+      }
+    });
     this.formView = true;
   }
 
@@ -76,11 +114,17 @@ export class CalendarBComponent implements OnInit {
 
   closeForm() {
     this.formView = false;
+    this.dayClicked = false;
   }
 
   isToday(day: number) {
     if (day === parseInt(this.currentDay)) {
       return 'active';
+    }
+
+    if (this.daysWithBRs[day - 1]) {
+
+      return this.calcStatus();
     }
 
     return '';
@@ -89,5 +133,47 @@ export class CalendarBComponent implements OnInit {
   checkinButton() {
     console.log('parent button clicked');
     this.checkIn.submitDailyBR();
+  }
+
+  // showDot(day: number) {
+  // }
+
+  getBRsForMonth(isodate: string) {
+    // get all BRs for createDate <1st - 31st>
+    console.log('passed ISOdate');
+    console.log(isodate);
+    console.log('displayDate in getBRsForMonth: ' + this.displayDate);
+    this.brService.getBRsForMonth(isodate).subscribe({
+      next: (list) => {
+        console.log(list);
+        this.daysWithBRs = list;
+        console.log(this.daysWithBRs);
+      },
+      error: (bigError) => {
+        console.error('Error in CalendarComponent.getBRsForMonth()');
+        console.error(bigError);
+      }
+    });
+  }
+
+  calcStatus() {
+    let total: number = 0;
+    let avg: number = 0;
+    for (let b of this.monthBRs) {
+      total += b.intensity;
+    }
+    avg = total / this.monthBRs.length;
+    console.log('average of all reported intensity values: ' + avg);
+    if (avg > 0 && avg < 4) {
+      return 'event-good';
+    }
+    if (avg >= 4  && avg < 7) {
+      return 'event-okay';
+    }
+    if (avg >= 7  && avg <= 10) {
+      return 'event-bad';
+    }
+
+    return 'event';
   }
 }

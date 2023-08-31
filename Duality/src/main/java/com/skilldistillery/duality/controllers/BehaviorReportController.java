@@ -42,6 +42,40 @@ public class BehaviorReportController {
 		return behaviorReport;
 	}
 	
+	@PostMapping("behaviorReports/month")
+	List<Boolean> getReportsForMonth(Principal principal, @RequestBody String isodate, HttpServletResponse response) {
+		List<Boolean> reports = behaviorReportService.getReportBooleansForMonth(principal.getName(), isodate);
+		if (reports == null) {
+			response.setStatus(404);
+		} else {
+			response.setStatus(200);
+		}
+		return reports;
+	}
+	
+	@PostMapping("behaviorReports/monthReport")
+	List<BehaviorReport> getAllReportsForMonth(Principal principal, @RequestBody String isodate, HttpServletResponse response) {
+		System.out.println("Are we getting here");
+		List<BehaviorReport> reports = behaviorReportService.getReportsForMonth(principal.getName(), isodate);
+		if (reports == null) {
+			response.setStatus(404);
+		} else {
+			response.setStatus(200);
+		}
+		return reports;
+	}
+	
+	@PostMapping("behaviorReports/day")
+	List<BehaviorReport> getReportsForDay(Principal principal, @RequestBody String isodate, HttpServletResponse response) {
+		List<BehaviorReport> reports = behaviorReportService.getReportsForDay(principal.getName(), isodate);
+		if (reports == null) {
+			response.setStatus(404);
+		} else {
+			response.setStatus(200);
+		}
+		return reports;
+	}
+	
 
 	@PostMapping("behaviorReports")
 	public BehaviorReport createBehaviorReport(Principal principal, @RequestBody BehaviorReport behaviorReport, HttpServletResponse res, HttpServletRequest req) {

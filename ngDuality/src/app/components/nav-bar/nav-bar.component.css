@@ -1,4 +1,4 @@
-* * {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -14,7 +14,6 @@
 }
 
 .navbar-brand {
-  font-family: 'Dancing Script', cursive;
   font-size: 2rem;
   color: #4488cb;
   font-weight: 600;

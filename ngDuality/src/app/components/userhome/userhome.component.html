@@ -7,6 +7,21 @@
 <hr>
 <h3>Resources</h3>
 
+
+
+    <p>Resource Description</p>
+  <input type="text" name="description" [(ngModel)]="resource.description"> <br>
+<p>Resource Link</p>
+<input type ="text" name ="resourceLink" [(ngModel)]="resource.resourceLink"><br>
+
+
+  <button (click)="addResource()">Add Resource</button>
+
+
+
+
+
+
 <ul>
   <li *ngFor="let r of userResources">
     <a target="_blank" href="{{r.resourceLink}}">{{r.description}}</a>

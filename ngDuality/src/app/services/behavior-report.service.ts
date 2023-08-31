@@ -38,6 +38,42 @@ export class BehaviorReportService {
       );
   }
 
+  getBRsForMonth(isodate: string): Observable<boolean[]> {
+    return this.http.post<boolean[]>(this.url + '/month', isodate, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error('BehaviorReportService.getBRsForMonth(): error getting Behavior Reports: ' + err)
+        );
+      })
+    );
+  }
+
+  getBRsForDay(isodate:string): Observable<BehaviorReport[]> {
+    return this.http.post<BehaviorReport[]>(this.url + '/day', isodate, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error('BehaviorReportService.getBRsForDay(): error getting Behavior Reports: ' + err)
+        );
+      })
+    );
+  }
+
+  getReportsForMonth(isodate: string): Observable<BehaviorReport[]> {
+    return this.http.post<BehaviorReport[]>(this.url + '/monthReport', isodate, this.getHttpOptions()).pipe(
+      catchError((err: any) => {
+        console.log(err);
+        return throwError(
+          () =>
+            new Error('BehaviorReportService.getBRsForMonth(): error getting Behavior Reports: ' + err)
+        );
+      })
+    );
+  }
+
   create(behaviorReport: BehaviorReport): Observable<BehaviorReport> {
     return this.http
       .post<BehaviorReport>(this.url, behaviorReport, this.getHttpOptions())
