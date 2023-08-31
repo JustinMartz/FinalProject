@@ -6,4 +6,7 @@ public interface UserService {
 	public User getLoggedInUser(String username);
 
 	User getSingleUser(int id);
+	
+	User updateUser(int id, User user);
+
 }
