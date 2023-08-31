@@ -35,19 +35,19 @@ export class UserService {
       })
     );
   }
-  // updateUser(updatedUser: User): Observable<User> {
-  //   return this.http
-  //     .put<Comment>(this.url + '/' + updatedUser.id, updatedUser,this.getHttpOptions())
-  //     .pipe(
-  //       catchError((err: any) => {
-  //         console.log(err);
-  //         return throwError(
-  //           () =>
-  //             new Error(
-  //               'CommentService.update(): error updating comment: ' + err
-  //             )
-  //         );
-  //       })
-  //     );
-  // }
+  updateUser(updatedUser: User): Observable<User> {
+    return this.http
+      .put<User>(this.url + '/' + updatedUser.id, updatedUser,this.getHttpOptions())
+      .pipe(
+        catchError((err: any) => {
+          console.log(err);
+          return throwError(
+            () =>
+              new Error(
+                'CommentService.update(): error updating comment: ' + err
+              )
+          );
+        })
+      );
+  }
 }

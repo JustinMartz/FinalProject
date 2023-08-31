@@ -1,23 +1,112 @@
 <div class="userhome-container">
   <div class="profile">
     <h1>Your Account Details</h1>
-    <h2 style="display:inline;">Username: </h2> <span style="background-color: transparent;">{{loggedInUser.username}}</span>
-    <br>
-    <h2 style="display:inline;">Date of birthing: </h2> <span style="background-color: transparent;">{{loggedInUser.dob | date: 'longDate'}}</span>
-    <br>
-    <h2 style="display:inline;">First Name: </h2> <span style="background-color: transparent;">{{loggedInUser.firstName}}</span>
-    <br>
-    <h2 style="display:inline;">Last Name: </h2> <span style="background-color: transparent;">{{loggedInUser.lastName}}</span>
-    <hr>
+    <h2 style="display: inline">Username:</h2>
+    <span style="background-color: transparent">{{
+      loggedInUser.username
+    }}</span>
+    <br />
+    <h2 style="display: inline">Date of birthing:</h2>
+    <span style="background-color: transparent">{{
+      loggedInUser.dob | date : "longDate"
+    }}</span>
+    <br />
+    <h2 style="display: inline">First Name:</h2>
+    <span style="background-color: transparent">{{
+      loggedInUser.firstName
+    }}</span>
+    <br />
+    <h2 style="display: inline">Last Name:</h2>
+    <span style="background-color: transparent">{{
+      loggedInUser.lastName
+    }}</span>
+    <hr />
+
+    <button (click)="toggleAccordian()">Update Your Info</button>
+    <div *ngIf="openAccordian">
+      <form>
+        <label for="username"></label>
+        <input
+          type="text"
+          name="username"
+          [(ngModel)]="updatedUser.username"
+          placeholder="{{ loggedInUser.username }}"
+          required
+        />
+        <br />
+
+        <label for="firstName"></label>
+        <input
+          type="text"
+          name="firstName"
+          [(ngModel)]="updatedUser.firstName"
+          placeholder="{{ loggedInUser.firstName }}"
+        />
+        <br />
+
+        <label for="lastName"></label>
+        <input
+          type="text"
+          name="lastName"
+          [(ngModel)]="updatedUser.lastName"
+          placeholder="{{ loggedInUser.lastName }}"
+        />
+        <br />
+
+        <label for="aboutMe"></label>
+        <input
+          type="text"
+          name="aboutMe"
+          [(ngModel)]="updatedUser.aboutMe"
+          placeholder="{{ loggedInUser.password }}"
+          required
+        />
+        <br />
+
+        <label for="birthday"></label>
+        <input
+          type="date"
+          name="birthday"
+          [(ngModel)]="updatedUser.dob"
+          placeholder=""
+          {{loggedInUser.dob}}
+        />
+        <br />
+
+        <label for="password"></label>
+        <input
+          type="password"
+          name="password"
+          [(ngModel)]="updatedUser.password"
+          placeholder="{{ loggedInUser.password }}"
+          required
+        />
+        <br />
+
+        <button (click)="updateUser()">Register Account</button>
+      </form>
+    </div>
+
     <h3>Resources</h3>
     <p>Resource Description</p>
-    <input type="text" name="description" [(ngModel)]="resource.description" placeholder="Resource Description"> <br>
-    <p></p>
-    <input type="text" name="resourceLink" [(ngModel)]="resource.resourceLink" placeholder="Resource Link"><br>
+    <input
+      type="text"
+      name="description"
+      [(ngModel)]="resource.description"
+      placeholder="Resource Description"
+    />
+    <br />
+
+    <input
+      type="text"
+      name="resourceLink"
+      [(ngModel)]="resource.resourceLink"
+      placeholder="Resource Link"
+    /><br />
     <button (click)="addResource()">Add Resource</button>
     <ul>
       <li *ngFor="let r of userResources">
-        <a target="_blank" href="{{r.resourceLink}}">{{r.description}}</a>
+        <a target="_blank" href="{{ r.resourceLink }}">{{ r.description }}</a>
       </li>
     </ul>
   </div>
