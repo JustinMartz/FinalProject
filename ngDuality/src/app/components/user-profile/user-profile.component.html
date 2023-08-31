@@ -1,17 +1,19 @@
-<div class="userProfile-container">
-
-  <h1>{{ user.username }}'s profile<br></h1>
-  Birthday:{{user.dob}}<br>
-  <br>
-  About Me: <br>
-  <h5>{{ user.aboutMe }}</h5>
-  <br>
-  <br>
-  Resources:<br>
+<div class="userhome-container">
+  <div class="profile">
+  <h1>{{ user.username }}'s profile<br /></h1><br>
+  <h2 style="display: inline">Birthday:</h2><br>
+  <span style="background-color: transparent">{{user.dob}}</span><br />
+  <br />
+  <h2 style="display: inline">About Me:</h2>
+  <br />
+  <span style="background-color: transparent">{{ user.aboutMe }}</span>
+  <br />
+  <br />
+  <h3>Resources:</h3>
   <ul>
     <li *ngFor="let r of userResources">
-      <a target="_blank" href="{{r.resourceLink}}">{{r.description}}</a>
+      <a target="_blank" href="{{ r.resourceLink }}">{{ r.description }}</a>
     </li>
-
   </ul>
+</div>
 </div>
