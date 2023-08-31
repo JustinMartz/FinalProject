@@ -8,10 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.skilldistillery.duality.entities.Behavior;
 import com.skilldistillery.duality.entities.User;
 import com.skilldistillery.duality.services.UserService;
 
@@ -46,6 +47,24 @@ public class UserController {
 
 		return user;
 	}
+	
+	
+	@PutMapping("users/{id}")
+	public User updateUser(Principal principal, @PathVariable("id") int userId, @RequestBody User user, HttpServletResponse res) {
+	    try {
+	        user = userServ.updateUser(userId, user);
+	        if (user == null) {
+	            res.setStatus(404);
+	        } else {
+	            res.setStatus(200);
+	        }
+	    } catch (Exception e) {
+	        res.setStatus(400);
+	        user = null;
+	    }
+	    return user;
+	}
+
 
 //	@PostMapping("user")
 //	public User createUser(@RequestBody User user, HttpServletResponse res, HttpServletRequest req) {
