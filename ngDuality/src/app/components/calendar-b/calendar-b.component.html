@@ -48,9 +48,9 @@
       </div>
     </div>
 
-    <div class="back" [style]="showForm()" *ngIf="dayClicked">
-      <div class="date-heading"><h1>Check-in for {{displayDate | date: 'longDate':'UTC'}}</h1></div>
-      <div class="form">
+    <div class="back" [style]="showForm()" *ngIf="dayClicked" >
+      <div class="date-heading"><h1>Check-in for {{displayDateString}}</h1></div>
+      <div class="form" >
         <app-check-in [prevBehaviorReports]="displayDateBRs"  [checkInDate]="displayDate"></app-check-in>
 
       </div>
