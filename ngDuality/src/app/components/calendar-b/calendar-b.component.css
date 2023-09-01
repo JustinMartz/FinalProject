@@ -128,7 +128,7 @@ body {
 
 .event-good:after {
   content: '•';
-  color: green;
+  color: greenyellow;
   font-size: 1.4em;
   position: absolute;
   right: -4px;
