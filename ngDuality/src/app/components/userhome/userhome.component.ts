@@ -49,7 +49,7 @@ export class UserhomeComponent implements OnInit {
       next: (createdPost) => {
         this.resource = new Resource();
 
-        this.reload();
+        window.location.reload();
       },
       error: (fail) => {
         console.error('createComponent.addPost: error creating post');
