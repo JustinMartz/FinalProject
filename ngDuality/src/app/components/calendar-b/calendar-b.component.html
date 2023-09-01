@@ -55,7 +55,7 @@
 
       </div>
       <div class="actions">
-        <button class="save" (click)="checkinButton()">
+        <button *ngIf="showBothFormButtons" class="save" (click)="checkinButton()">
           Submit <i class="ion-checkmark"></i>
         </button>
         <button class="dismiss" (click)="closeForm()">
