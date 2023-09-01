@@ -91,9 +91,11 @@
         <button (click)="updateUser()">Submit Changes</button>
       </form>
     </div>
-
+    <p></p>
+    <br>
+    <p></p>
     <h3>Resources</h3>
-    <p>Resource Description</p>
+
     <input
       type="text"
       name="description"
@@ -110,6 +112,7 @@
     /><br />
     <button (click)="addResource()">Add Resource</button>
     <ul>
+      <br>
       <li *ngFor="let r of userResources">
         <a target="_blank" href="{{ r.resourceLink }}">{{ r.description }}</a>
       </li>
