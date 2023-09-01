@@ -8,12 +8,16 @@ import org.springframework.stereotype.Service;
 
 import com.skilldistillery.duality.entities.Post;
 import com.skilldistillery.duality.repositories.PostRepository;
+import com.skilldistillery.duality.repositories.UserRepository;
 
 @Service
 public class PostServiceImpl implements PostService {
 
 	@Autowired
 	private PostRepository postRepo;
+	
+	@Autowired
+	private UserRepository userRepo;
 
 	@Override
 	public Post getPost(int id) {
@@ -37,8 +41,8 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
-	public Post create(Post newPost) {
-
+	public Post create(Post newPost, String username) {
+		User user = userRepo.findByUsername(username);
 		return postRepo.saveAndFlush(newPost);
 	}
 

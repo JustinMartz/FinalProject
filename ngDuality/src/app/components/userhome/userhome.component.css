@@ -1,11 +1,13 @@
 .userhome-container {
   height: 100vh;
+
   width: 100%;
   display: flex;
 }
 
 .profile {
   border-radius: 4px;
+  overflow:scroll;
   width: 50%;
   padding: 20px;
   background-color: rgba(3, 42, 71, 0.8);

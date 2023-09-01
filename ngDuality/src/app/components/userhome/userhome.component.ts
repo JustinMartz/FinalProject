@@ -15,7 +15,7 @@ export class UserhomeComponent implements OnInit {
 
   userResources: Resource[] | undefined;
   resource: Resource = new Resource();
-  updatedUser: User = new User();
+
   openAccordian: Boolean = false;
 
   constructor(
@@ -48,6 +48,7 @@ export class UserhomeComponent implements OnInit {
         next: (user) => {
           this.loggedInUser = user;
 
+
           this.resourceService
             .getUserResources(this.loggedInUser.id)
             .subscribe({
@@ -76,13 +77,14 @@ if(this.openAccordian){
 }
   }
   updateUser() {
-    this.userService.updateUser(this.updatedUser).subscribe({
+    this.userService.updateUser(this.loggedInUser).subscribe({
       next: (user) => {
-
+        console.log("**********************"+this.loggedInUser)
+        // window.location.reload();
       },
       error: (fail) => {
-        console.error('createComponent.addPost: error creating post');
-        console.error(fail);
+        console.error('UpdateUser.updateUser(): error updating user');
+        console.error(this.loggedInUser);
       },
     })
 
