@@ -5,6 +5,7 @@
   box-sizing: border-box;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   font-family: 'Times New Roman', Times, serif ;
+
 }
 
 
@@ -22,6 +23,7 @@
 
     background-size: 500% auto;
     animation: textShine 5s ease-in-out infinite alternate;
+
 }
 
 @keyframes textShine {

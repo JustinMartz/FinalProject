@@ -108,7 +108,7 @@
       [(ngModel)]="resource.resourceLink"
       placeholder="Resource Link"
     /><br />
-    <button (click)="addResource()">Add Resource</button>
+    <button (click)="addResource()" >Add Resource</button>
     <ul>
       <li *ngFor="let r of userResources">
         <a target="_blank" href="{{ r.resourceLink }}">{{ r.description }}</a>
