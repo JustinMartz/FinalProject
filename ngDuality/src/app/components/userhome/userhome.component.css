@@ -20,9 +20,9 @@
 .profile h1 {
   color: #97d0ff;
   text-decoration: underline;
-  text-decoration-color: #97d0ff; /* You can adjust the color if needed */
+  text-decoration-color: #97d0ff;
 
-  margin-bottom: 10px; /* Add some space between the text and underline */
+  margin-bottom: 10px;
 }
 
 
@@ -113,6 +113,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(3, 42, 71, 0.8); /* Use rgba for transparency */
+  background-color: rgba(3, 42, 71, 0.8);
   padding: 20px;
+}
+a{
+  color: #97d0ff;
+  text-decoration: underline;
+  text-decoration-color: #97d0ff;
+
+
+  margin-bottom: 10px;
 }
