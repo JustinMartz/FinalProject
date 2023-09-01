@@ -23,7 +23,7 @@ export class UserhomeComponent implements OnInit {
     private authService: AuthService,
     private resourceService: ResourceService,
     private userService: UserService,
-    private router:Router
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -32,17 +32,7 @@ export class UserhomeComponent implements OnInit {
         next: (user) => {
           this.loggedInUser = user;
 
-          this.resourceService
-            .getUserResources(this.loggedInUser.id)
-            .subscribe({
-              next: (resources) => {
-                this.userResources = resources;
-              },
-              error: (fail) => {
-                console.error('ngOnInit(): Error getting resources');
-                console.error(fail);
-              },
-            });
+          this.loadUserResources();
         },
         error: (fail) => {
           console.error('ngOnInit(): Error getting user');
@@ -60,7 +50,6 @@ export class UserhomeComponent implements OnInit {
         this.resource = new Resource();
 
         this.reload();
-
       },
       error: (fail) => {
         console.error('createComponent.addPost: error creating post');
@@ -79,25 +68,42 @@ export class UserhomeComponent implements OnInit {
     }
   }
   updateUser() {
-    console.log("password in component " +this.loggedInUser.password)
+    console.log('password in component ' + this.loggedInUser.password);
     this.userService.updateUser(this.loggedInUser).subscribe({
       next: (user) => {
-        console.log('**********************' + this.loggedInUser);
-        this.loggedInUser=user;
-        this.authService.login(user.username, user.password).subscribe({
-          next: (loggedInUser) => {
-            this.router.navigateByUrl('/userhome');
-          },
-          error: (problem) => {
-            console.error('LoginComponent.login(): Error logging in user:');
-            console.error(problem);
-          }
-        });
+        this.authService
+          .login(this.loggedInUser.username, this.loggedInUser.password)
+          .subscribe({
+            next: (liu) => {
+              liu.password = this.loggedInUser.password;
 
+              this.loggedInUser = liu;
+              this.loadUserResources();
+              // this.router.navigateByUrl('/userhome');
+              // window.location.reload();
+            },
+            error: (problem) => {
+              console.error('LoginComponent.login(): Error logging in user:');
+              console.error(problem);
+            },
+          });
       },
+
       error: (fail) => {
         console.error('UpdateUser.updateUser(): error updating user');
         console.error(this.loggedInUser);
+      },
+    });
+  }
+
+  loadUserResources() {
+    this.resourceService.getUserResources(this.loggedInUser.id).subscribe({
+      next: (resources) => {
+        this.userResources = resources;
+      },
+      error: (fail) => {
+        console.error('ngOnInit(): Error getting resources');
+        console.error(fail);
       },
     });
   }
