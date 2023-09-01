@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Resource } from 'src/app/models/resource';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth.service';
@@ -21,7 +22,8 @@ export class UserhomeComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private resourceService: ResourceService,
-    private userService: UserService
+    private userService: UserService,
+    private router:Router
   ) {}
 
   ngOnInit(): void {
@@ -56,7 +58,9 @@ export class UserhomeComponent implements OnInit {
     this.resourceService.create(this.resource).subscribe({
       next: (createdPost) => {
         this.resource = new Resource();
+
         this.reload();
+
       },
       error: (fail) => {
         console.error('createComponent.addPost: error creating post');
@@ -79,7 +83,17 @@ export class UserhomeComponent implements OnInit {
     this.userService.updateUser(this.loggedInUser).subscribe({
       next: (user) => {
         console.log('**********************' + this.loggedInUser);
-        window.location.reload();
+        this.loggedInUser=user;
+        this.authService.login(user.username, user.password).subscribe({
+          next: (loggedInUser) => {
+            this.router.navigateByUrl('/userhome');
+          },
+          error: (problem) => {
+            console.error('LoginComponent.login(): Error logging in user:');
+            console.error(problem);
+          }
+        });
+
       },
       error: (fail) => {
         console.error('UpdateUser.updateUser(): error updating user');
