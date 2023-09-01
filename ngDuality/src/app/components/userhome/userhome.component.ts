@@ -68,6 +68,7 @@ export class UserhomeComponent implements OnInit {
     }
   }
   updateUser() {
+    this.toggleAccordian();
     console.log('password in component ' + this.loggedInUser.password);
     this.userService.updateUser(this.loggedInUser).subscribe({
       next: (user) => {
