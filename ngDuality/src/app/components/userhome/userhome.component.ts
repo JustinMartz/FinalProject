@@ -75,11 +75,22 @@ export class UserhomeComponent implements OnInit {
     }
   }
   updateUser() {
+    console.log('updated loggedInUser: ' + this.loggedInUser.username);
     console.log("password in component " +this.loggedInUser.password)
     this.userService.updateUser(this.loggedInUser).subscribe({
       next: (user) => {
-        console.log('**********************' + this.loggedInUser);
-        window.location.reload();
+        // this.authService.getLoggedInUser().subscribe({});
+        this.authService.getLoggedInUser().subscribe({
+          next: (foo) => {
+            this.loggedInUser = foo;
+            console.log('^^^^^^^^ loggedInUser getting set to : ' + foo.username);
+          },
+          error: (msg) => {
+            console.error('Error in UserhomeComponent.updateUser()');
+          }
+        });
+        console.log('********************** returned user' + user);
+
       },
       error: (fail) => {
         console.error('UpdateUser.updateUser(): error updating user');
