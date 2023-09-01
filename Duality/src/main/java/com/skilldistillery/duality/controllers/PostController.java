@@ -56,9 +56,8 @@ public class PostController {
 
 	@PostMapping("posts")
 	public Post create(Principal principal, HttpServletRequest req, HttpServletResponse res, @RequestBody Post post) {
-		post.setCreator(userServ.getLoggedInUser(principal.getName()));
 
-		post = postServ.create(post);
+		post = postServ.create(post,principal.getName());
 
 		if (post == null) {
 			res.setStatus(401);
@@ -82,7 +81,7 @@ public class PostController {
 			res.setStatus(400);
 			post = null;
 		}
-
+ 
 		return post;
 
 	}
