@@ -52,7 +52,10 @@ public class UserServiceImpl implements UserService {
 			managedUser.setFirstName(user.getFirstName());
 			managedUser.setLastName(user.getLastName());
 			managedUser.setDob(user.getDob());
-			managedUser.setPassword(encrypted);
+			if(!managedUser.getPassword().equals(user.getPassword())) {
+				
+				managedUser.setPassword(encrypted);
+			}
 
 			return userRepo.saveAndFlush(managedUser);
 		}
