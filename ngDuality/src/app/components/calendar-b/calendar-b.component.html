@@ -3,8 +3,8 @@
     <div class="front" [style]="showFront()">
       <div class="current-date">
         <h1>{{displayDate | date:'MMMM yyyy' }}</h1>
-        <span class="calendar-back-button" (click)="goBackOneMonth()">Back</span>
-        <span>Forward</span>
+        <span class="calendar-button" (click)="goBackOneMonth()">Back</span>
+        <span class="calendar-button" *ngIf="forwardIsPossible()" (click)="goForwardOneMonth()">Forward</span>
       </div>
 
       <div class="current-month">
@@ -37,7 +37,12 @@
           </div>
 
           <div class="fifth">
-            <span [ngClass]="isToday(fifthW)" *ngFor="let fifthW of displayMonth.fifthWeek" (click)="dayClick(fifthW)">{{fifthW}}</span>
+            <span [ngClass]="isToday(fifthW)" *ngFor="let fifthW of displayMonth.fifthWeek.thisMonth" (click)="dayClick(fifthW)">{{fifthW}}</span>
+            <span class="last-month" *ngFor="let fwLM of displayMonth.fifthWeek.nextMonth">{{fwLM}}</span>
+          </div>
+          <div class="sixth">
+            <span [ngClass]="isToday(sixthW)" *ngFor="let sixthW of displayMonth.sixthWeek.thisMonth" (click)="dayClick(sixthW)">{{sixthW}}</span>
+            <span class="last-month" *ngFor="let fwLM of displayMonth.sixthWeek.nextMonth">{{fwLM}}</span>
           </div>
         </div>
       </div>

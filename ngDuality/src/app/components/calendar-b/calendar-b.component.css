@@ -34,7 +34,7 @@ body {
   background: #BDB5D5;
   border-radius: 4px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, .3);
-  height: 501px;
+  /* height: 501px; */
   perspective: 1000;
   transition: .9s;
   transform-style: preserve-3d;
@@ -78,6 +78,8 @@ body {
   display: flex;
   flex-direction: column;
   padding: 0 40px;
+  overflow: scroll;
+  height: 100%;
 }
 
 .weeks div {
@@ -263,6 +265,6 @@ body {
   text-align: center;
 }
 
-.calendar-back-button:hover {
+.calendar-button:hover {
   cursor:pointer;
 }
