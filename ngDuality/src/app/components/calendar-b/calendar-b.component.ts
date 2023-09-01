@@ -32,6 +32,7 @@ export class CalendarBComponent implements OnInit {
   monthBRs: BehaviorReport[] = [];
 
   correctISOString: string = '';
+  displayDateString: string = '';
 
   checkInOrPrevReport: boolean = false;
 
@@ -84,6 +85,7 @@ export class CalendarBComponent implements OnInit {
 
     console.log('**** dayClick(): displayDate: ' + this.displayDate)
     this.displayDate = new Date(this.displayDate!.setDate(day));
+    this.displayDateString = this.displayDate.toLocaleDateString('en-US');
     console.log('**** after setting day: ' + this.displayDate);
     console.log('*** dayClick(): day: ' + day);
 
@@ -135,9 +137,6 @@ export class CalendarBComponent implements OnInit {
         return 'active';
       }
     }
-    // if (day === parseInt(this.currentDay)) {
-    //   return 'active';
-    // }
 
     if (this.daysWithBRs[day - 1]) {
       return this.calcStatus(day);
