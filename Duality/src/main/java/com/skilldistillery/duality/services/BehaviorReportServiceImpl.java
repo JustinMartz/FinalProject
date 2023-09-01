@@ -125,13 +125,18 @@ public class BehaviorReportServiceImpl implements BehaviorReportService {
 		for (int behavior = 1; behavior < 21; behavior++) {
 			System.out.println("behavior: " + behavior);
 			for (BehaviorReport br : reports) {
-				System.out.println("behavior report: " + br.getId());
+//				System.out.println("behavior report: " + br.getId());
 				if (br.getBehavior().getId() == behavior) {
 					filtered.add(br);
 					System.out.println("Adding " + br.getBehavior());
 					break;
 				}
 			}
+		}
+		
+		System.out.println("*********************** filtered behavior reports");
+		for (BehaviorReport r : filtered) {
+			System.out.println(r.getId() + ", " + r.getCreateDate());
 		}
 		return filtered;
 	}
@@ -175,10 +180,10 @@ public class BehaviorReportServiceImpl implements BehaviorReportService {
 		for (int behavior = 1; behavior < 21; behavior++) {
 			System.out.println("behavior: " + behavior);
 			for (BehaviorReport br : reports) {
-				System.out.println("behavior report: " + br.getId());
+//				System.out.println("behavior report: " + br.getId());
 				if (br.getBehavior().getId() == behavior) {
 					filtered.add(br);
-					System.out.println("Adding " + br.getBehavior());
+//					System.out.println("Adding " + br.getBehavior());
 					break;
 				}
 			}
@@ -193,13 +198,9 @@ public class BehaviorReportServiceImpl implements BehaviorReportService {
 
 	@Override
 	public List<Boolean> getReportBooleansForMonth(String username, String isodate) {
+		System.out.println("-----------getReportBooleansForMonth() ");
 		User user = userRepo.findByUsername(username);
-		// if month is 30 days, set last's day to 30
-		// if month is 31 days, set last's day to 31
-		// if month is february, set last's day to 28
-		// call repo method and get list of reports
-		// fill array with either true or false if report exists for day
-		// return array
+	
 		List<BehaviorReport> reports;
 		List<Boolean> boolList = null;
 		String[] parts = isodate.split("-");
@@ -257,10 +258,10 @@ public class BehaviorReportServiceImpl implements BehaviorReportService {
 		}
 
 		// 2014-04-28T16:00:49.455
-		System.out.println("*** isodate: " + isodate);
-		System.out.println("*** month: " + parts[1]);
-		System.out.println("*** fIsodate: " + fIsoDate);
-		System.out.println("*** lIsodate: " + lIsoDate);
+//		System.out.println("*** isodate: " + isodate);
+//		System.out.println("*** month: " + parts[1]);
+//		System.out.println("*** fIsodate: " + fIsoDate);
+//		System.out.println("*** lIsodate: " + lIsoDate);
 
 		// get BRs for date range
 		LocalDateTime first = LocalDateTime.parse(fIsoDate);
@@ -272,7 +273,7 @@ public class BehaviorReportServiceImpl implements BehaviorReportService {
 		outer: for (int i = 0; i < boolList.size(); i++) {
 			for (BehaviorReport r : reports) {
 				if ((r.getCreateDate().getDayOfMonth() == i + 1) && (boolList.get(i) != true)) {
-					System.out.println(r.getCreateDate().getDayOfMonth() + " matches " + (i + 1));
+					System.out.println("behavior report: " + r.getId() + " on day: " + r.getCreateDate().getDayOfMonth() + " matches " + (i + 1));
 					boolList.set(i, true);
 					break;
 				}
@@ -288,14 +289,15 @@ public class BehaviorReportServiceImpl implements BehaviorReportService {
 //		}
 
 		int i = 0;
+		System.out.println("******** boolList: ************");
 		for (Boolean b : boolList) {
 
 			System.out.println("boolList[" + i + "]" + ": " + b);
 			i++;
 		}
-
-		System.out.println("*** first: " + first);
-		System.out.println("*** last : " + last);
+//
+//		System.out.println("*** first: " + first);
+//		System.out.println("*** last : " + last);
 
 //		switch (month) {
 //		case 0:

@@ -251,7 +251,7 @@ export class CalendarBComponent implements OnInit {
   }
 
   buildMonthCorrectISOString(day: number) {
-    console.log('**** day: ' + day);
+    console.log('buildMonthCorrectISOString() **** day: ' + day);
     console.log('currentDate month: ' + this.currentDate?.getMonth());
     let month = '';
     switch (this.currentDate?.getMonth()) {
@@ -275,7 +275,7 @@ export class CalendarBComponent implements OnInit {
     if (myArray) {
       isodate = myArray[0] + '-' + month + '-' + myArray[2];
     }
-    console.log('new isodate: ' + isodate);
+    console.log('returned isodate: ' + isodate);
 
     return isodate;
   }
@@ -286,7 +286,7 @@ export class CalendarBComponent implements OnInit {
 
       console.log('the day ' + day);
 
-    let myArray = this.currentDate?.toISOString().split("-");
+    let myArray = this.displayDate?.toISOString().split("-");
     let otherArray = [];
     let isodate = '';
 
