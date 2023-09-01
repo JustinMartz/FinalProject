@@ -143,57 +143,23 @@ public class BehaviorReportServiceImpl implements BehaviorReportService {
 
 	@Override
 	public List<BehaviorReport> getReportsForMonth(String username, String isodate) {
-		System.out.println("*** getReportsForMonth()");
 		String[] isoparts = isodate.split("Z");
-		System.out.println(isoparts[0]);
 		int month = LocalDateTime.parse(isoparts[0]).getMonthValue();
 
 		User user = userRepo.findByUsername(username);
 
 		String[] parts = isoparts[0].split("-");
 		String ftime = parts[0] + "-" + String.format("%02d", month) + "-01T00:00:00.000";
-		System.out.println("ftime: " + ftime);
 		month++;
 		String ltime = parts[0] + "-" + String.format("%02d", month) + "-01T00:00:00.000";
-		System.out.println("ltime: " + ltime);
 
 		LocalDateTime first = LocalDateTime.parse(ftime);
 		LocalDateTime last = LocalDateTime.parse(ltime);
-		System.out.println(first);
-		System.out.println(last);
 
 		List<BehaviorReport> reports = behaviorReportRepo.findByUserAndCreateDateBetweenOrderByCreateDateDesc(user,
 				first, last);
-		List<BehaviorReport> filtered = new ArrayList<BehaviorReport>();
-//		int behavior = 1;
-//		for (BehaviorReport r : reports) {
-//			System.out.print("report: " + r.getId() + ", behavior: " + behavior);
-//			if (behavior == r.getBehavior().getId()) {
-//				filtered.add(r);
-//				System.out.println(" - adding: " + r.getBehavior().getName());
-//				behavior = r.getBehavior().getId() + 1;
-//			} else
-//			behavior++;
-//			System.out.println("incremented behavior to " + behavior);
-//		}
 		
-		for (int behavior = 1; behavior < 21; behavior++) {
-			System.out.println("behavior: " + behavior);
-			for (BehaviorReport br : reports) {
-//				System.out.println("behavior report: " + br.getId());
-				if (br.getBehavior().getId() == behavior) {
-					filtered.add(br);
-//					System.out.println("Adding " + br.getBehavior());
-					break;
-				}
-			}
-		}
-		
-		for (BehaviorReport b : filtered) {
-			System.out.println(b.getIntensity());
-		}
-
-		return filtered;
+		return reports;
 	}
 
 	@Override
@@ -273,7 +239,6 @@ public class BehaviorReportServiceImpl implements BehaviorReportService {
 		outer: for (int i = 0; i < boolList.size(); i++) {
 			for (BehaviorReport r : reports) {
 				if ((r.getCreateDate().getDayOfMonth() == i + 1) && (boolList.get(i) != true)) {
-					System.out.println("behavior report: " + r.getId() + " on day: " + r.getCreateDate().getDayOfMonth() + " matches " + (i + 1));
 					boolList.set(i, true);
 					break;
 				}
@@ -288,13 +253,6 @@ public class BehaviorReportServiceImpl implements BehaviorReportService {
 //			}
 //		}
 
-		int i = 0;
-		System.out.println("******** boolList: ************");
-		for (Boolean b : boolList) {
-
-			System.out.println("boolList[" + i + "]" + ": " + b);
-			i++;
-		}
 //
 //		System.out.println("*** first: " + first);
 //		System.out.println("*** last : " + last);

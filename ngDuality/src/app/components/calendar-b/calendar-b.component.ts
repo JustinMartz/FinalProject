@@ -168,11 +168,14 @@ export class CalendarBComponent implements OnInit {
   }
 
   calcStatus(day: number) {
+    console.log('******** calcStatus()');
+    console.log('day: ' + day);
     let total: number = 0;
     let avg: number = 0;
     let calculableBehaviorReportsForDay: BehaviorReport[] = [];
 
     for (let br of this.monthBRs) {
+      console.log('br id: ' + br.id);
       let myArray = br.createDate.split('-');
       let secondArray = myArray[2].split('T');
       if (secondArray[0] == day.toString()) {

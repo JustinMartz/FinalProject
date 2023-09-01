@@ -56,7 +56,6 @@ public class BehaviorReportController {
 	@PostMapping("behaviorReports/monthReport")
 	List<BehaviorReport> getAllReportsForMonth(Principal principal, @RequestBody String isodate, HttpServletResponse response) {
 		System.out.println("*** getAllReportsForMonth controller");
-		System.out.println("Are we getting here");
 		List<BehaviorReport> reports = behaviorReportService.getReportsForMonth(principal.getName(), isodate);
 		if (reports == null) {
 			response.setStatus(404);
