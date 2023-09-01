@@ -20,6 +20,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 @Entity
 public class User {
@@ -30,6 +32,7 @@ public class User {
 
 	private String username;   
 
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private String password;   
 
 	private Boolean enabled;    

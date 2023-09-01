@@ -52,7 +52,7 @@ public class UserController {
 	@PutMapping("users/{id}")
 	public User updateUser(Principal principal, @PathVariable("id") int userId, @RequestBody User user, HttpServletResponse res) {
 	    try {
-	        user = userServ.updateUser( user);
+	        user = userServ.updateUser(user);
 	        if (user == null) {
 	            res.setStatus(404);
 	            System.out.println("did not create user in controller");
