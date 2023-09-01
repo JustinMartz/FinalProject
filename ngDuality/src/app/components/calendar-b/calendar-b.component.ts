@@ -23,6 +23,7 @@ export class CalendarBComponent implements OnInit {
 
   formView: boolean = false;
   dayClicked: boolean = false;
+  showBothFormButtons: boolean = false;
 
   currentDay: string = '';
   displayMonthText: string = '';
@@ -34,7 +35,7 @@ export class CalendarBComponent implements OnInit {
   correctISOString: string = '';
   displayDateString: string = '';
 
-  checkInOrPrevReport: boolean = false;
+  todayIsToday: boolean = false;
 
   constructor(
     private calendarService: CalendarService,
@@ -83,12 +84,10 @@ export class CalendarBComponent implements OnInit {
     this.dayClicked = true;
     this.displayDateBRs = [];
 
-    console.log('**** dayClick(): displayDate: ' + this.displayDate)
     this.displayDate = new Date(this.displayDate!.setDate(day));
     this.displayDateString = this.displayDate.toLocaleDateString('en-US');
-    console.log('**** after setting day: ' + this.displayDate);
-    console.log('*** dayClick(): day: ' + day);
 
+    console.log(this.buildDayCorrectISOString(day));
     this.brService.getBRsForDay(this.buildDayCorrectISOString(day)).subscribe({
       next: (reports) => {
         this.displayDateBRs = [];
@@ -99,6 +98,24 @@ export class CalendarBComponent implements OnInit {
         console.error(fail);
       },
     });
+
+    if (this.displayDate?.getMonth() === new Date().getMonth()) {
+      console.log('displaydatemonth == curentdate month');
+      if (this.displayDate.getDate() === new Date().getDate()) {
+        console.log('day == day');
+        this.todayIsToday = true;
+      } else {
+        this.todayIsToday = false;
+      }
+    }
+    console.log('displayDateBRs.length: ' + this.displayDateBRs.length);
+    if (this.displayDateBRs.length === 0 && this.todayIsToday) {
+      console.log('setting showBothFormButtons to true');
+      this.showBothFormButtons = true;
+    } else {
+      this.showBothFormButtons = false;
+    }
+
     this.formView = true;
   }
 
@@ -175,7 +192,6 @@ export class CalendarBComponent implements OnInit {
 
 
     for (let br of this.monthBRs) {
-      console.log('br id: ' + br.id);
       let myArray = br.createDate.split('-');
       let secondArray = myArray[2].split('T');
       if (secondArray[0] == day.toString()) {
@@ -251,11 +267,25 @@ export class CalendarBComponent implements OnInit {
       this.displayMonth = this.calendarService.getNextMonth(
         this.displayDate!
       );
+
       console.log('New display month: ');
       console.log(this.displayMonth);
+
       this.getBRsForMonth(this.displayDate.toISOString());
-      // change displayMonthText
-      // change displayYearText
+
+      this.brService
+      .getReportsForMonth(this.displayDate.toISOString())
+      .subscribe({
+        next: (reports) => {
+          console.log('*** month reports');
+          console.log(reports);
+          this.monthBRs = reports;
+        },
+        error: (msg) => {
+          console.error('Error in CalendarBComponent.ngOnInit()');
+          console.error(msg);
+        },
+      });
     }
   }
 
