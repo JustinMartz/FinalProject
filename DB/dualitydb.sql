@@ -536,16 +536,16 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `dualitydb`;
-INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (1, 'https://www.nami.org/', 'National Alliance on metal illness', '2023-08-24 11:50:00', 1, 1);
-INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (2, 'tel:988', 'National Suicide hotline', '2023-08-24 11:50:00', 1, 1);
-INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (3, 'https://www.thetrevorproject.org/', 'LGBTQ youth Alliance', '2023-08-24 11:50:00', 1, 1);
+INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (1, 'https://www.nami.org/', 'National Alliance on Metal Illness(NAMI)', '2023-08-24 11:50:00', 1, 1);
+INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (2, 'tel:988', 'National Suicide Hotline(TEL)', '2023-08-24 11:50:00', 1, 1);
+INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (3, 'https://www.thetrevorproject.org/', 'LGBTQ Youth Alliance', '2023-08-24 11:50:00', 1, 1);
 INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (4, 'https://www.veteranscrisisline.net/', 'National Crisis Alliance for Veterans', '2023-08-24 11:50:00', 1, 1);
-INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (5, 'https://www.thehotline.org/', 'National Domestic Violence hotline', '2023-08-24 11:50:00', 1, 1);
-INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (6, 'tel:211', 'Assistance locating long-term mental health resources', '2023-08-24 11:50:00', 1, 1);
-INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (7, 'https://www.thehotline.org/', 'National Domestic Violence hotline', '2023-08-24 11:50:00', 1, 4);
-INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (8, 'https://www.nami.org/', 'National Alliance on metal illness', '2023-08-24 11:50:00', 1, 4);
-INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (9, 'https://www.nami.org/', 'National Alliance on metal illness', '2023-08-24 11:50:00', 1, 5);
-INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (10, 'https://www.veteranscrisisline.net/', 'National Alliance on metal illness', '2023-08-24 11:50:00', 1, 5);
+INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (5, 'https://www.thehotline.org/', 'National Domestic Violence Hotline', '2023-08-24 11:50:00', 1, 1);
+INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (6, 'tel:211', 'Assistance Locating Long-Term Mental Health Resources(TEL)', '2023-08-24 11:50:00', 1, 1);
+INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (7, 'https://www.thehotline.org/', 'National Domestic Violence Hotline(Website)', '2023-08-24 11:50:00', 1, 4);
+INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (8, 'https://www.nami.org/', 'National Alliance on Metal Illness(NAMI)', '2023-08-24 11:50:00', 1, 4);
+INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (9, 'https://www.nami.org/', 'National Alliance on Metal Illness(NAMI)', '2023-08-24 11:50:00', 1, 5);
+INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (10, 'https://www.veteranscrisisline.net/', 'National Crisis Alliance for Veterans', '2023-08-24 11:50:00', 1, 5);
 
 COMMIT;
 
