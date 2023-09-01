@@ -75,6 +75,7 @@ export class UserhomeComponent implements OnInit {
     }
   }
   updateUser() {
+    console.log("password in component " +this.loggedInUser.password)
     this.userService.updateUser(this.loggedInUser).subscribe({
       next: (user) => {
         console.log('**********************' + this.loggedInUser);

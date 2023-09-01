@@ -36,6 +36,7 @@ export class UserService {
     );
   }
   updateUser(updatedUser: User): Observable<User> {
+    console.log("password in service "+updatedUser.password)
     return this.http
       .put<User>(this.url + '/' + updatedUser.id, updatedUser,this.getHttpOptions())
       .pipe(
