@@ -82,8 +82,10 @@ export class CalendarBComponent implements OnInit {
     this.dayClicked = true;
     this.displayDateBRs = [];
 
-    this.displayDate = new Date();
-    this.displayDate?.setUTCDate(day);
+    console.log('**** dayClick(): displayDate: ' + this.displayDate)
+    this.displayDate = new Date(this.displayDate!.setDate(day));
+    console.log('**** after setting day: ' + this.displayDate);
+    console.log('*** dayClick(): day: ' + day);
 
     this.brService.getBRsForDay(this.buildDayCorrectISOString(day)).subscribe({
       next: (reports) => {
@@ -175,16 +177,13 @@ export class CalendarBComponent implements OnInit {
       let myArray = br.createDate.split('-');
       let secondArray = myArray[2].split('T');
       if (secondArray[0] == day.toString()) {
-        console.log('adding br: ' + br.id);
         calculableBehaviorReportsForDay.push(br);
       }
     }
-    console.log('calculableBehaviorReportsForDay: ' + calculableBehaviorReportsForDay);
     for (let b of calculableBehaviorReportsForDay) {
       total += b.intensity;
     }
     avg = total / calculableBehaviorReportsForDay.length;
-    console.log('average of intensity values: ' + avg);
     if (avg > 0 && avg < 4) {
       return 'event-good';
     }
