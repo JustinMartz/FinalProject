@@ -541,6 +541,7 @@ INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `ac
 INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (3, 'https://www.thetrevorproject.org/', 'LGBTQ youth Alliance', '2023-08-24 11:50:00', 1, 1);
 INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (4, 'https://www.veteranscrisisline.net/', 'National Crisis Alliance for Veterans', '2023-08-24 11:50:00', 1, 1);
 INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (5, 'https://www.thehotline.org/', 'National Domestic Violence hotline', '2023-08-24 11:50:00', 1, 1);
+INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (6, 'tel:211', 'Assistance locating long-term mental health resources', '2023-08-24 11:50:00', 1, 1);
 
 COMMIT;
 
