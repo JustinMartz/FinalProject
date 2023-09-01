@@ -52,11 +52,13 @@ public class UserController {
 	@PutMapping("users/{id}")
 	public User updateUser(Principal principal, @PathVariable("id") int userId, @RequestBody User user, HttpServletResponse res) {
 	    try {
-	        user = userServ.updateUser(userId, user);
+	        user = userServ.updateUser( user);
 	        if (user == null) {
 	            res.setStatus(404);
+	            System.out.println("did not create user in controller");
 	        } else {
 	            res.setStatus(200);
+	            System.out.println("created user in controller");
 	        }
 	    } catch (Exception e) {
 	        res.setStatus(400);

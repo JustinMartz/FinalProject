@@ -44,7 +44,7 @@ export class UserService {
           return throwError(
             () =>
               new Error(
-                'CommentService.update(): error updating comment: ' + err
+                'UserService.update(): error updating user: ' + err
               )
           );
         })

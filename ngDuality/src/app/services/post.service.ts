@@ -53,7 +53,7 @@ export class PostService {
   create(post: Post): Observable<Post> {
     this.auth.getLoggedInUser().subscribe({
       next: (user) => {
-        post.creator = user;
+
       },
       error: (fail) => {
         console.error('ngOnInit(): Error getting user');

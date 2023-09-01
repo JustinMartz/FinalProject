@@ -23,67 +23,67 @@
     <hr />
 
     <button (click)="toggleAccordian()">Update Your Info</button>
-    <div *ngIf="openAccordian">
+    <div class="updateUser" *ngIf="openAccordian">
       <form>
-        <label for="username"></label>
+        <label for="username">Username:</label>
         <input
           type="text"
           name="username"
-          [(ngModel)]="updatedUser.username"
+          [(ngModel)]="loggedInUser.username"
           placeholder="{{ loggedInUser.username }}"
           required
         />
         <br />
 
-        <label for="firstName"></label>
+        <label for="firstName">First Name:</label>
         <input
           type="text"
           name="firstName"
-          [(ngModel)]="updatedUser.firstName"
+          [(ngModel)]="loggedInUser.firstName"
           placeholder="{{ loggedInUser.firstName }}"
         />
         <br />
 
-        <label for="lastName"></label>
+        <label for="lastName">Last Name:</label>
         <input
           type="text"
           name="lastName"
-          [(ngModel)]="updatedUser.lastName"
+          [(ngModel)]="loggedInUser.lastName"
           placeholder="{{ loggedInUser.lastName }}"
         />
         <br />
 
-        <label for="aboutMe"></label>
+        <label for="aboutMe">About Me:</label>
         <input
           type="text"
           name="aboutMe"
-          [(ngModel)]="updatedUser.aboutMe"
-          placeholder="{{ loggedInUser.password }}"
+          [(ngModel)]="loggedInUser.aboutMe"
+          placeholder="{{ loggedInUser.aboutMe }}"
           required
         />
         <br />
 
-        <label for="birthday"></label>
+        <label for="birthday">Birthday:</label><br>
         <input
           type="date"
           name="birthday"
-          [(ngModel)]="updatedUser.dob"
+          [(ngModel)]="loggedInUser.dob"
           placeholder="
           {{loggedInUser.dob}}"
         />
         <br />
 
-        <label for="password"></label>
+        <label for="password">Password</label><br>
         <input
           type="password"
           name="password"
-          [(ngModel)]="updatedUser.password"
+          [(ngModel)]="loggedInUser.password"
           placeholder="{{ loggedInUser.password }}"
           required
         />
         <br />
 
-        <button (click)="updateUser()">Register Account</button>
+        <button (click)="updateUser()">Submit Changes</button>
       </form>
     </div>
 
