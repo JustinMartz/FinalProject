@@ -183,6 +183,10 @@ public class BehaviorReportServiceImpl implements BehaviorReportService {
 				}
 			}
 		}
+		
+		for (BehaviorReport b : filtered) {
+			System.out.println(b.getIntensity());
+		}
 
 		return filtered;
 	}

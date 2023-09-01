@@ -117,9 +117,14 @@ export class CalendarBComponent implements OnInit {
   }
 
   isToday(day: number) {
-    if (day === parseInt(this.currentDay)) {
-      return 'active';
+    if (this.displayDate?.getMonth() === this.currentDate?.getMonth()) {
+      if (day === this.currentDate?.getDate()) {
+        return 'active';
+      }
     }
+    // if (day === parseInt(this.currentDay)) {
+    //   return 'active';
+    // }
 
     if (this.daysWithBRs[day - 1]) {
       return this.calcStatus(day);
@@ -154,18 +159,21 @@ export class CalendarBComponent implements OnInit {
     let total: number = 0;
     let avg: number = 0;
     let calculableBehaviorReportsForDay: BehaviorReport[] = [];
+
     for (let br of this.monthBRs) {
       let myArray = br.createDate.split('-');
       let secondArray = myArray[2].split('T');
       if (secondArray[0] == day.toString()) {
+        console.log('adding br: ' + br.id);
         calculableBehaviorReportsForDay.push(br);
       }
-      console.log(secondArray[0]);
     }
+    console.log('calculableBehaviorReportsForDay: ' + calculableBehaviorReportsForDay);
     for (let b of calculableBehaviorReportsForDay) {
       total += b.intensity;
     }
     avg = total / calculableBehaviorReportsForDay.length;
+    console.log('average of intensity values: ' + avg);
     if (avg > 0 && avg < 4) {
       return 'event-good';
     }
@@ -196,9 +204,40 @@ export class CalendarBComponent implements OnInit {
       );
       console.log('New display month: ');
       console.log(this.displayMonth);
-
+      this.getBRsForMonth(this.displayDate.toISOString());
       // change displayMonthText
       // change displayYearText
+    }
+  }
+
+  goForwardOneMonth() {
+    console.log('*** goForwardOneMonth()');
+    if (this.displayDate) {
+      console.log('date before: ' + this.displayDate?.toISOString());
+      let newDate = new Date(this.displayDate);
+      newDate.setUTCMonth(this.displayDate.getUTCMonth() + 1);
+      this.displayDate = newDate;
+      console.log('displayDate after: ' + this.displayDate?.toISOString());
+      console.log('Current display month: ');
+      console.log(this.displayMonth);
+      // this.displayMonth = new Calendar();
+      console.log('displayDate' + this.displayDate?.toISOString());
+      this.displayMonth = this.calendarService.getNextMonth(
+        this.displayDate!
+      );
+      console.log('New display month: ');
+      console.log(this.displayMonth);
+      this.getBRsForMonth(this.displayDate.toISOString());
+      // change displayMonthText
+      // change displayYearText
+    }
+  }
+
+  forwardIsPossible() {
+    if (this.displayDate?.getMonth() === this.currentDate?.getMonth()) {
+      return false;
+    } else {
+      return true;
     }
   }
 }
