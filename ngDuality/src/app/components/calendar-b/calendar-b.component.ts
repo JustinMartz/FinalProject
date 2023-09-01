@@ -151,6 +151,7 @@ export class CalendarBComponent implements OnInit {
     console.log(checkIn);
     console.log(this.dayClicked);
     checkIn?.submitDailyBR();
+    this.closeForm();
   }
 
   getBRsForMonth(isodate: string) {
