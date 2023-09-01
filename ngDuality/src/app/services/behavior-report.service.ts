@@ -39,6 +39,7 @@ export class BehaviorReportService {
   }
 
   getBRsForMonth(isodate: string): Observable<boolean[]> {
+    console.log('in getBRsForMonth(): ' + isodate);
     return this.http.post<boolean[]>(this.url + '/month', isodate, this.getHttpOptions()).pipe(
       catchError((err: any) => {
         console.log(err);

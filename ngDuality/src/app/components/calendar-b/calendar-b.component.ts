@@ -31,6 +31,8 @@ export class CalendarBComponent implements OnInit {
   displayDateBRs: BehaviorReport[] = [];
   monthBRs: BehaviorReport[] = [];
 
+  correctISOString: string = '';
+
   checkInOrPrevReport: boolean = false;
 
   constructor(
@@ -40,13 +42,22 @@ export class CalendarBComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentDate = new Date();
+    console.log('*** currentDate day:  ' + this.currentDate.getDate());
+    console.log('*** currentDate month:  ' + this.currentDate.getUTCMonth());
+
+
     this.displayDate = new Date();
     this.displayMonth = this.calendarService.getMonth();
     this.currentDay = ('0' + this.currentDate.getDate()).slice(-2);
 
-    this.getBRsForMonth(this.displayDate.toISOString());
+    this.correctISOString = this.buildMonthCorrectISOString(this.currentDate.getDate());
+
+    console.log('correctISOString: ' + this.correctISOString);
+    console.log('bigISOString: ' + this.correctISOString);
+    // this.getBRsForMonth(this.displayDate.toISOString());
+    this.getBRsForMonth(this.correctISOString);
     this.brService
-      .getReportsForMonth(this.displayDate.toISOString())
+      .getReportsForMonth(this.correctISOString)
       .subscribe({
         next: (reports) => {
           console.log('*** month reports');
@@ -74,7 +85,7 @@ export class CalendarBComponent implements OnInit {
     this.displayDate = new Date();
     this.displayDate?.setUTCDate(day);
 
-    this.brService.getBRsForDay(this.displayDate.toISOString()).subscribe({
+    this.brService.getBRsForDay(this.buildDayCorrectISOString(day)).subscribe({
       next: (reports) => {
         this.displayDateBRs = [];
         this.displayDateBRs = reports;
@@ -240,4 +251,54 @@ export class CalendarBComponent implements OnInit {
       return true;
     }
   }
+
+  buildMonthCorrectISOString(day: number) {
+    console.log('**** day: ' + day);
+    console.log('currentDate month: ' + this.currentDate?.getMonth());
+    let month = '';
+    switch (this.currentDate?.getMonth()) {
+      case 6:
+        month = '07';
+        break;
+      case 7:
+        month = '08';
+        break;
+      case 8:
+        month = '09';
+        break;
+      case 9:
+        month = '10';
+        break;
+    }
+
+    let myArray = this.currentDate?.toISOString().split("-");
+    let isodate = '';
+
+    if (myArray) {
+      isodate = myArray[0] + '-' + month + '-' + myArray[2];
+    }
+    console.log('new isodate: ' + isodate);
+
+    return isodate;
+  }
+
+  buildDayCorrectISOString(passedInDay: number) {
+    let day = passedInDay.toLocaleString('en-US', {
+      minimumIntegerDigits: 2});
+
+      console.log('the day ' + day);
+
+    let myArray = this.currentDate?.toISOString().split("-");
+    let otherArray = [];
+    let isodate = '';
+
+    if (myArray) {
+      isodate = myArray[0] + '-' + myArray[1] + '-' + day + 'T00:00:00.000';
+    }
+    console.log('new isodate: ' + isodate);
+
+    return isodate;
+  }
 }
+
+
