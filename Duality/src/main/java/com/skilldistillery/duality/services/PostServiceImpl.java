@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.skilldistillery.duality.entities.Post;
+import com.skilldistillery.duality.entities.User;
 import com.skilldistillery.duality.repositories.PostRepository;
 import com.skilldistillery.duality.repositories.UserRepository;
 
@@ -43,6 +44,7 @@ public class PostServiceImpl implements PostService {
 	@Override
 	public Post create(Post newPost, String username) {
 		User user = userRepo.findByUsername(username);
+		newPost.setCreator(user);
 		return postRepo.saveAndFlush(newPost);
 	}
 

@@ -12,11 +12,12 @@ public interface PostService {
 	
 	Post getPost(int postId);
 	
-	Post create(Post newPost);
 
 	Post update(int postId, Post newPost);
 
 	boolean delete(int postId);
+
+	Post create(Post newPost, String username);
 	
 	
 

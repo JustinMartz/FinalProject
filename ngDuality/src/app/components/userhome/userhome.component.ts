@@ -21,33 +21,14 @@ export class UserhomeComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private resourceService: ResourceService,
-    private userService: UserService  ) {}
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
-    this.reload();
-  }
-
-  addResource() {
-    this.resource.active = true;
-
-    this.resourceService.create(this.resource).subscribe({
-      next: (createdPost) => {
-        this.resource = new Resource();
-        this.reload();
-      },
-      error: (fail) => {
-        console.error('createComponent.addPost: error creating post');
-        console.error(fail);
-      },
-    });
-  }
-
-  reload() {
     if (this.authService.checkLogin()) {
       this.authService.getLoggedInUser().subscribe({
         next: (user) => {
           this.loggedInUser = user;
-
 
           this.resourceService
             .getUserResources(this.loggedInUser.id)
@@ -69,24 +50,40 @@ export class UserhomeComponent implements OnInit {
     }
   }
 
+  addResource() {
+    this.resource.active = true;
+
+    this.resourceService.create(this.resource).subscribe({
+      next: (createdPost) => {
+        this.resource = new Resource();
+        this.reload();
+      },
+      error: (fail) => {
+        console.error('createComponent.addPost: error creating post');
+        console.error(fail);
+      },
+    });
+  }
+
+  reload() {}
+
   toggleAccordian() {
-if(this.openAccordian){
-  this.openAccordian = false;
-}else{
-  this.openAccordian=true;
-}
+    if (this.openAccordian) {
+      this.openAccordian = false;
+    } else {
+      this.openAccordian = true;
+    }
   }
   updateUser() {
     this.userService.updateUser(this.loggedInUser).subscribe({
       next: (user) => {
-        console.log("**********************"+this.loggedInUser)
-        // window.location.reload();
+        console.log('**********************' + this.loggedInUser);
+        window.location.reload();
       },
       error: (fail) => {
         console.error('UpdateUser.updateUser(): error updating user');
         console.error(this.loggedInUser);
       },
-    })
-
+    });
   }
 }
