@@ -544,6 +544,8 @@ INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `ac
 INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (6, 'tel:211', 'Assistance locating long-term mental health resources', '2023-08-24 11:50:00', 1, 1);
 INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (7, 'https://www.thehotline.org/', 'National Domestic Violence hotline', '2023-08-24 11:50:00', 1, 4);
 INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (8, 'https://www.nami.org/', 'National Alliance on metal illness', '2023-08-24 11:50:00', 1, 4);
+INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (9, 'https://www.nami.org/', 'National Alliance on metal illness', '2023-08-24 11:50:00', 1, 5);
+INSERT INTO `resource` (`id`, `resource_link`, `description`, `create_date`, `active`, `user_id`) VALUES (10, 'https://www.veteranscrisisline.net/', 'National Alliance on metal illness', '2023-08-24 11:50:00', 1, 5);
 
 COMMIT;
 
