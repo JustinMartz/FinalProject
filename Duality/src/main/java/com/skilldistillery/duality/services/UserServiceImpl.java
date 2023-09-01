@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User updateUser(User user) {
-
+		System.out.println("updated user: " + user.toString());
 		String encrypted = encoder.encode(user.getPassword());
 
 		System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n got to user service "+user.getPassword()+"    "+encrypted);

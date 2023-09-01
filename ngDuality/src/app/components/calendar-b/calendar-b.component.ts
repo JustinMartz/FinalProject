@@ -168,11 +168,10 @@ export class CalendarBComponent implements OnInit {
   }
 
   calcStatus(day: number) {
-    console.log('******** calcStatus()');
-    console.log('day: ' + day);
     let total: number = 0;
     let avg: number = 0;
     let calculableBehaviorReportsForDay: BehaviorReport[] = [];
+
 
     for (let br of this.monthBRs) {
       console.log('br id: ' + br.id);
@@ -186,6 +185,7 @@ export class CalendarBComponent implements OnInit {
       total += b.intensity;
     }
     avg = total / calculableBehaviorReportsForDay.length;
+
     if (avg > 0 && avg < 4) {
       return 'event-good';
     }
@@ -217,8 +217,21 @@ export class CalendarBComponent implements OnInit {
       console.log('New display month: ');
       console.log(this.displayMonth);
       this.getBRsForMonth(this.displayDate.toISOString());
-      // change displayMonthText
-      // change displayYearText
+
+      // let dayToCalcString = this.buildDayCorrectISOString(day);
+      this.brService
+      .getReportsForMonth(this.displayDate.toISOString())
+      .subscribe({
+        next: (reports) => {
+          console.log('*** month reports');
+          console.log(reports);
+          this.monthBRs = reports;
+        },
+        error: (msg) => {
+          console.error('Error in CalendarBComponent.ngOnInit()');
+          console.error(msg);
+        },
+      });
     }
   }
 
