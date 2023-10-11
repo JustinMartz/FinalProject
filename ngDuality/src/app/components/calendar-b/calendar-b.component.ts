@@ -190,7 +190,6 @@ export class CalendarBComponent implements OnInit {
     let avg: number = 0;
     let calculableBehaviorReportsForDay: BehaviorReport[] = [];
 
-
     for (let br of this.monthBRs) {
       let myArray = br.createDate.split('-');
       let secondArray = myArray[2].split('T');
@@ -198,9 +197,11 @@ export class CalendarBComponent implements OnInit {
         calculableBehaviorReportsForDay.push(br);
       }
     }
+
     for (let b of calculableBehaviorReportsForDay) {
       total += b.intensity;
     }
+
     avg = total / calculableBehaviorReportsForDay.length;
 
     if (avg > 0 && avg < 4) {
